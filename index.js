@@ -1,6 +1,10 @@
 import express from "express";
 import cors from "cors";
 import EventRouter from "./src/controllers/event-controller.js";
+import UserRouter from "./src/controllers/user-controller.js";
+import ProvinceRouter from "./src/controllers/province-controller.js";
+import ELocationRouter from "./src/controllers/event-location-controller.js";
+import ECategoryRouter from "./src/controllers/event-category-controller.js";
 const app = express();
 const port = 3000;
 
@@ -13,7 +17,11 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/event", EventRouter);
+app.use("/api/user", UserRouter);
+app.use("/api/province", ProvinceRouter);
+app.use("/api/event-location", ELocationRouter);
+app.use("/api/event-category", ECategoryRouter);
 
 app.listen(port, () => {
     console.log("Escuchando conexión en el puerto " + port);
-})
+}) 

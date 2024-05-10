@@ -1,6 +1,12 @@
 import { Router } from "express";
 const router = Router();
 
+// 2
+/*
+router.get("", (req, res) => {
+    res.status(200).send("llegue");
+})*/
+
 // 3 Busqueda de un evento
 router.get("", (req, res) => {
     const response = {

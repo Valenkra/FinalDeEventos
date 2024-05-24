@@ -5,7 +5,7 @@ BEGIN;
 
 CREATE TABLE IF NOT EXISTS public.event_categories
 (
-    id integer NOT NULL DEFAULT nextval('event_categories'::regclass),
+    id serial NOT NULL,
     name character varying(200) COLLATE pg_catalog."default",
     display_order integer,
     CONSTRAINT event_categories_pkey PRIMARY KEY (id)
@@ -13,161 +13,89 @@ CREATE TABLE IF NOT EXISTS public.event_categories
 
 CREATE TABLE IF NOT EXISTS public.event_enrollments
 (
-    id integer NOT NULL DEFAULT nextval('event_enrollments'::regclass),
-    id_user integer DEFAULT nextval('event_enrollments'::regclass),
+    id serial,
+    id_event serial,
+    id_user serial,
     description character varying(250) COLLATE pg_catalog."default",
     registration_date_time date,
     attended boolean,
     observations character varying(300) COLLATE pg_catalog."default",
     rating integer,
-    id_event serial NOT NULL,
-    CONSTRAINT event_enrollments_pkey PRIMARY KEY (id)
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS public.event_locations
 (
-    id integer NOT NULL DEFAULT nextval('event_locations'::regclass),
+    id serial,
+    id_location serial,
     name character varying(30) COLLATE pg_catalog."default",
     full_address character varying(100) COLLATE pg_catalog."default",
     max_capacity integer,
     latitude integer,
     longitude integer,
-    id_creator_user integer DEFAULT nextval('event_locations'::regclass),
-    id_location serial NOT NULL,
-    CONSTRAINT event_locations_pkey PRIMARY KEY (id)
+    id_creator_user serial,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS public.event_tags
 (
-    id integer NOT NULL DEFAULT nextval('event_tags'::regclass),
-    id_tag integer NOT NULL DEFAULT nextval('event_tags'::regclass),
-    id_event serial NOT NULL,
-    CONSTRAINT event_tags_pkey PRIMARY KEY (id)
+    id serial NOT NULL,
+    id_event serial,
+    id_tag serial,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS public.events
 (
-    id integer NOT NULL DEFAULT nextval('events'::regclass),
+    id serial,
     name character varying(86) COLLATE pg_catalog."default",
     description character varying(300) COLLATE pg_catalog."default",
-    id_event_category integer DEFAULT nextval('events'::regclass),
+    id_event_category serial,
+    id_event_location serial,
     start_date date,
     duration_in_minutes double precision,
     price double precision,
     enabled_for_enrollment boolean,
     max_assistance integer,
-    id_creator_user integer DEFAULT nextval('events'::regclass),
-    id_event_location serial NOT NULL,
+    id_creator_user serial,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS public.locations
 (
-    id integer NOT NULL DEFAULT nextval('locations_id_province_seq'::regclass),
+    id serial NOT NULL,
     name character varying(100) COLLATE pg_catalog."default",
+    id_province serial,
     latitude integer,
     longitude integer,
-    id_province serial,
-    CONSTRAINT locations_pkey PRIMARY KEY (id)
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS public.provinces
 (
+    id serial NOT NULL,
     name character varying(100) COLLATE pg_catalog."default",
     full_name character varying(150) COLLATE pg_catalog."default",
     latitude integer,
     longitude integer,
     display_order integer,
-    id serial NOT NULL,
     CONSTRAINT provinces_pkey PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS public.tags
 (
-    name character varying(50) COLLATE pg_catalog."default",
     id serial NOT NULL,
+    name character varying(50) COLLATE pg_catalog."default",
     CONSTRAINT tags_pkey PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS public.users
 (
+    id serial NOT NULL,
     first_name character varying(80) COLLATE pg_catalog."default",
     last_name character varying(74) COLLATE pg_catalog."default",
     username character varying(20) COLLATE pg_catalog."default",
     password character varying(25) COLLATE pg_catalog."default",
-    id serial NOT NULL,
     CONSTRAINT users_pkey PRIMARY KEY (id)
 );
-
-ALTER TABLE IF EXISTS public.event_categories
-    ADD FOREIGN KEY (id)
-    REFERENCES public.events (id_event_category) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
-
-
-ALTER TABLE IF EXISTS public.event_locations
-    ADD FOREIGN KEY (id)
-    REFERENCES public.events (id_event_location) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
-
-
-ALTER TABLE IF EXISTS public.events
-    ADD FOREIGN KEY (id)
-    REFERENCES public.event_tags (id_event) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
-
-
-ALTER TABLE IF EXISTS public.events
-    ADD FOREIGN KEY (id)
-    REFERENCES public.event_enrollments (id_event) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
-
-
-ALTER TABLE IF EXISTS public.locations
-    ADD FOREIGN KEY (id)
-    REFERENCES public.event_locations (id_location) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
-
-
-ALTER TABLE IF EXISTS public.provinces
-    ADD FOREIGN KEY (id)
-    REFERENCES public.locations (id_province) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
-
-
-ALTER TABLE IF EXISTS public.tags
-    ADD FOREIGN KEY (id)
-    REFERENCES public.event_tags (id_tag) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
-
-
-ALTER TABLE IF EXISTS public.users
-    ADD FOREIGN KEY (id)
-    REFERENCES public.events (id_creator_user) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
-
-
-ALTER TABLE IF EXISTS public.users
-    ADD FOREIGN KEY (id)
-    REFERENCES public.event_enrollments (id_user) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
-
 END;

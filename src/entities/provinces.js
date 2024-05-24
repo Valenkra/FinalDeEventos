@@ -9,3 +9,4 @@ class Provinces {
         this.display_order = display_order;
     }
 }
+export default Provinces;

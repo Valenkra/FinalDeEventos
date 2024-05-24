@@ -11,3 +11,5 @@ class Event_enrollments {
         this.rating = rating;
     }
 }
+
+export default Event_enrollments;

@@ -5,3 +5,5 @@ class Event_categories {
         this.display_order = display_order;
     }
 }
+
+export default Event_categories;

@@ -7,3 +7,5 @@ class Users {
         this.password = password;
     }
 }
+
+export default Users;

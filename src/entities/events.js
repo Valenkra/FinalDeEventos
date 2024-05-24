@@ -15,3 +15,5 @@ class Events {
         this.id_creator_user = id_creator_user;
     }
 }
+
+export default Events;

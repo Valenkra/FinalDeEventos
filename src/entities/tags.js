@@ -4,3 +4,5 @@ class Tags {
         this.name = name;
     }
 }
+
+export default Tags;

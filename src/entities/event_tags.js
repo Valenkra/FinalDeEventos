@@ -5,3 +5,5 @@ class Event_tags {
         this.id_tag = id_tag;
     }
 }
+
+export default Event_tags;

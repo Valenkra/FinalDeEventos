@@ -11,3 +11,5 @@ class Event_locations {
         this.id_creator_user = id_creator_user;
     }
 }
+
+export default Event_locations;

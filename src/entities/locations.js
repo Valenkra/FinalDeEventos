@@ -7,3 +7,5 @@ class Locations {
         this.longitude = longitude;
     }
 }
+
+export default Locations;

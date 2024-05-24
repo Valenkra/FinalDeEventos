@@ -2,7 +2,7 @@
 -- PostgreSQL database cluster dump
 --
 
--- Started on 2024-05-24 09:03:41
+-- Started on 2024-05-24 09:52:11
 
 SET default_transaction_read_only = off;
 
@@ -44,7 +44,7 @@ ALTER ROLE postgres WITH SUPERUSER INHERIT CREATEROLE CREATEDB LOGIN REPLICATION
 -- Dumped from database version 16.2
 -- Dumped by pg_dump version 16.0
 
--- Started on 2024-05-24 09:03:41
+-- Started on 2024-05-24 09:52:11
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -57,7 +57,7 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
--- Completed on 2024-05-24 09:03:42
+-- Completed on 2024-05-24 09:52:11
 
 --
 -- PostgreSQL database dump complete
@@ -76,7 +76,7 @@ SET row_security = off;
 -- Dumped from database version 16.2
 -- Dumped by pg_dump version 16.0
 
--- Started on 2024-05-24 09:03:42
+-- Started on 2024-05-24 09:52:11
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -266,6 +266,8 @@ ALTER TABLE public.users OWNER TO postgres;
 -- Data for Name: event_categories; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+COPY public.event_categories (id, name, display_order) FROM stdin;
+\.
 
 
 --
@@ -274,6 +276,8 @@ ALTER TABLE public.users OWNER TO postgres;
 -- Data for Name: event_enrollments; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+COPY public.event_enrollments (id, id_event, id_user, description, registration_date_time, attended, observations, rating) FROM stdin;
+\.
 
 
 --
@@ -282,6 +286,8 @@ ALTER TABLE public.users OWNER TO postgres;
 -- Data for Name: event_locations; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+COPY public.event_locations (id, id_location, name, full_address, max_capacity, latitude, longitude, id_creator_user) FROM stdin;
+\.
 
 
 --
@@ -290,6 +296,8 @@ ALTER TABLE public.users OWNER TO postgres;
 -- Data for Name: event_tags; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+COPY public.event_tags (id, id_event, id_tag) FROM stdin;
+\.
 
 
 --
@@ -298,6 +306,8 @@ ALTER TABLE public.users OWNER TO postgres;
 -- Data for Name: events; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+COPY public.events (id, name, description, id_event_category, id_event_location, start_date, duration_in_minutes, price, enabled_for_enrollment, max_assistance, id_creator_user) FROM stdin;
+\.
 
 
 --
@@ -306,6 +316,8 @@ ALTER TABLE public.users OWNER TO postgres;
 -- Data for Name: locations; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+COPY public.locations (id, name, id_province, latitude, longitude) FROM stdin;
+\.
 
 
 --
@@ -314,6 +326,8 @@ ALTER TABLE public.users OWNER TO postgres;
 -- Data for Name: provinces; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+COPY public.provinces (id, name, full_name, latitude, longitude, display_order) FROM stdin;
+\.
 
 
 --
@@ -322,6 +336,8 @@ ALTER TABLE public.users OWNER TO postgres;
 -- Data for Name: tags; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+COPY public.tags (id, name) FROM stdin;
+\.
 
 
 --
@@ -330,6 +346,8 @@ ALTER TABLE public.users OWNER TO postgres;
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+COPY public.users (id, first_name, last_name, username, password) FROM stdin;
+\.
 
 
 --
@@ -413,13 +431,13 @@ ALTER TABLE ONLY public.users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
 
 
--- Completed on 2024-05-24 09:03:42
+-- Completed on 2024-05-24 09:52:11
 
 --
 -- PostgreSQL database dump complete
 --
 
--- Completed on 2024-05-24 09:03:42
+-- Completed on 2024-05-24 09:52:11
 
 --
 -- PostgreSQL database cluster dump complete

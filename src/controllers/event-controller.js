@@ -1,6 +1,7 @@
 import { Router } from "express";
+import EventService from "../service/event_service.js";
 const router = Router();
-
+const svc = new EventService();
 // 2
 /*
 router.get("", (req, res) => {
@@ -8,19 +9,20 @@ router.get("", (req, res) => {
 })*/
 
 // 3 Busqueda de un evento
-router.get("", (req, res) => {
+router.get("", async (req, res) => {
     const response = {
         name: null,
         category: null,
         stardate: null,
         tag: null
     }
+    const returnArray = await svc.getAllAsync();
 
     for (const [key, value] of Object.entries(req.query)) {
         if(response[`${key}`] !== undefined) response[`${key}`] = value;
     }
 
-    res.status(200).send(response);
+    res.status(200).json(returnArray);
 })
 
 // 4 Detalle de un evento

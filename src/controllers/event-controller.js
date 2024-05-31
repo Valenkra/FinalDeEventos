@@ -2,11 +2,6 @@ import { Router } from "express";
 import EventService from "../service/event_service.js";
 const router = Router();
 const svc = new EventService();
-// 2
-/*
-router.get("", (req, res) => {
-    res.status(200).send("llegue");
-})*/
 
 // 3 Busqueda de un evento
 router.get("", async (req, res) => {

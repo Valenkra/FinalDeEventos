@@ -1,7 +1,7 @@
 const config = {
     user: "postgres",
     host: "localhost",
-    database: "TPEventos",
+    database: "postgres",
     password: "root",
     port: 5432
 }

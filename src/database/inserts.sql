@@ -71,3 +71,68 @@ INSERT INTO public.tags(name) VALUES ('Música');
 INSERT INTO public.tags(name) VALUES ('Familiar');
 INSERT INTO public.tags(name) VALUES ('Entretenimiento');
 INSERT INTO public.tags(name) VALUES ('Gastronomía');
+
+INSERT INTO public.users(first_name, last_name, username, password) VALUES 
+	('Paula', 'Morales', 'paulamorales', 'passpass'),
+	('Fernando', 'Ortega', 'fernandoortega', 'passwordpass'),
+	('Verónica', 'Ramírez', 'veronicaramirez', 'passpass123'),
+	('Daniel', 'Flores', 'danielflores', 'passwordpass123'),
+	('Carmen', 'González', 'carmengonzalez', 'passpasspass'),
+	('Rosa', 'Jiménez', 'rosajimenez', 'pass123pass'),
+	('Pablo', 'Cabrera', 'pablocabrera', '123pass123'),
+	('Marcela', 'Vargas', 'marcelavargas', 'passpass123'),
+	('Alberto', 'Romero', 'albertoromero', '123456789'),
+	('Silvia', 'Navarro', 'silvianavarro', '987654321'),
+	('Lorenzo', 'Cruz', 'lorenzocruz', 'passwordpassword'),
+	('Raquel', 'Ortiz', 'raquelortiz', 'passwordpassword123'),
+	('Gonzalo', 'Rivas', 'gonzalorivas', 'passwordpassword456'),
+	('Cristina', 'Moreno', 'cristinamoreno', 'passwordpassword789'),
+	('Mario', 'Álvarez', 'marioalvarez', 'password123456'),
+	('Eva', 'Fuentes', 'evafuentes', '123456abcdef'),
+	('José', 'Santos', 'josesantos', 'abcdef123456'),
+	('Isabel', 'Vega', 'isabelvega', 'passwordabcdef'),
+	('Roberto', 'Serrano', 'robertoserrano', 'abcdefpassword'),
+	('Natalia', 'Blanco', 'nataliablanco', 'passwordabcdef123'),
+	('Gabriel', 'Iglesias', 'gabrieliglesias', '123456password'),
+	('Alicia', 'Molina', 'aliciamolina', 'password123456'),
+	('Martín', 'Castro', 'martincastro', 'abcdef123456'),
+	('Victoria', 'Herrera', 'victoriaherrera', 'password123456789');
+
+
+INSERT INTO public.events(
+    id, name, description, id_event_category, start_date, duration_in_minutes, price, enabled_for_enrollment, max_assistance, id_creator_user, id_event_location)
+VALUES 
+    (1, 'Concierto de Verano', '¡Disfruta de una noche llena de música en nuestro concierto de verano! Ven y únete a nosotros para una experiencia inolvidable.', 1, '2024-06-01', 120, 50.00, true, 100, 1, 1),
+    (2, 'Taller de Cocina', 'Aprende a cocinar platos deliciosos de la mano de nuestros chefs expertos en nuestro taller de cocina. ¡No te lo pierdas!', 2, '2024-06-02', 90, 40.00, true, 80, 2, 2),
+    (3, 'Sesión de Yoga al Aire Libre', 'Encuentra paz y equilibrio en nuestra sesión de yoga al aire libre. Desconéctate del estrés diario y conecta contigo mismo.', 3, '2024-06-03', 150, 60.00, true, 120, 3, 3),
+    (4, 'Exposición de Arte Contemporáneo', 'Explora obras fascinantes de artistas contemporáneos en nuestra exposición de arte. ¡Descubre nuevas perspectivas y emociones!', 4, '2024-06-04', 180, 70.00, true, 150, 4, 4),
+    (5, 'Torneo de Fútbol Local', 'Únete a la emoción del fútbol en nuestro torneo local. ¡Apoya a tu equipo favorito y disfruta de la competencia!', 5, '2024-06-05', 120, 50.00, true, 100, 5, 5),
+    (6, 'Curso de Fotografía Básica', 'Descubre el mundo de la fotografía en nuestro curso básico. Aprende técnicas fundamentales y captura momentos inolvidables.', 6, '2024-06-06', 90, 40.00, true, 80, 6, 6),
+    (7, 'Charla sobre Medio Ambiente', 'Únete a nuestra charla sobre medio ambiente y descubre cómo puedes contribuir a un futuro más sostenible. ¡Juntos podemos marcar la diferencia!', 7, '2024-06-07', 150, 60.00, true, 120, 7, 7),
+    (8, 'Noche de Cine al Aire Libre', 'Disfruta de una noche bajo las estrellas con nuestra proyección de cine al aire libre. Trae tus mantas y palomitas para una experiencia inolvidable.', 8, '2024-06-08', 180, 70.00, true, 150, 8, 8),
+    (9, 'Clase de Baile Latino', 'Aprende los pasos de baile más candentes en nuestra clase de baile latino. ¡Diviértete y libera tu energía con ritmos apasionados!', 9, '2024-06-09', 120, 50.00, true, 100, 9, 9);
+
+
+INSERT INTO public.event_enrollments(
+id, id_user, description, registration_date_time, attended, observations, rating, id_event)
+VALUES 
+(1, 1, 'First event enrollment', '2023-05-01', true, 'No observations', 4.5, 1),
+(2, 2, 'Second event enrollment', '2023-05-02', false, 'Late arrival', 3.0, 2),
+(3, 3, 'Third event enrollment', '2023-05-03', true, 'Good session', 5.0, 3),
+(4, 4, 'Fourth event enrollment', '2023-05-04', true, 'Informative', 4.2, 4),
+(5, 5, 'Fifth event enrollment', '2023-05-05', false, 'Had to leave early', 2.8, 5),
+(6, 6, 'Sixth event enrollment', '2023-05-06', true, 'Well organized', 4.7, 6),
+(7, 7, 'Seventh event enrollment', '2023-05-07', false, 'Missed due to illness', 1.0, 7),
+(8, 8, 'Eighth event enrollment', '2023-05-08', true, 'Very engaging', 4.9, 8),
+(9, 9, 'Ninth event enrollment', '2023-05-09', false, 'Could not attend', 0.0, 9),
+(10, 10, 'Tenth event enrollment', '2023-05-10', true, 'Excellent', 5.0, 10),
+(11, 11, 'Eleventh event enrollment', '2023-05-11', false, 'Schedule conflict', 2.0, 11),
+(12, 12, 'Twelfth event enrollment', '2023-05-12', true, 'Useful insights', 4.3, 12),
+(13, 13, 'Thirteenth event enrollment', '2023-05-13', true, 'Very informative', 4.8, 13),
+(14, 14, 'Fourteenth event enrollment', '2023-05-14', false, 'Was not interested', 1.5, 14),
+(15, 15, 'Fifteenth event enrollment', '2023-05-15', true, 'Good presentation', 4.0, 15),
+(16, 16, 'Sixteenth event enrollment', '2023-05-16', true, 'Learned a lot', 4.6, 16),
+(17, 17, 'Seventeenth event enrollment', '2023-05-17', false, 'Forgot about it', 1.0, 17),
+(18, 18, 'Eighteenth event enrollment', '2023-05-18', true, 'Amazing experience', 5.0, 18),
+(19, 19, 'Nineteenth event enrollment', '2023-05-19', true, 'Good but could be better', 3.5, 19),
+(20, 20, 'Twentieth event enrollment', '2023-05-20', false, 'Technical issues', 2.3, 20);

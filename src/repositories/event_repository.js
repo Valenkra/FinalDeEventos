@@ -10,7 +10,18 @@ export default class EventRepository {
         //const pool = new Pool(DBConfig);
         try {
             await client.connect();
-            const sql = "SELECT * FROM events";
+            const sql = `SELECT * FROM events E
+            INNER JOIN event_categories EC ON E.id_event_category = EC.id
+            INNER JOIN event_tags ET ON E.id = ET.id_event
+            INNER JOIN tags TT ON ET.id_tag = TT.id
+            INNER JOIN event_locations EL ON EL.id = E.id_event_location
+            INNER JOIN locations L ON L.id = EL.id_location
+            INNER JOIN provinces PP ON PP.id = L.id_province
+            INNER JOIN users U ON U.id = E.id_creator_user
+			
+			GROUP BY E.id, ET.id, TT.id, EL.id, L.id, PP.id, U.id, EC.id
+            ORDER BY E.id ASC`;
+
             const result = await client.query(sql);
             await client.end();
             returnArray = result.rows;
@@ -26,7 +37,6 @@ export default class EventRepository {
         try {
             await client.connect();
             let sql = `SELECT * FROM events E
-            INNER JOIN event_categories EC ON E.id_event_category = EC.id
             INNER JOIN event_tags ET ON E.id = ET.id_event
             INNER JOIN tags TT ON ET.id_tag = TT.id
             WHERE `;
@@ -50,12 +60,13 @@ export default class EventRepository {
         const client = new Client(DBConfig);
         try {
             await client.connect();
-            let sql = `SELECT * FROM events E
-            INNER JOIN event_locations EL ON EL.id = E.id_event_location
-            INNER JOIN locations L ON L.id = EL.id_location
-            INNER JOIN provinces PP ON PP.id = L.id_province
-            WHERE E.id = ${id}`;
-
+            let sql = `SELECT E.id, E.name, E.description, E.start_date, EL.name as Name_of_location, L.name as Locacion_Especifica, 
+                    EL.full_address,  E.duration_in_minutes, E.price, E.enabled_for_enrollment, E.max_assistance, 
+                    EL.latitude, EL.longitude, PP.full_name as Provincia FROM events E
+                    INNER JOIN event_locations EL ON EL.id = E.id_event_location
+                    INNER JOIN locations L ON L.id = EL.id_location
+                    INNER JOIN provinces PP ON PP.id = L.id_province
+                    WHERE E.id = ${id}`;
             const result = await client.query(sql);
             await client.end();
             returnArray = result.rows;

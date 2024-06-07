@@ -59,10 +59,8 @@ router.get("", async (req, res) => {
 
 // 4 Detalle de un evento
 router.get("/:id", async (req, res) => {
-    console.log("llegue");
     const id = req.params.id;
-    console.log(id);
-    const returnArray = await svc.getWithConditionAsync(id);
+    const returnArray = await svc.getByIdAsync(id);
     if(returnArray.length !== 0){
         res.setHeader('Content-Type', 'application/json').status(200).json(returnArray);
     } else{
@@ -71,7 +69,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // 5 Listado de participantes
-router.get(":id/enrollment", (req, res) => {
+router.get(":id/enrollment", async (req, res) => {
     const id = req.params.id;
     const response = {
         first_name: null,
@@ -85,7 +83,12 @@ router.get(":id/enrollment", (req, res) => {
         if(response[`${key}`] !== undefined) response[`${key}`] = value;
     }
 
-    res.status(200).send(response);
+    const returnArray = await svc.getByIdAsync(id);
+    if(returnArray.length !== 0){
+        res.setHeader('Content-Type', 'application/json').status(200).json(returnArray);
+    } else{
+        res.setHeader('Content-Type', 'text/plain').status(404).send("No se encontró nada. Revisá las KEY o VALUES");
+    }
 })
 
 

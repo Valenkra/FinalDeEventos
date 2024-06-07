@@ -136,3 +136,24 @@ VALUES
 (18, 18, 'Eighteenth event enrollment', '2023-05-18', true, 'Amazing experience', 5.0, 18),
 (19, 19, 'Nineteenth event enrollment', '2023-05-19', true, 'Good but could be better', 3.5, 19),
 (20, 20, 'Twentieth event enrollment', '2023-05-20', false, 'Technical issues', 2.3, 20);
+
+INSERT INTO public.event_tags(id, id_tag, id_event) VALUES (1, 15, 5);
+INSERT INTO public.event_tags(id, id_tag, id_event) VALUES (2, 18, 2);
+INSERT INTO public.event_tags(id, id_tag, id_event) VALUES (3, 17, 8);
+INSERT INTO public.event_tags(id, id_tag, id_event) VALUES (4, 14, 4);
+INSERT INTO public.event_tags(id, id_tag, id_event) VALUES (5, 12, 1);
+INSERT INTO public.event_tags(id, id_tag, id_event) VALUES (6, 19, 7);
+INSERT INTO public.event_tags(id, id_tag, id_event) VALUES (7, 20, 3);
+INSERT INTO public.event_tags(id, id_tag, id_event) VALUES (8, 11, 6);
+INSERT INTO public.event_tags(id, id_tag, id_event) VALUES (9, 13, 9);
+INSERT INTO public.event_tags(id, id_tag, id_event) VALUES (10, 16, 5);
+INSERT INTO public.event_tags(id, id_tag, id_event) VALUES (11, 12, 2);
+INSERT INTO public.event_tags(id, id_tag, id_event) VALUES (12, 15, 8);
+INSERT INTO public.event_tags(id, id_tag, id_event) VALUES (13, 14, 4);
+INSERT INTO public.event_tags(id, id_tag, id_event) VALUES (14, 20, 1);
+INSERT INTO public.event_tags(id, id_tag, id_event) VALUES (15, 17, 6);
+INSERT INTO public.event_tags(id, id_tag, id_event) VALUES (16, 19, 3);
+INSERT INTO public.event_tags(id, id_tag, id_event) VALUES (17, 16, 7);
+INSERT INTO public.event_tags(id, id_tag, id_event) VALUES (18, 11, 9);
+INSERT INTO public.event_tags(id, id_tag, id_event) VALUES (19, 13, 2);
+INSERT INTO public.event_tags(id, id_tag, id_event) VALUES (20, 18, 5);

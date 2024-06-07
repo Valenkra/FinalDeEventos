@@ -6,4 +6,10 @@ export default class EventService {
         const returnArray = await repo.getAllAsync();
         return returnArray;
     }
+
+    getWithConditionAsync = async (querys) => {
+        const repo = new EventRepository();
+        const returnArray = await repo.getWithConditionAsync(querys);
+        return returnArray;
+    }
 }

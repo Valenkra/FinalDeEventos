@@ -11,13 +11,46 @@ router.get("", async (req, res) => {
         stardate: null,
         tag: null
     }
-    const returnArray = await svc.getAllAsync();
 
+    let temp = 0;
+
+    console.log(Object.keys(req.query).length)
     for (const [key, value] of Object.entries(req.query)) {
         if(response[`${key}`] !== undefined) response[`${key}`] = value;
+        else temp++;
     }
 
-    res.status(200).json(returnArray);
+    if(temp === Object.keys(req.query).length || Object.keys(req.query).length === 0){
+        const returnArray = await svc.getAllAsync();
+        res.status(200).json(returnArray);
+    }else{
+        let querys = [];
+        for (const [key, value] of Object.entries(response)) {
+            let prefijo = "";
+            let myKey;
+            if(response[`${value}`] !== null) {
+                switch(key){
+                    case 'name':
+                        prefijo = "E";
+                        break;
+                    case 'category':
+                        prefijo = "EC";
+                        break;
+                    case 'startdate':
+                        myKey = "start_date";
+                        prefijo = "E";
+                        break;
+                    case 'tag':
+                        prefijo = "TT";
+                        break;
+                }
+                myKey = (key === "category" || key === "tag") ? "name" : key;
+                querys.push(`${prefijo}.${myKey} = '${value}'`);
+            }
+            
+        }
+    }
+
 })
 
 // 4 Detalle de un evento

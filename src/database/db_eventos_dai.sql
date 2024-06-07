@@ -5,7 +5,7 @@
 -- Dumped from database version 16.2
 -- Dumped by pg_dump version 16.0
 
--- Started on 2024-06-07 09:08:10
+-- Started on 2024-06-07 12:18:25
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -845,7 +845,7 @@ ALTER TABLE ONLY public.users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
 
 
--- Completed on 2024-06-07 09:08:10
+-- Completed on 2024-06-07 12:18:25
 
 --
 -- PostgreSQL database dump complete

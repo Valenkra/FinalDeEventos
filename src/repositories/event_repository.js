@@ -45,4 +45,23 @@ export default class EventRepository {
         }
         return returnArray;
     }
+
+    getByIdAsync = async (id) => {let returnArray = null;
+        const client = new Client(DBConfig);
+        try {
+            await client.connect();
+            let sql = `SELECT * FROM events E
+            INNER JOIN event_locations EL ON EL.id = E.id_event_location
+            INNER JOIN locations L ON L.id = EL.id_location
+            INNER JOIN provinces PP ON PP.id = L.id_province
+            WHERE E.id = ${id}`;
+
+            const result = await client.query(sql);
+            await client.end();
+            returnArray = result.rows;
+        } catch (error) {
+            console.log(error);
+        }
+        return returnArray;
+    }
 }

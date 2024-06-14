@@ -71,7 +71,6 @@ export default class UsersRepository {
                 }
             }
             
-            console.log(sql)
             const result = await client.query(sql);
             await client.end();
             returnArray = result.rows;

@@ -113,7 +113,8 @@ router.get("/:id/enrollment", async (req, res) => {
                         rating = "EE";
                         break;
                 }
-                querys.push(`${prefijo}.${key} = '${value}'`);
+                if(key !== 'rating') querys.push(`${prefijo}.${key} = '${value}'`);
+                else querys.push(`${prefijo}.${key} = ${value}`)
             }
         }
         const returnArray = await svc.getEnrollmentDetailsAsync(id, querys);

@@ -5,6 +5,7 @@ import EventCategoryRepository from "../repositories/event-category_repository.j
 import EventLocationRepository from "../repositories/event-location_repository.js";
 import ProvinceRepository from "../repositories/province_province.js";
 import TagsRepository from "../repositories/tags_repository.js";
+import EventEnrollmentsRepository from "../repositories/event-enrollment_repository.js";
 
 export default class EventService {
     getAllIdsAsync = async () => {
@@ -28,9 +29,31 @@ export default class EventService {
     }
 
     getWithConditionAsync = async (querys) => {
-        const repo = new EventRepository();
-        const returnArray = await repo.getWithConditionAsync(querys);
-        return returnArray;
+        const eRepo = new EventRepository();
+        const uRepo = new UsersRepository();
+        const ecRepo = new EventCategoryRepository();
+        const elRepo = new EventLocationRepository();
+        const lRepo = new LocationsRepository();
+        const pRepo = new ProvinceRepository();
+        const tRepo = new TagsRepository();
+
+        const eReturnArray = await eRepo.getWithConditionAsync(querys);
+        const uReturnArray = await uRepo.getWithConditionAsync(querys);
+        const ecReturnArray = await ecRepo.getWithConditionAsync(querys);
+        const elReturnArray = await elRepo.getWithConditionAsync(querys);
+        const lReturnArray = await lRepo.getWithConditionAsync(querys);
+        const pReturnArray = await pRepo.getWithConditionAsync(querys);
+        const tReturnArray = await tRepo.getWithConditionAsync(querys);
+
+        for (let i = 0; i < eReturnArray.length; i++) {
+            eReturnArray[i]["event_location"] = elReturnArray[i];
+            eReturnArray[i]["event_location"]["location"] = lReturnArray[i];
+            eReturnArray[i]["event_location"]["location"]["province"] = pReturnArray[i];
+            eReturnArray[i]["event_category"] = ecReturnArray[i];
+            eReturnArray[i]["creator_user"] = uReturnArray[i];
+            eReturnArray[i]["tags"] = tReturnArray;
+        }
+        return eReturnArray;
     }
 
     getByIdAsync = async (id) => {
@@ -57,5 +80,18 @@ export default class EventService {
         eReturnArray[0]["creator_user"] = uReturnArray[0];
         eReturnArray[0]["tags"] = tReturnArray;
         return eReturnArray;
+    }
+
+    getEnrollmentDetailsAsync = async (id, querys) => {
+        const uRepo = new UsersRepository();
+        const eeRepo = new EventEnrollmentsRepository();
+
+        const uReturnArray = await uRepo.getUserEnrollmentDetailsByQuerysAsync(id, querys);
+        const eeReturnArray = await eeRepo.getUserEnrollmentDetailsByQuerysAsync(id, querys);
+
+        for (let i = 0; i < eeReturnArray.length; i++) {
+            eeReturnArray[i]["user"] = uReturnArray[i];
+        }
+        return eeReturnArray;
     }
 }

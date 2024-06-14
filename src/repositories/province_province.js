@@ -23,4 +23,35 @@ export default class ProvinceRepository {
         }
         return returnArray;
     }
+
+    getWithConditionAsync = async (querys) => {
+        let returnArray = null;
+        const client = new Client(DBConfig);
+        try {
+            await client.connect();
+            let sql = `SELECT PP.id, PP.name, PP.full_name, PP.latitude, PP.longitude, PP.display_order FROM events E
+                INNER JOIN event_tags ET ON E.id = ET.id_event
+                INNER JOIN tags TT ON ET.id_tag = TT.id
+                INNER JOIN event_categories EC ON E.id_event_category = EC.id
+                INNER JOIN event_locations EL ON E.id_event_location = EL.id
+                INNER JOIN locations L ON EL.id_location = L.id
+                INNER JOIN users U ON U.id = E.id_creator_user
+                INNER JOIN provinces PP ON PP.id = L.id_province
+                WHERE `;
+
+            for(let i = 0; i < querys.length; i++) {
+                sql += querys[i];
+                if(i != querys.length - 1){
+                    sql += " and "
+                }
+            }
+
+            const result = await client.query(sql);
+            await client.end();
+            returnArray = result.rows;
+        } catch (error) {
+            console.log(error);
+        }
+        return returnArray;
+    }
 }

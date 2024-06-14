@@ -1,11 +1,29 @@
 import EventRepository from "../repositories/event_repository.js";
 import UsersRepository from "../repositories/users_repository.js";
-import EventCategoryRepository from "../repositories/event-category_repository.js"
+import LocationsRepository from "../repositories/location_repository.js";
+import EventCategoryRepository from "../repositories/event-category_repository.js";
+import EventLocationRepository from "../repositories/event-location_repository.js";
+import ProvinceRepository from "../repositories/province_province.js";
+import TagsRepository from "../repositories/tags_repository.js";
 
 export default class EventService {
-    getAllAsync = async () => {
+    getAllIdsAsync = async () => {
         const repo = new EventRepository();
-        const returnArray = await repo.getAllAsync();
+        const returnArray = await repo.getAllIdsAsync();
+        return returnArray;
+    }
+
+    getAllAsync = async () => {
+        let IDs = await this.getAllIdsAsync();
+        const returnArray = [];
+
+        for (let i = 0; i < IDs.length; i++) {
+            for (const [key, value] of Object.entries(IDs[i])) {
+                const myList = await this.getByIdAsync(value);
+                returnArray.push(myList[0]);
+            }
+        }
+
         return returnArray;
     }
 
@@ -19,12 +37,25 @@ export default class EventService {
         const eRepo = new EventRepository();
         const uRepo = new UsersRepository();
         const ecRepo = new EventCategoryRepository();
+        const elRepo = new EventLocationRepository();
+        const lRepo = new LocationsRepository();
+        const pRepo = new ProvinceRepository();
+        const tRepo = new TagsRepository();
 
         const eReturnArray = await eRepo.getByIdAsync(id);
         const uReturnArray = await uRepo.getUserByEventId(id);
         const ecReturnArray = await ecRepo.getEventCategoryByEventId(id);
-        eReturnArray[0]["creator_user"] = uReturnArray[0];
+        const elReturnArray = await elRepo.getEventLocationByEventId(id);
+        const lReturnArray = await lRepo.getLocationByEventId(id);
+        const pReturnArray = await pRepo.getProvinceByEventId(id);
+        const tReturnArray = await tRepo.getTagsByEventId(id);
+
+        eReturnArray[0]["event_location"] = elReturnArray[0];
+        eReturnArray[0]["event_location"]["location"] = lReturnArray[0];
+        eReturnArray[0]["event_location"]["location"]["province"] = pReturnArray[0];
         eReturnArray[0]["event_category"] = ecReturnArray[0];
+        eReturnArray[0]["creator_user"] = uReturnArray[0];
+        eReturnArray[0]["tags"] = tReturnArray;
         return eReturnArray;
     }
 }

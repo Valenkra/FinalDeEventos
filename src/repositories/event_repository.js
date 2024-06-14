@@ -4,6 +4,21 @@ const { Client, Pool } = pkg;
 
 
 export default class EventRepository {
+    getAllIdsAsync = async () => {
+        let returnArray = null;
+        const client = new Client(DBConfig);
+        try {
+            await client.connect();
+            let sql = `SELECT E.id FROM Events E`;
+            const result = await client.query(sql);
+            await client.end();
+            returnArray = result.rows;
+        } catch (error) {
+            console.log(error);
+        }
+        return returnArray;
+    }
+
     getAllAsync = async () => {
         let returnArray = null;
         const client = new Client(DBConfig);
@@ -60,12 +75,9 @@ export default class EventRepository {
         const client = new Client(DBConfig);
         try {
             await client.connect();
-            let sql = `SELECT E.id, E.name, E.description, E.start_date, EL.name as Name_of_location, L.name as Locacion_Especifica, 
-                    EL.full_address,  E.duration_in_minutes, E.price, E.enabled_for_enrollment, E.max_assistance, 
-                    EL.latitude, EL.longitude, PP.full_name as Provincia FROM events E
-                    INNER JOIN event_locations EL ON EL.id = E.id_event_location
-                    INNER JOIN locations L ON L.id = EL.id_location
-                    INNER JOIN provinces PP ON PP.id = L.id_province
+            let sql = `SELECT E.id, E.name, E.description, E.start_date, 
+                    E.duration_in_minutes, E.price, E.enabled_for_enrollment, E.max_assistance
+                    FROM events E
                     WHERE E.id = ${id}`;
             const result = await client.query(sql);
             await client.end();

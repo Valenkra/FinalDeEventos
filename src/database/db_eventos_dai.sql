@@ -516,26 +516,26 @@ INSERT INTO public.event_enrollments VALUES (20, 20, 'Twentieth event enrollment
 -- Data for Name: event_locations; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.event_locations VALUES (1, 'Conferencia de Marketing', 'Av. Libertador 123', 100, -34.6037, -58.3816, 1, 87);
-INSERT INTO public.event_locations VALUES (2, 'Taller de Fotografía', 'Calle Principal 456', 120, -28.4696, -65.7852, 2, 88);
-INSERT INTO public.event_locations VALUES (3, 'Fiesta de Fin de Año', 'Av. Belgrano 789', 150, -26.8406, -60.7658, 3, 89);
-INSERT INTO public.event_locations VALUES (4, 'Concierto de Jazz', 'Plaza Principal, 1001', 200, -43.3002, -65.1023, 4, 90);
-INSERT INTO public.event_locations VALUES (5, 'Curso de Cocina', 'Av. Libertador 246', 80, -31.4201, -64.1888, 5, 91);
-INSERT INTO public.event_locations VALUES (6, 'Feria de Artesanías', 'Calle Independencia 789', 180, -27.4691, -58.8309, 6, 92);
-INSERT INTO public.event_locations VALUES (7, 'Concurso de Pintura', 'Av. Belgrano 1234', 250, -32.0575, -59.0844, 7, 93);
-INSERT INTO public.event_locations VALUES (8, 'Presentación de Libro', 'Av. Mitre 567', 100, -26.1852, -58.1752, 8, 94);
-INSERT INTO public.event_locations VALUES (9, 'Exposición de Arte', 'Calle San Martín 1010', 150, -24.1858, -65.2995, 9, 95);
-INSERT INTO public.event_locations VALUES (10, 'Feria del Libro', 'Plaza Principal 456', 120, -36.6167, -64.2833, 10, 96);
-INSERT INTO public.event_locations VALUES (11, 'Show de Stand-up', 'Av. Rivadavia 789', 200, -29.4111, -66.8507, 11, 97);
-INSERT INTO public.event_locations VALUES (12, 'Taller de Escritura', 'Calle Belgrano 246', 80, -32.8895, -68.8458, 12, 98);
-INSERT INTO public.event_locations VALUES (13, 'Exposición de Fotografía', 'Calle Principal 1010', 180, -27.4676, -55.8977, 13, 99);
-INSERT INTO public.event_locations VALUES (14, 'Festival de Cine', 'Av. San Martín 789', 250, -38.9526, -68.0591, 14, 100);
-INSERT INTO public.event_locations VALUES (15, 'Torneo de Ajedrez', 'Av. Belgrano 1234', 100, -41.1335, -71.3103, 15, 101);
-INSERT INTO public.event_locations VALUES (16, 'Concierto de Rock', 'Av. Libertador 567', 150, -24.7859, -65.4117, 16, 102);
-INSERT INTO public.event_locations VALUES (17, 'Festival de Tango', 'Plaza Principal 789', 180, -31.5375, -68.5364, 17, 103);
-INSERT INTO public.event_locations VALUES (18, 'Exposición de Esculturas', 'Av. Libertador 1010', 200, -33.3016, -66.3378, 18, 104);
-INSERT INTO public.event_locations VALUES (19, 'Concierto de Música Clásica', 'Calle Principal 123', 250, -50, -69, 19, 105);
-INSERT INTO public.event_locations VALUES (20, 'Feria de Diseño', 'Calle 123, Ciudad', 120, -31.6107, -60.6973, 20, 106);
+INSERT INTO public.event_locations VALUES (1, 'Conferencia de Marketing', 'Av. Libertador 123', 100, -34.6037, -58.3816, 1, 1);
+INSERT INTO public.event_locations VALUES (2, 'Taller de Fotografía', 'Calle Principal 456', 120, -28.4696, -65.7852, 2, 2);
+INSERT INTO public.event_locations VALUES (3, 'Fiesta de Fin de Año', 'Av. Belgrano 789', 150, -26.8406, -60.7658, 3, 3);
+INSERT INTO public.event_locations VALUES (4, 'Concierto de Jazz', 'Plaza Principal, 1001', 200, -43.3002, -65.1023, 4, 4);
+INSERT INTO public.event_locations VALUES (5, 'Curso de Cocina', 'Av. Libertador 246', 80, -31.4201, -64.1888, 5, 5);
+INSERT INTO public.event_locations VALUES (6, 'Feria de Artesanías', 'Calle Independencia 789', 180, -27.4691, -58.8309, 6, 6);
+INSERT INTO public.event_locations VALUES (7, 'Concurso de Pintura', 'Av. Belgrano 1234', 250, -32.0575, -59.0844, 7, 7);
+INSERT INTO public.event_locations VALUES (8, 'Presentación de Libro', 'Av. Mitre 567', 100, -26.1852, -58.1752, 8, 8);
+INSERT INTO public.event_locations VALUES (9, 'Exposición de Arte', 'Calle San Martín 1010', 150, -24.1858, -65.2995, 9, 9);
+INSERT INTO public.event_locations VALUES (10, 'Feria del Libro', 'Plaza Principal 456', 120, -36.6167, -64.2833, 10, 10);
+INSERT INTO public.event_locations VALUES (11, 'Show de Stand-up', 'Av. Rivadavia 789', 200, -29.4111, -66.8507, 11, 11);
+INSERT INTO public.event_locations VALUES (12, 'Taller de Escritura', 'Calle Belgrano 246', 80, -32.8895, -68.8458, 12, 12);
+INSERT INTO public.event_locations VALUES (13, 'Exposición de Fotografía', 'Calle Principal 1010', 180, -27.4676, -55.8977, 13, 13);
+INSERT INTO public.event_locations VALUES (14, 'Festival de Cine', 'Av. San Martín 789', 250, -38.9526, -68.0591, 14, 14);
+INSERT INTO public.event_locations VALUES (15, 'Torneo de Ajedrez', 'Av. Belgrano 1234', 100, -41.1335, -71.3103, 15, 15);
+INSERT INTO public.event_locations VALUES (16, 'Concierto de Rock', 'Av. Libertador 567', 150, -24.7859, -65.4117, 16, 16);
+INSERT INTO public.event_locations VALUES (17, 'Festival de Tango', 'Plaza Principal 789', 180, -31.5375, -68.5364, 17, 17);
+INSERT INTO public.event_locations VALUES (18, 'Exposición de Esculturas', 'Av. Libertador 1010', 200, -33.3016, -66.3378, 18, 18);
+INSERT INTO public.event_locations VALUES (19, 'Concierto de Música Clásica', 'Calle Principal 123', 250, -50, -69, 19, 19);
+INSERT INTO public.event_locations VALUES (20, 'Feria de Diseño', 'Calle 123, Ciudad', 120, -31.6107, -60.6973, 20, 20);
 
 
 --
@@ -544,26 +544,26 @@ INSERT INTO public.event_locations VALUES (20, 'Feria de Diseño', 'Calle 123, C
 -- Data for Name: event_tags; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.event_tags VALUES (1, 15, 5);
-INSERT INTO public.event_tags VALUES (2, 18, 2);
-INSERT INTO public.event_tags VALUES (3, 17, 8);
-INSERT INTO public.event_tags VALUES (4, 14, 4);
-INSERT INTO public.event_tags VALUES (5, 12, 1);
-INSERT INTO public.event_tags VALUES (6, 19, 7);
-INSERT INTO public.event_tags VALUES (7, 20, 3);
-INSERT INTO public.event_tags VALUES (8, 11, 6);
-INSERT INTO public.event_tags VALUES (9, 13, 9);
-INSERT INTO public.event_tags VALUES (10, 16, 5);
-INSERT INTO public.event_tags VALUES (11, 12, 2);
-INSERT INTO public.event_tags VALUES (12, 15, 8);
-INSERT INTO public.event_tags VALUES (13, 14, 4);
-INSERT INTO public.event_tags VALUES (14, 20, 1);
-INSERT INTO public.event_tags VALUES (15, 17, 6);
-INSERT INTO public.event_tags VALUES (16, 19, 3);
-INSERT INTO public.event_tags VALUES (17, 16, 7);
-INSERT INTO public.event_tags VALUES (18, 11, 9);
-INSERT INTO public.event_tags VALUES (19, 13, 2);
-INSERT INTO public.event_tags VALUES (20, 18, 5);
+INSERT INTO public.event_tags VALUES (1, 5, 5);
+INSERT INTO public.event_tags VALUES (2, 8, 2);
+INSERT INTO public.event_tags VALUES (3, 7, 8);
+INSERT INTO public.event_tags VALUES (4, 4, 4);
+INSERT INTO public.event_tags VALUES (5, 2, 1);
+INSERT INTO public.event_tags VALUES (6, 9, 7);
+INSERT INTO public.event_tags VALUES (7, 5, 3);
+INSERT INTO public.event_tags VALUES (8, 1, 6);
+INSERT INTO public.event_tags VALUES (9, 3, 9);
+INSERT INTO public.event_tags VALUES (10, 6, 5);
+INSERT INTO public.event_tags VALUES (11, 2, 2);
+INSERT INTO public.event_tags VALUES (12, 5, 8);
+INSERT INTO public.event_tags VALUES (13, 4, 4);
+INSERT INTO public.event_tags VALUES (14, 9, 1);
+INSERT INTO public.event_tags VALUES (15, 7, 6);
+INSERT INTO public.event_tags VALUES (16, 9, 3);
+INSERT INTO public.event_tags VALUES (17, 6, 7);
+INSERT INTO public.event_tags VALUES (18, 1, 9);
+INSERT INTO public.event_tags VALUES (19, 3, 2);
+INSERT INTO public.event_tags VALUES (20, 8, 5);
 
 
 --
@@ -589,26 +589,26 @@ INSERT INTO public.events VALUES (9, 'Clase de Baile Latino', 'Aprende los pasos
 -- Data for Name: locations; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.locations VALUES (87, 'Playa del Este', -34.663571, -54.94634, 10);
-INSERT INTO public.locations VALUES (88, 'Cerro Catedral', -41.1794, -71.3826, 14);
-INSERT INTO public.locations VALUES (89, 'Plaza San Martín', -31.420083, -64.188776, 5);
-INSERT INTO public.locations VALUES (90, 'Cataratas del Iguazú', -25.6872, -54.435, 13);
-INSERT INTO public.locations VALUES (91, 'Cerro Aconcagua', -32.6539, -70.0116, 12);
-INSERT INTO public.locations VALUES (92, 'Puerto Madero', -34.6102, -58.3637, 1);
-INSERT INTO public.locations VALUES (93, 'Glaciar Perito Moreno', -50.4966, -73.1377, 19);
-INSERT INTO public.locations VALUES (94, 'Cerro Uritorco', -30.8395, -64.4724, 3);
-INSERT INTO public.locations VALUES (95, 'Barrio Recoleta', -34.5889, -58.3926, 8);
-INSERT INTO public.locations VALUES (96, 'Mar de las Pampas', -37.325, -57.025, 6);
-INSERT INTO public.locations VALUES (97, 'Cerro Tres Picos', -38.248, -61.886, 20);
-INSERT INTO public.locations VALUES (98, 'Cerro Fitz Roy', -49.2712, -73.0431, 18);
-INSERT INTO public.locations VALUES (99, 'Puerto Pirámides', -42.5847, -64.2855, 4);
-INSERT INTO public.locations VALUES (100, 'Barrio Palermo', -34.584, -58.4269, 9);
-INSERT INTO public.locations VALUES (101, 'Cerro Tronador', -41.1833, -71.8833, 7);
-INSERT INTO public.locations VALUES (102, 'Cerro Catedral', -25.4425, -54.5786, 2);
-INSERT INTO public.locations VALUES (103, 'Barrio Caballito', -34.6223, -58.4388, 11);
-INSERT INTO public.locations VALUES (104, 'Sierra de la Ventana', -38.1422, -61.7761, 15);
-INSERT INTO public.locations VALUES (105, 'Parque Nacional Nahuel Huapi', -41.1508, -71.3092, 17);
-INSERT INTO public.locations VALUES (106, 'San Carlos de Bariloche', -41.1335, -71.3103, 16);
+INSERT INTO public.locations VALUES (1, 'Playa del Este', -34.663571, -54.94634, 10);
+INSERT INTO public.locations VALUES (2, 'Cerro Catedral', -41.1794, -71.3826, 14);
+INSERT INTO public.locations VALUES (3, 'Plaza San Martín', -31.420083, -64.188776, 5);
+INSERT INTO public.locations VALUES (4, 'Cataratas del Iguazú', -25.6872, -54.435, 13);
+INSERT INTO public.locations VALUES (5, 'Cerro Aconcagua', -32.6539, -70.0116, 12);
+INSERT INTO public.locations VALUES (6, 'Puerto Madero', -34.6102, -58.3637, 1);
+INSERT INTO public.locations VALUES (7, 'Glaciar Perito Moreno', -50.4966, -73.1377, 19);
+INSERT INTO public.locations VALUES (8, 'Cerro Uritorco', -30.8395, -64.4724, 3);
+INSERT INTO public.locations VALUES (9, 'Barrio Recoleta', -34.5889, -58.3926, 8);
+INSERT INTO public.locations VALUES (10, 'Mar de las Pampas', -37.325, -57.025, 6);
+INSERT INTO public.locations VALUES (11, 'Cerro Tres Picos', -38.248, -61.886, 20);
+INSERT INTO public.locations VALUES (12, 'Cerro Fitz Roy', -49.2712, -73.0431, 18);
+INSERT INTO public.locations VALUES (13, 'Puerto Pirámides', -42.5847, -64.2855, 4);
+INSERT INTO public.locations VALUES (14, 'Barrio Palermo', -34.584, -58.4269, 9);
+INSERT INTO public.locations VALUES (15, 'Cerro Tronador', -41.1833, -71.8833, 7);
+INSERT INTO public.locations VALUES (16, 'Cerro Catedral', -25.4425, -54.5786, 2);
+INSERT INTO public.locations VALUES (17, 'Barrio Caballito', -34.6223, -58.4388, 11);
+INSERT INTO public.locations VALUES (18, 'Sierra de la Ventana', -38.1422, -61.7761, 15);
+INSERT INTO public.locations VALUES (19, 'Parque Nacional Nahuel Huapi', -41.1508, -71.3092, 17);
+INSERT INTO public.locations VALUES (20, 'San Carlos de Bariloche', -41.1335, -71.3103, 16);
 
 
 --
@@ -648,16 +648,16 @@ INSERT INTO public.provinces VALUES ('Tucumán', 'Tucumán', -26.8083, -65.2176,
 -- Data for Name: tags; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.tags VALUES ('Mucha gente', 11);
-INSERT INTO public.tags VALUES ('Poca gente', 12);
-INSERT INTO public.tags VALUES ('Deportes', 13);
-INSERT INTO public.tags VALUES ('Cultural', 14);
-INSERT INTO public.tags VALUES ('Educación', 15);
-INSERT INTO public.tags VALUES ('Arte', 16);
-INSERT INTO public.tags VALUES ('Música', 17);
-INSERT INTO public.tags VALUES ('Familiar', 18);
-INSERT INTO public.tags VALUES ('Entretenimiento', 19);
-INSERT INTO public.tags VALUES ('Gastronomía', 20);
+INSERT INTO public.tags VALUES ('Mucha gente', 1);
+INSERT INTO public.tags VALUES ('Poca gente', 2);
+INSERT INTO public.tags VALUES ('Deportes', 3);
+INSERT INTO public.tags VALUES ('Cultural', 4);
+INSERT INTO public.tags VALUES ('Educación', 5);
+INSERT INTO public.tags VALUES ('Arte', 6);
+INSERT INTO public.tags VALUES ('Música', 7);
+INSERT INTO public.tags VALUES ('Familiar', 8);
+INSERT INTO public.tags VALUES ('Entretenimiento', 9);
+INSERT INTO public.tags VALUES ('Gastronomía', 10);
 
 
 --

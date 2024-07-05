@@ -46,7 +46,13 @@ router.put("", async (req, res) => {
 
 
 router.delete("/:id", async (req, res) => {
-    
+    const id = req.params.id;
+    const returnMsg = await svc.deleteByIdAsync(id);
+    if(returnMsg == ""){
+        res.setHeader('Content-Type', 'application/json').status(200).send(`Provinicia eliminada con exito!`);
+    }else{
+        res.setHeader('Content-Type', 'text/plain').status(404).send(`${returnMsg}`);
+    }
 })
 
 

@@ -79,4 +79,55 @@ export default class UsersRepository {
         }
         return returnArray;
     }
+
+    insertUserAsync = async (fName, lName, user, passw) => {
+        let returnArray = null;
+        const client = new Client(DBConfig);
+        try {
+            await client.connect();
+            let sql = `INSERT INTO Users(first_name, last_name, username, password)
+                VALUES ('${fName}', '${lName}', '${user}', '${passw}');`;
+
+            const result = await client.query(sql);
+            await client.end();
+            returnArray = result.rows;
+        } catch (error) {
+            console.log(error);
+        }
+        return returnArray;
+    }
+
+    findExistingUserAsync = async (user) => {
+        let returnArray = null;
+        const client = new Client(DBConfig);
+        try {
+            await client.connect();
+            let sql = `SELECT * FROM users
+            WHERE username = '${user}'`;
+
+            const result = await client.query(sql);
+            await client.end();
+            returnArray = result.rows;
+        } catch (error) {
+            console.log(error);
+        }
+        return returnArray;
+    }
+
+    loginAsync = async (user, passw) => {
+        let returnArray = null;
+        const client = new Client(DBConfig);
+        try {
+            await client.connect();
+            let sql = `SELECT * FROM users
+            WHERE username = '${user}' and password = '${passw}'`;
+
+            const result = await client.query(sql);
+            await client.end();
+            returnArray = result.rows;
+        } catch (error) {
+            console.log(error);
+        }
+        return returnArray;
+    }
 }

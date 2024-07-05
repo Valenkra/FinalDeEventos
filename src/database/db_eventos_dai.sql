@@ -373,10 +373,10 @@ ALTER SEQUENCE public.tags_id_seq OWNED BY public.tags.id;
 --
 
 CREATE TABLE public.users (
-    first_name character varying(80),
-    last_name character varying(74),
-    username character varying(20),
-    password character varying(25),
+    first_name character varying(100),
+    last_name character varying(100),
+    username character varying(200),
+    password character varying(100),
     id integer NOT NULL
 );
 
@@ -666,30 +666,30 @@ INSERT INTO public.tags VALUES ('Gastronomía', 10);
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.users VALUES ('Paula', 'Morales', 'paulamorales', 'passpass', 1);
-INSERT INTO public.users VALUES ('Fernando', 'Ortega', 'fernandoortega', 'passwordpass', 2);
-INSERT INTO public.users VALUES ('Verónica', 'Ramírez', 'veronicaramirez', 'passpass123', 3);
-INSERT INTO public.users VALUES ('Daniel', 'Flores', 'danielflores', 'passwordpass123', 4);
-INSERT INTO public.users VALUES ('Carmen', 'González', 'carmengonzalez', 'passpasspass', 5);
-INSERT INTO public.users VALUES ('Rosa', 'Jiménez', 'rosajimenez', 'pass123pass', 6);
-INSERT INTO public.users VALUES ('Pablo', 'Cabrera', 'pablocabrera', '123pass123', 7);
-INSERT INTO public.users VALUES ('Marcela', 'Vargas', 'marcelavargas', 'passpass123', 8);
-INSERT INTO public.users VALUES ('Alberto', 'Romero', 'albertoromero', '123456789', 9);
-INSERT INTO public.users VALUES ('Silvia', 'Navarro', 'silvianavarro', '987654321', 10);
-INSERT INTO public.users VALUES ('Lorenzo', 'Cruz', 'lorenzocruz', 'passwordpassword', 11);
-INSERT INTO public.users VALUES ('Raquel', 'Ortiz', 'raquelortiz', 'passwordpassword123', 12);
-INSERT INTO public.users VALUES ('Gonzalo', 'Rivas', 'gonzalorivas', 'passwordpassword456', 13);
-INSERT INTO public.users VALUES ('Cristina', 'Moreno', 'cristinamoreno', 'passwordpassword789', 14);
-INSERT INTO public.users VALUES ('Mario', 'Álvarez', 'marioalvarez', 'password123456', 15);
-INSERT INTO public.users VALUES ('Eva', 'Fuentes', 'evafuentes', '123456abcdef', 16);
-INSERT INTO public.users VALUES ('José', 'Santos', 'josesantos', 'abcdef123456', 17);
-INSERT INTO public.users VALUES ('Isabel', 'Vega', 'isabelvega', 'passwordabcdef', 18);
-INSERT INTO public.users VALUES ('Roberto', 'Serrano', 'robertoserrano', 'abcdefpassword', 19);
-INSERT INTO public.users VALUES ('Natalia', 'Blanco', 'nataliablanco', 'passwordabcdef123', 20);
-INSERT INTO public.users VALUES ('Gabriel', 'Iglesias', 'gabrieliglesias', '123456password', 21);
-INSERT INTO public.users VALUES ('Alicia', 'Molina', 'aliciamolina', 'password123456', 22);
-INSERT INTO public.users VALUES ('Martín', 'Castro', 'martincastro', 'abcdef123456', 23);
-INSERT INTO public.users VALUES ('Victoria', 'Herrera', 'victoriaherrera', 'password123456789', 24);
+INSERT INTO public.users VALUES ('Paula', 'Morales', 'paulamorales@gmail.com', 'passpass', 1);
+INSERT INTO public.users VALUES ('Fernando', 'Ortega', 'fernandoortega@gmail.com', 'passwordpass', 2);
+INSERT INTO public.users VALUES ('Verónica', 'Ramírez', 'veronicaramirez@gmail.com', 'passpass123', 3);
+INSERT INTO public.users VALUES ('Daniel', 'Flores', 'danielflores@gmail.com', 'passwordpass123', 4);
+INSERT INTO public.users VALUES ('Carmen', 'González', 'carmengonzalez@gmail.com', 'passpasspass', 5);
+INSERT INTO public.users VALUES ('Rosa', 'Jiménez', 'rosajimenez@gmail.com', 'pass123pass', 6);
+INSERT INTO public.users VALUES ('Pablo', 'Cabrera', 'pablocabrera@gmail.com', '123pass123', 7);
+INSERT INTO public.users VALUES ('Marcela', 'Vargas', 'marcelavargas@gmail.com', 'passpass123', 8);
+INSERT INTO public.users VALUES ('Alberto', 'Romero', 'albertoromero@gmail.com', '123456789', 9);
+INSERT INTO public.users VALUES ('Silvia', 'Navarro', 'silvianavarro@gmail.com', '987654321', 10);
+INSERT INTO public.users VALUES ('Lorenzo', 'Cruz', 'lorenzocruz@gmail.com', 'passwordpassword', 11);
+INSERT INTO public.users VALUES ('Raquel', 'Ortiz', 'raquelortiz@gmail.com', 'passwordpassword123', 12);
+INSERT INTO public.users VALUES ('Gonzalo', 'Rivas', 'gonzalorivas@gmail.com', 'passwordpassword456', 13);
+INSERT INTO public.users VALUES ('Cristina', 'Moreno', 'cristinamoreno@gmail.com', 'passwordpassword789', 14);
+INSERT INTO public.users VALUES ('Mario', 'Álvarez', 'marioalvarez@gmail.com', 'password123456', 15);
+INSERT INTO public.users VALUES ('Eva', 'Fuentes', 'evafuentes@gmail.com', '123456abcdef', 16);
+INSERT INTO public.users VALUES ('José', 'Santos', 'josesantos@gmail.com', 'abcdef123456', 17);
+INSERT INTO public.users VALUES ('Isabel', 'Vega', 'isabelvega@gmail.com', 'passwordabcdef', 18);
+INSERT INTO public.users VALUES ('Roberto', 'Serrano', 'robertoserrano@gmail.com', 'abcdefpassword', 19);
+INSERT INTO public.users VALUES ('Natalia', 'Blanco', 'nataliablanco@gmail.com', 'passwordabcdef123', 20);
+INSERT INTO public.users VALUES ('Gabriel', 'Iglesias', 'gabrieliglesias@gmail.com', '123456password', 21);
+INSERT INTO public.users VALUES ('Alicia', 'Molina', 'aliciamolina@gmail.com', 'password123456', 22);
+INSERT INTO public.users VALUES ('Martín', 'Castro', 'martincastro@gmail.com', 'abcdef123456', 23);
+INSERT INTO public.users VALUES ('Victoria', 'Herrera', 'victoriaherrera@gmail.com', 'password123456789', 24);
 
 
 --

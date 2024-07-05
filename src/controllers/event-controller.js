@@ -126,5 +126,28 @@ router.get("/:id/enrollment", async (req, res) => {
     }
 });
 
+router.post("", async (req, res) => {
+
+})
+
+router.put("", async (req, res) => {
+
+})
+
+router.delete("/:id", async (req, res) => {
+
+})
+
+router.post("/:id/enrollment", async (req, res) => {
+
+})
+
+router.delete("/:id/enrollment", async (req, res) => {
+
+})
+
+router.patch("/:id/enrollment", async (req, res) => {
+    
+})
 
 export default router;

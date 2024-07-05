@@ -1,21 +1,32 @@
 import { Router } from "express";
+import ProvinceService from "../service/province_service.js";
 const router = Router();
+const svc = new ProvinceService();
 
-// Listar provincias 
-router.get("", (req, res) => {
-    res.status(200).send("llegue");
+// 3 Busqueda de un evento
+router.get("", async (req, res) => {
+    const returnArray = await svc.getAllAsync();
+    res.setHeader('Content-Type', 'application/json').status(200).json(returnArray);
+})
+
+// 4 Detalle de un evento
+router.get("/:id", async (req, res) => {
+    const id = req.params.id;
+    const returnArray = await svc.getByIdAsync(id);
+    if(returnArray.length != 0){
+        res.setHeader('Content-Type', 'application/json').status(200).json(returnArray);
+    }else{
+        res.setHeader('Content-Type', 'text/plain').status(404).send("No se encontró nada. Revisá las KEY o VALUES");
+    }
+})
+
+router.get("/:id/locations", async (req, res) => {
+    
 })
 
 // Provincia especifica
-router.get(":id", (req, res) => {
-    const id  = req.params.id;
-    res.status(200).send("llegue");
-})
-
-// Provincia especifica
-router.post("", (req, res) => { 
+router.post("", async (req, res) => { 
     const response = {
-        id: null,
         name: null,
         full_name: null,
         latitude: null,
@@ -27,6 +38,15 @@ router.post("", (req, res) => {
         if(response[`${key}`] !== undefined) response[`${key}`] = value;
     }
     res.status(200).send("llegue");
+})
+
+router.put("", async (req, res) => {
+
+})
+
+
+router.delete("/:id", async (req, res) => {
+    
 })
 
 

@@ -7,17 +7,21 @@ router.get("", (req, res) => {
 })
 
 // 4 Detalle de un evento
-router.get(":id", (req, res) => {
+router.get("/:id", async (req, res) => {
     const id = req.params.id;
     res.status(200).send(res);
 })
 
-// 5 Listado de participantes
-router.get("/location/:id", (req, res) => {
-    const id = req.params.id;
+router.post("" , async (req, res) => {
 
-    res.status(200).send(res);
 })
 
+router.put("", async (req, res) => {
+
+})
+
+router.delete("/:id", async (req, res) => {
+    
+})
 
 export default router;

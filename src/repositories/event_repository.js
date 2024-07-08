@@ -50,7 +50,8 @@ export default class EventRepository {
         return returnArray;
     }
 
-    getByIdAsync = async (id) => {let returnArray = null;
+    getByIdAsync = async (id) => {
+        let returnArray = null;
         const client = new Client(DBConfig);
         try {
             await client.connect();
@@ -58,6 +59,65 @@ export default class EventRepository {
                     E.duration_in_minutes, E.price, E.enabled_for_enrollment, E.max_assistance
                     FROM events E
                     WHERE E.id = ${id}`;
+            const result = await client.query(sql);
+            await client.end();
+            returnArray = result.rows;
+        } catch (error) {
+            console.log(error);
+        }
+        return returnArray;
+    }
+
+    insertAsync = async (data) => {
+        let returnArray = null;
+        const client = new Client(DBConfig);
+        try {
+            await client.connect();
+            let querys = "";
+            for (let i = 0; i < data.length; i++) {
+                querys += (i != data.length - 1) ? data[i] + ", " : data[i];
+                
+            }
+            let sql = `INSERT INTO public.events(
+                id, name, description, id_event_category, start_date, duration_in_minutes, price, enabled_for_enrollment, max_assistance, id_creator_user, id_event_location)
+                VALUES ((SELECT MAX(id)+1 FROM public.events), ${querys})`;
+            const result = await client.query(sql);
+            await client.end();
+            returnArray = result.rows;
+        } catch (error) {
+            console.log(error);
+        }
+        return returnArray;
+    }
+
+    updateByIdAsync = async (data) => {
+        let returnArray = null;
+        const client = new Client(DBConfig);
+        try {
+            await client.connect();
+            let querys = "";
+            for (let i = 0; i < data.length - 1; i++) {
+                querys += (i != data.length - 1) ? data[i] + ", " : data[i];
+            }
+            let sql = `UPDATE public.events
+                SET ${querys}
+                WHERE ${data[data.length - 1]}`;
+            const result = await client.query(sql);
+            await client.end();
+            returnArray = result.rows;
+        } catch (error) {
+            console.log(error);
+        }
+        return returnArray;
+    }
+
+    deleteByIdAsync = async (id) => {
+        let returnArray = null;
+        const client = new Client(DBConfig);
+        try {
+            await client.connect();
+            let sql = `DELETE FROM Events
+            WHERE id = ${id}`;
             const result = await client.query(sql);
             await client.end();
             returnArray = result.rows;

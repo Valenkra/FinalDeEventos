@@ -205,7 +205,6 @@ ALTER SEQUENCE public.event_tags_id_event_seq OWNED BY public.event_tags.id_even
 --
 
 CREATE TABLE public.events (
-    id integer DEFAULT nextval('public.events'::regclass) NOT NULL,
     name character varying(86),
     description character varying(300),
     id_event_category integer DEFAULT nextval('public.events'::regclass),
@@ -215,7 +214,8 @@ CREATE TABLE public.events (
     enabled_for_enrollment boolean,
     max_assistance integer,
     id_creator_user integer DEFAULT nextval('public.events'::regclass),
-    id_event_location integer NOT NULL
+    id_event_location integer NOT NULL, 
+    id integer DEFAULT nextval('public.events'::regclass) NOT NULL
 );
 
 

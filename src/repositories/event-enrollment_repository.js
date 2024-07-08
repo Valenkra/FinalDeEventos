@@ -30,4 +30,25 @@ export default class EventEnrollmentsRepository {
         }
         return returnArray;
     }
+
+    updateByIdAsync = async (-) => {
+        let returnArray = null;
+        const client = new Client(DBConfig);
+        try {
+            await client.connect();
+            let querys = "";
+            for (let i = 0; i < data.length - 1; i++) {
+                querys += (i != data.length - 1) ? data[i] + ", " : data[i];
+            }
+            let sql = `UPDATE public.event_enrollments
+                SET ${querys}
+                WHERE ${data[data.length - 1]}`;
+            const result = await client.query(sql);
+            await client.end();
+            returnArray = result.rows;
+        } catch (error) {
+            console.log(error);
+        }
+        return returnArray;
+    }
 }

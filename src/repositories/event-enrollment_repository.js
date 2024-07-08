@@ -31,7 +31,7 @@ export default class EventEnrollmentsRepository {
         return returnArray;
     }
 
-    updateByIdAsync = async (-) => {
+    updateByIdAsync = async (obs, rating, id) => {
         let returnArray = null;
         const client = new Client(DBConfig);
         try {
@@ -41,8 +41,8 @@ export default class EventEnrollmentsRepository {
                 querys += (i != data.length - 1) ? data[i] + ", " : data[i];
             }
             let sql = `UPDATE public.event_enrollments
-                SET ${querys}
-                WHERE ${data[data.length - 1]}`;
+                SET observations=${obs}, rating=${rating}
+                WHERE ${id}`;
             const result = await client.query(sql);
             await client.end();
             returnArray = result.rows;

@@ -51,4 +51,42 @@ export default class EventEnrollmentsRepository {
         }
         return returnArray;
     }
+
+    deleteByIdAsync = async (id) => {
+        let returnArray = null;
+        const client = new Client(DBConfig);
+        try {
+            await client.connect();
+            let sql = `DELETE FROM event_enrollments
+            WHERE id = ${id}`;
+            const result = await client.query(sql);
+            await client.end();
+            returnArray = result.rows;
+        } catch (error) {
+            console.log(error);
+        }
+        return returnArray;
+    }
+
+    insertAsync = async (data) => {
+        let returnArray = null;
+        const client = new Client(DBConfig);
+        try {
+            await client.connect();
+            let querys = "";
+            for (let i = 0; i < data.length; i++) {
+                querys += (i != data.length - 1) ? data[i] + ", " : data[i];
+                
+            }
+            let sql = `INSERT INTO public.event_enrollments(
+                id, id_user, description, registration_date_time, attended, observations, rating, id_event)
+                VALUES ((SELECT MAX(id)+1 FROM public.events), ${querys})`;
+            const result = await client.query(sql);
+            await client.end();
+            returnArray = result.rows;
+        } catch (error) {
+            console.log(error);
+        }
+        return returnArray;
+    }
 }

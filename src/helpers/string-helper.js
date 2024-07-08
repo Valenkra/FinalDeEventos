@@ -2,7 +2,7 @@ export const MAXCHARS = 100;
 
 export default class StringHelper {
     minChars = (str) => {
-        return (str.length > 3 === true);
+        return (str.length >= 2 === true);
     }
     
     verifyEmail = (email) => {

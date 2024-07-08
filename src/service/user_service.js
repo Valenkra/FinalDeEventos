@@ -18,4 +18,10 @@ export default class UserService {
         const returnArray = await repo.loginAsync(user, passw);
         return returnArray;
     }
+
+    getIdAsync = async (user, passw) => {
+        const repo = new UsersRepository();
+        const returnArray = await repo.getUserIdByUsernameAndPasswordAsync(user, passw);
+        return returnArray;
+    }
 }

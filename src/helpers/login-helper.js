@@ -25,7 +25,10 @@ export default class LogInHelper {
         try {
             payload = await jwt.verify(token, SECRETKEY);
         }catch (e) {
-            console.log(e);
+            const error = {
+                error: `${e}`
+            }
+            return error;
         }
         return payload;
     }

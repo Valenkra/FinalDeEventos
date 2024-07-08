@@ -10,6 +10,7 @@ const svc = new UserService();
 
 // Login 
 router.post("/login", async (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
     let STATUS = 400;
 
     const response = {
@@ -28,7 +29,7 @@ router.post("/login", async (req, res) => {
             if(key === "username"){ if(strHelp.verifyEmail(value) === false){
                 exitMsg["success"] = false;
                 exitMsg["message"] = "El username ó email es invalido por su estructura.";
-                res.setHeader('Content-Type', 'application/json').status(400).json(exitMsg);
+                res.status(400).json(exitMsg);
                 break;
             } else response[`${key}`] = value}
             else response[`${key}`] = value};
@@ -59,13 +60,13 @@ router.post("/login", async (req, res) => {
         STATUS = 400;
     }
 
-    res.setHeader('Content-Type', 'application/json').status(`${STATUS}`).json(exitMsg);
+    res.status(`${STATUS}`).json(exitMsg);
 })
 
 // Sign Up 
 router.post("/register", async (req, res) => {
     const response = {
-        fist_name: null,
+        first_name: null,
         last_name: null,
         username: null,
         password: null

@@ -1,8 +1,9 @@
 import { Router } from "express";
 import EventService from "../service/event_service.js";
+import TokenHelper from "../helpers/token-helper.js";
 const router = Router();
 const svc = new EventService();
-
+const tokenHelper = new TokenHelper();
 
 // 3 Busqueda de un evento
 router.get("", async (req, res) => {
@@ -127,7 +128,35 @@ router.get("/:id/enrollment", async (req, res) => {
 });
 
 router.post("", async (req, res) => {
-
+    let token = tokenHelper.extractToken(req.headers.authorization);
+    if(token !== false){
+        let payload = await tokenHelper.autenticarUsuario(token);
+        if(payload["error"] === undefined){
+            const response = {
+                name: null,
+                description: null,
+                id_event_category: null,
+                start_date: null,
+                duration_in_minutes: null,
+                price: null,
+                enabled_for_enrollment: null,
+                max_assistance: null,
+                id_creator_user: payload["id"], 
+                id_event_location: null
+            }
+        
+            
+            let temp = 0;
+            for (const [key, value] of Object.entries(req.query)) {
+                if(response[`${key}`] !== undefined) response[`${key}`] = value;
+                else temp++;
+            }
+        }else{
+            res.setHeader('Content-Type', 'application/json').status(404).send(payload);
+        }
+    } else{
+        res.setHeader('Content-Type', 'text/plain').status(404).send("Falta de token válido. Por favor, ingresá un token en el área de 'Authorization>Bearer Token'");
+    }
 })
 
 router.put("", async (req, res) => {

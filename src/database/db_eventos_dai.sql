@@ -579,7 +579,7 @@ INSERT INTO public.events VALUES ('Exposición de Arte Contemporáneo', 'Explora
 INSERT INTO public.events VALUES ('Torneo de Fútbol Local', 'Únete a la emoción del fútbol en nuestro torneo local. ¡Apoya a tu equipo favorito y disfruta de la competencia!', 5, '2024-06-05', 120, 50, true, 100, 5, 5, 5);
 INSERT INTO public.events VALUES ('Curso de Fotografía Básica', 'Descubre el mundo de la fotografía en nuestro curso básico. Aprende técnicas fundamentales y captura momentos inolvidables.', 6, '2024-06-06', 90, 40, true, 80, 6, 6, 6);
 INSERT INTO public.events VALUES ('Charla sobre Medio Ambiente', 'Únete a nuestra charla sobre medio ambiente y descubre cómo puedes contribuir a un futuro más sostenible. ¡Juntos podemos marcar la diferencia!', 7, '2024-06-07', 150, 60, true, 120, 7, 7, 7);
-INSERT INTO public.events VALUES ('Noche de Cine al Aire Libre', 'Disfruta de una noche bajo las estrellas con nuestra proyección de cine al aire libre. Trae tus mantas y palomitas para una experiencia inolvidable.', 8, '2024-06-08', 180, 70, true, 150, 8, 8, 8);
+INSERT INTO public.events VALUES ('Noche de Cine al Aire Libre', 'Disfruta de una noche bajo las estrellas con nuestra proyección de cine al aire libre. Trae tus mantas y palomitas para una experiencia inolvidable.', 8, '2024-06-08', 180, 70, true, 150, 8, 8);
 INSERT INTO public.events VALUES ('Clase de Baile Latino', 'Aprende los pasos de baile más candentes en nuestra clase de baile latino. ¡Diviértete y libera tu energía con ritmos apasionados!', 9, '2024-06-09', 120, 50, true, 100, 9, 9, 9);
 
 

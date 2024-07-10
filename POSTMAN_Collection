@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f364655b-3193-41e9-a2e0-65a84c9e4e96",
+		"_postman_id": "ed3bd581-a3cd-4c0d-b418-0c00fd709467",
 		"name": "Final De Eventos",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -107,10 +107,20 @@
 				{
 					"name": "Insertar evento",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidmljdG9yaWFoZXJyZXJhQGdtYWlsLmNvbSIsInBhc3N3IjoicGFzc3dvcmQxMjM0NTY3ODkiLCJpYXQiOjE3MjA2MTE4OTgsImV4cCI6MTcyMDYxNTQ5OCwiaXNzIjoidmFsZW5ZbmFjY2FjaGUifQ.W0QvrLrvGUSLN5doM770X9EWW82SEuJy9p9MPpjOA6E",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/event",
+							"raw": "http://localhost:3000/api/event?name=Taylor Swift Eras Tour&description=Alto evento de swifites&id_event_category=1&start_date=2024-05-06&duration_in_minutes=67567&price=57576&enabled_for_enrollment=true&max_assistance=6786&id_event_location=4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -119,6 +129,44 @@
 							"path": [
 								"api",
 								"event"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Taylor Swift Eras Tour"
+								},
+								{
+									"key": "description",
+									"value": "Alto evento de swifites"
+								},
+								{
+									"key": "id_event_category",
+									"value": "1"
+								},
+								{
+									"key": "start_date",
+									"value": "2024-05-06"
+								},
+								{
+									"key": "duration_in_minutes",
+									"value": "67567"
+								},
+								{
+									"key": "price",
+									"value": "57576"
+								},
+								{
+									"key": "enabled_for_enrollment",
+									"value": "true"
+								},
+								{
+									"key": "max_assistance",
+									"value": "6786"
+								},
+								{
+									"key": "id_event_location",
+									"value": "4"
+								}
 							]
 						}
 					},
@@ -243,7 +291,7 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/user/login?username=hola&password=sdkjhsdj",
+							"raw": "http://localhost:3000/api/user/login?username=victoriaherrera@gmail.com&password=password123456789",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -257,11 +305,11 @@
 							"query": [
 								{
 									"key": "username",
-									"value": "hola"
+									"value": "victoriaherrera@gmail.com"
 								},
 								{
 									"key": "password",
-									"value": "sdkjhsdj"
+									"value": "password123456789"
 								}
 							]
 						}
@@ -475,7 +523,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/province/3",
+							"raw": "http://localhost:3000/api/province/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -484,7 +532,7 @@
 							"path": [
 								"api",
 								"province",
-								"3"
+								"5"
 							]
 						}
 					},
@@ -496,7 +544,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/province/3/locations",
+							"raw": "http://localhost:3000/api/province/5/locations",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -505,7 +553,7 @@
 							"path": [
 								"api",
 								"province",
-								"3",
+								"5",
 								"locations"
 							]
 						}
@@ -518,7 +566,7 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/province",
+							"raw": "http://localhost:3000/api/province?name=gjgj&full_name=ghjhgjghj&latitude=4534534&longitude=345345345&display_order=33",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -527,6 +575,28 @@
 							"path": [
 								"api",
 								"province"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "gjgj"
+								},
+								{
+									"key": "full_name",
+									"value": "ghjhgjghj"
+								},
+								{
+									"key": "latitude",
+									"value": "4534534"
+								},
+								{
+									"key": "longitude",
+									"value": "345345345"
+								},
+								{
+									"key": "display_order",
+									"value": "33"
+								}
 							]
 						}
 					},
@@ -538,7 +608,7 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/province",
+							"raw": "http://localhost:3000/api/province?name=gjgj&full_name=ghjhgjghj&latitude=4534534&id=5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -547,6 +617,34 @@
 							"path": [
 								"api",
 								"province"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "gjgj"
+								},
+								{
+									"key": "full_name",
+									"value": "ghjhgjghj"
+								},
+								{
+									"key": "latitude",
+									"value": "4534534"
+								},
+								{
+									"key": "longitude",
+									"value": "345345345",
+									"disabled": true
+								},
+								{
+									"key": "display_order",
+									"value": "33",
+									"disabled": true
+								},
+								{
+									"key": "id",
+									"value": "5"
+								}
 							]
 						}
 					},
@@ -622,7 +720,10 @@
 					"name": "Buscar event location de una locacion",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				}

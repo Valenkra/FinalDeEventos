@@ -53,12 +53,13 @@ export default class EventCategoryRepository {
         return returnArray;
     }
 
-    getAllById = async () => {
+    getAllAsync = async () => {
         let returnArray = null;
         const client = new Client(DBConfig);
         try {
             await client.connect();
-            let sql = `SELECT * FROM event_categories EC`;
+            let sql = `SELECT * FROM event_categories EC
+                        ORDER BY id ASC`;
             const result = await client.query(sql);
             await client.end();
             returnArray = result.rows;
@@ -106,7 +107,7 @@ export default class EventCategoryRepository {
             await client.connect();
             let sql = `INSERT INTO public.event_categories(
                 id, name, display_order)
-                VALUES ((SELECT MAX(id)+1 FROM public.events), ${name}, ${dOrder});
+                VALUES ((SELECT MAX(id)+1 FROM public.event_categories),'${name}', ${dOrder});
                 `;
             const result = await client.query(sql);
             await client.end();
@@ -117,6 +118,7 @@ export default class EventCategoryRepository {
         return returnArray;
     }
 
+    
     updateByIdAsync = async (data) => {
         let returnArray = null;
         const client = new Client(DBConfig);
@@ -124,11 +126,12 @@ export default class EventCategoryRepository {
             await client.connect();
             let querys = "";
             for (let i = 0; i < data.length - 1; i++) {
-                querys += (i != data.length - 1) ? data[i] + ", " : data[i];
+                querys += (i != data.length - 2) ? data[i] + ", " : data[i];
             }
-            let sql = `UPDATE public.event_categories
+
+            let sql = `UPDATE  event_categories
                 SET ${querys}
-                WHERE ${data[data.length - 1]}`;
+                WHERE id=${parseInt(data[data.length - 1])};`;
             const result = await client.query(sql);
             await client.end();
             returnArray = result.rows;

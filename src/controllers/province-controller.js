@@ -79,7 +79,7 @@ router.post("", async (req, res) => {
     }else{
         const returnMsg = await svc.createAsync(response["name"], response["full_name"], response["latitude"], response["longitude"], response["display_order"]);
         if(returnMsg == ""){
-            res.setHeader('Content-Type', 'application/json').status(200).send(`Provinicia creada con exito!`);
+            res.setHeader('Content-Type', 'application/json').status(200).send(`Provincia creada con exito!`);
         }else{
             res.setHeader('Content-Type', 'text/plain').status(404).send(`${returnMsg}`);
         }
@@ -147,7 +147,7 @@ router.put("", async (req, res) => {
 
             const returnMsg = await svc.updateByIdAsync(data);
             if(returnMsg == ""){
-                res.setHeader('Content-Type', 'application/json').status(200).send(`Provinicia actualizada con exito!`);
+                res.setHeader('Content-Type', 'application/json').status(200).send(`Provincia actualizada con exito!`);
             }else{
                 res.setHeader('Content-Type', 'text/plain').status(404).send(`${returnMsg}`);
             }
@@ -160,7 +160,7 @@ router.delete("/:id", async (req, res) => {
     const id = req.params.id;
     const returnMsg = await svc.deleteByIdAsync(id);
     if(returnMsg == ""){
-        res.setHeader('Content-Type', 'application/json').status(200).send(`Provinicia eliminada con exito!`);
+        res.setHeader('Content-Type', 'application/json').status(200).send(`Provincia eliminada con exito!`);
     }else{
         res.setHeader('Content-Type', 'text/plain').status(404).send(`${returnMsg}`);
     }

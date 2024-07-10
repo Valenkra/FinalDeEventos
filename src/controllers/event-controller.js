@@ -1,9 +1,13 @@
 import { Router } from "express";
 import EventService from "../service/event_service.js";
 import TokenHelper from "../helpers/token-helper.js";
+import StringHelper from "../helpers/string-helper.js";
+import ValidacionesHelper from "../helpers/validaciones-helper.js";
 const router = Router();
 const svc = new EventService();
 const tokenHelper = new TokenHelper();
+const str = new StringHelper();
+const validaciones = new ValidacionesHelper();
 
 // 3 Busqueda de un evento
 router.get("", async (req, res) => {
@@ -144,16 +148,52 @@ router.post("", async (req, res) => {
                 id_creator_user: payload["id"], 
                 id_event_location: null
             }
-        
             
-            let temp = 0;
+            const error = {
+                error: null
+            }        
+
             for (const [key, value] of Object.entries(req.query)) {
-                if(response[`${key}`] !== undefined) response[`${key}`] = value;
-                else temp++;
+                if (key !== "id_creator_user") {
+                    if(response[`${key}`] !== undefined){            
+                        if(key === "description" || key === "name"){
+                            if(str.minChars(value) === true && str.maxChars(value) === true) response[`${key}`] = value;
+                            else{
+                                error["error"] = `${key} debe tener entre 3 y 100 letras`;
+                                return res.setHeader('Content-Type', 'application/json').status(400).json(error);
+                            }
+                        }else{
+                            if((validaciones.getIntegerOrDefault(value, -1) === -1 || validaciones.getIntegerOrDefault(value, -1) <= 0) && key !== "enabled_for_enrollment"){
+                                error["error"] = `${key} debe ser un numero positivo.`;
+                                return res.setHeader('Content-Type', 'application/json').status(400).json(error);
+                            }else{
+                                if(value != "true" && value != "false" && key === "enabled_for_enrollment"){
+                                    error["error"] = `${key} debe ser un booleano.`;
+                                    return res.setHeader('Content-Type', 'application/json').status(200).json(error);
+                                }else{
+                                    response[`${key}`] = value;
+                                }
+                            }
+                        }
+                    }
+                }
             }
-        }else{
-            res.setHeader('Content-Type', 'application/json').status(404).send(payload);
-        }
+
+                
+            let oneIsNull = false;
+            for (const [key, value] of Object.entries(response)) {
+                if(value === null) oneIsNull = true;
+            }
+
+            if(oneIsNull) {
+                error["error"] = "Faltan parámetros.";
+                return res.setHeader('Content-Type', 'application/json').status(400).json(error);
+            }else{
+                    console.log("llegueee");
+                    return res.setHeader('Content-Type', 'application/json').status(404).send(payload);
+
+                }
+            }
     } else{
         res.setHeader('Content-Type', 'text/plain').status(404).send("Falta de token válido. Por favor, ingresá un token en el área de 'Authorization>Bearer Token'");
     }

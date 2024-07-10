@@ -4,7 +4,7 @@ import EventRouter from "./src/controllers/event-controller.js";
 import UserRouter from "./src/controllers/user-controller.js";
 import ProvinceRouter from "./src/controllers/province-controller.js";
 import LocationRouter from "./src/controllers/location-controller.js";
-import ELocationRouter from "./src/controllers/event-category-controller.js";
+import ELocationRouter from "./src/controllers/event-location-controller.js";
 import ECategoryRouter from "./src/controllers/event-category-controller.js";
 const app = express();
 const port = 3000;

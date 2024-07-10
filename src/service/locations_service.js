@@ -1,5 +1,5 @@
 import LocationsRepository from "../repositories/location_repository.js";
-import ProvinceRepository from "../repositories/province_province.js";
+import ProvinceRepository from "../repositories/province_repository.js";
 
 export default class LocationsService {
     getAllIdsAsync = async () => {

@@ -3,7 +3,7 @@ import UsersRepository from "../repositories/users_repository.js";
 import LocationsRepository from "../repositories/location_repository.js";
 import EventCategoryRepository from "../repositories/event-category_repository.js";
 import EventLocationRepository from "../repositories/event-location_repository.js";
-import ProvinceRepository from "../repositories/province_province.js";
+import ProvinceRepository from "../repositories/province_repository.js";
 import TagsRepository from "../repositories/tags_repository.js";
 import EventEnrollmentsRepository from "../repositories/event-enrollment_repository.js";
 

@@ -23,7 +23,7 @@ SET row_security = off;
 -- Name: public; Type: SCHEMA; Schema: -; Owner: pg_database_owner
 --
 
-CREATE SCHEMA public;
+-- CREATE SCHEMA public;
 
 
 ALTER SCHEMA public OWNER TO pg_database_owner;
@@ -572,15 +572,15 @@ INSERT INTO public.event_tags VALUES (20, 8, 5);
 -- Data for Name: events; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.events VALUES (1, 'Concierto de Verano', '¡Disfruta de una noche llena de música en nuestro concierto de verano! Ven y únete a nosotros para una experiencia inolvidable.', 1, '2024-06-01', 120, 50, true, 100, 1, 1);
-INSERT INTO public.events VALUES (2, 'Taller de Cocina', 'Aprende a cocinar platos deliciosos de la mano de nuestros chefs expertos en nuestro taller de cocina. ¡No te lo pierdas!', 2, '2024-06-02', 90, 40, true, 80, 2, 2);
-INSERT INTO public.events VALUES (3, 'Sesión de Yoga al Aire Libre', 'Encuentra paz y equilibrio en nuestra sesión de yoga al aire libre. Desconéctate del estrés diario y conecta contigo mismo.', 3, '2024-06-03', 150, 60, true, 120, 3, 3);
-INSERT INTO public.events VALUES (4, 'Exposición de Arte Contemporáneo', 'Explora obras fascinantes de artistas contemporáneos en nuestra exposición de arte. ¡Descubre nuevas perspectivas y emociones!', 4, '2024-06-04', 180, 70, true, 150, 4, 4);
-INSERT INTO public.events VALUES (5, 'Torneo de Fútbol Local', 'Únete a la emoción del fútbol en nuestro torneo local. ¡Apoya a tu equipo favorito y disfruta de la competencia!', 5, '2024-06-05', 120, 50, true, 100, 5, 5);
-INSERT INTO public.events VALUES (6, 'Curso de Fotografía Básica', 'Descubre el mundo de la fotografía en nuestro curso básico. Aprende técnicas fundamentales y captura momentos inolvidables.', 6, '2024-06-06', 90, 40, true, 80, 6, 6);
-INSERT INTO public.events VALUES (7, 'Charla sobre Medio Ambiente', 'Únete a nuestra charla sobre medio ambiente y descubre cómo puedes contribuir a un futuro más sostenible. ¡Juntos podemos marcar la diferencia!', 7, '2024-06-07', 150, 60, true, 120, 7, 7);
-INSERT INTO public.events VALUES (8, 'Noche de Cine al Aire Libre', 'Disfruta de una noche bajo las estrellas con nuestra proyección de cine al aire libre. Trae tus mantas y palomitas para una experiencia inolvidable.', 8, '2024-06-08', 180, 70, true, 150, 8, 8);
-INSERT INTO public.events VALUES (9, 'Clase de Baile Latino', 'Aprende los pasos de baile más candentes en nuestra clase de baile latino. ¡Diviértete y libera tu energía con ritmos apasionados!', 9, '2024-06-09', 120, 50, true, 100, 9, 9);
+INSERT INTO public.events VALUES ('Concierto de Verano', '¡Disfruta de una noche llena de música en nuestro concierto de verano! Ven y únete a nosotros para una experiencia inolvidable.', 1, '2024-06-01', 120, 50, true, 100, 1, 1, 1);
+INSERT INTO public.events VALUES ('Taller de Cocina', 'Aprende a cocinar platos deliciosos de la mano de nuestros chefs expertos en nuestro taller de cocina. ¡No te lo pierdas!', 2, '2024-06-02', 90, 40, true, 80, 2, 2, 2);
+INSERT INTO public.events VALUES ('Sesión de Yoga al Aire Libre', 'Encuentra paz y equilibrio en nuestra sesión de yoga al aire libre. Desconéctate del estrés diario y conecta contigo mismo.', 3, '2024-06-03', 150, 60, true, 120, 3, 3, 3);
+INSERT INTO public.events VALUES ('Exposición de Arte Contemporáneo', 'Explora obras fascinantes de artistas contemporáneos en nuestra exposición de arte. ¡Descubre nuevas perspectivas y emociones!', 4, '2024-06-04', 180, 70, true, 150, 4, 4, 4);
+INSERT INTO public.events VALUES ('Torneo de Fútbol Local', 'Únete a la emoción del fútbol en nuestro torneo local. ¡Apoya a tu equipo favorito y disfruta de la competencia!', 5, '2024-06-05', 120, 50, true, 100, 5, 5, 5);
+INSERT INTO public.events VALUES ('Curso de Fotografía Básica', 'Descubre el mundo de la fotografía en nuestro curso básico. Aprende técnicas fundamentales y captura momentos inolvidables.', 6, '2024-06-06', 90, 40, true, 80, 6, 6, 6);
+INSERT INTO public.events VALUES ('Charla sobre Medio Ambiente', 'Únete a nuestra charla sobre medio ambiente y descubre cómo puedes contribuir a un futuro más sostenible. ¡Juntos podemos marcar la diferencia!', 7, '2024-06-07', 150, 60, true, 120, 7, 7, 7);
+INSERT INTO public.events VALUES ('Noche de Cine al Aire Libre', 'Disfruta de una noche bajo las estrellas con nuestra proyección de cine al aire libre. Trae tus mantas y palomitas para una experiencia inolvidable.', 8, '2024-06-08', 180, 70, true, 150, 8, 8, 8);
+INSERT INTO public.events VALUES ('Clase de Baile Latino', 'Aprende los pasos de baile más candentes en nuestra clase de baile latino. ¡Diviértete y libera tu energía con ritmos apasionados!', 9, '2024-06-09', 120, 50, true, 100, 9, 9, 9);
 
 
 --

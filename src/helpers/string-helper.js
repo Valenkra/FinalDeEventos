@@ -20,6 +20,6 @@ export default class StringHelper {
     }
 
     maxChars = (str) => {
-        return (str.length > MAXCHARS === true);
+        return (str.length > MAXCHARS === false);
     }
 }

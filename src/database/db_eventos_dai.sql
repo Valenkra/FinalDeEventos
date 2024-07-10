@@ -572,16 +572,15 @@ INSERT INTO public.event_tags VALUES (20, 8, 5);
 -- Data for Name: events; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.events VALUES ('Concierto de Verano', '¡Disfruta de una noche llena de música en nuestro concierto de verano! Ven y únete a nosotros para una experiencia inolvidable.', 1, '2024-06-01', 120, 50, true, 100, 1, 1, 1);
-INSERT INTO public.events VALUES ('Taller de Cocina', 'Aprende a cocinar platos deliciosos de la mano de nuestros chefs expertos en nuestro taller de cocina. ¡No te lo pierdas!', 2, '2024-06-02', 90, 40, true, 80, 2, 2, 2);
-INSERT INTO public.events VALUES ('Sesión de Yoga al Aire Libre', 'Encuentra paz y equilibrio en nuestra sesión de yoga al aire libre. Desconéctate del estrés diario y conecta contigo mismo.', 3, '2024-06-03', 150, 60, true, 120, 3, 3, 3);
-INSERT INTO public.events VALUES ('Exposición de Arte Contemporáneo', 'Explora obras fascinantes de artistas contemporáneos en nuestra exposición de arte. ¡Descubre nuevas perspectivas y emociones!', 4, '2024-06-04', 180, 70, true, 150, 4, 4, 4);
-INSERT INTO public.events VALUES ('Torneo de Fútbol Local', 'Únete a la emoción del fútbol en nuestro torneo local. ¡Apoya a tu equipo favorito y disfruta de la competencia!', 5, '2024-06-05', 120, 50, true, 100, 5, 5, 5);
-INSERT INTO public.events VALUES ('Curso de Fotografía Básica', 'Descubre el mundo de la fotografía en nuestro curso básico. Aprende técnicas fundamentales y captura momentos inolvidables.', 6, '2024-06-06', 90, 40, true, 80, 6, 6, 6);
-INSERT INTO public.events VALUES ('Charla sobre Medio Ambiente', 'Únete a nuestra charla sobre medio ambiente y descubre cómo puedes contribuir a un futuro más sostenible. ¡Juntos podemos marcar la diferencia!', 7, '2024-06-07', 150, 60, true, 120, 7, 7, 7);
-INSERT INTO public.events VALUES ('Noche de Cine al Aire Libre', 'Disfruta de una noche bajo las estrellas con nuestra proyección de cine al aire libre. Trae tus mantas y palomitas para una experiencia inolvidable.', 8, '2024-06-08', 180, 70, true, 150, 8, 8);
-INSERT INTO public.events VALUES ('Clase de Baile Latino', 'Aprende los pasos de baile más candentes en nuestra clase de baile latino. ¡Diviértete y libera tu energía con ritmos apasionados!', 9, '2024-06-09', 120, 50, true, 100, 9, 9, 9);
-
+INSERT INTO public.events(name, description, id_event_category, start_date, duration_in_minutes, price, enabled_for_enrollment, max_assistance, id_creator_user, id_event_location, id) VALUES ('Concierto de Verano', '¡Disfruta de una noche llena de música en nuestro concierto de verano! Ven y únete a nosotros para una experiencia inolvidable.', 1, '2024-06-01', 120, 50, true, 100, 1, 1, 1);
+INSERT INTO public.events(name, description, id_event_category, start_date, duration_in_minutes, price, enabled_for_enrollment, max_assistance, id_creator_user, id_event_location, id) VALUES ('Taller de Cocina', 'Aprende a cocinar platos deliciosos de la mano de nuestros chefs expertos en nuestro taller de cocina. ¡No te lo pierdas!', 2, '2024-06-02', 90, 40, true, 80, 2, 2, 2);
+INSERT INTO public.events(name, description, id_event_category, start_date, duration_in_minutes, price, enabled_for_enrollment, max_assistance, id_creator_user, id_event_location, id) VALUES ('Sesión de Yoga al Aire Libre', 'Encuentra paz y equilibrio en nuestra sesión de yoga al aire libre. Desconéctate del estrés diario y conecta contigo mismo.', 3, '2024-06-03', 150, 60, true, 120, 3, 3, 3);
+INSERT INTO public.events(name, description, id_event_category, start_date, duration_in_minutes, price, enabled_for_enrollment, max_assistance, id_creator_user, id_event_location, id) VALUES ('Exposición de Arte Contemporáneo', 'Explora obras fascinantes de artistas contemporáneos en nuestra exposición de arte. ¡Descubre nuevas perspectivas y emociones!', 4, '2024-06-04', 180, 70, true, 150, 4, 4, 4);
+INSERT INTO public.events(name, description, id_event_category, start_date, duration_in_minutes, price, enabled_for_enrollment, max_assistance, id_creator_user, id_event_location, id) VALUES ('Torneo de Fútbol Local', 'Únete a la emoción del fútbol en nuestro torneo local. ¡Apoya a tu equipo favorito y disfruta de la competencia!', 5, '2024-06-05', 120, 50, true, 100, 5, 5, 5);
+INSERT INTO public.events(name, description, id_event_category, start_date, duration_in_minutes, price, enabled_for_enrollment, max_assistance, id_creator_user, id_event_location, id) VALUES ('Curso de Fotografía Básica', 'Descubre el mundo de la fotografía en nuestro curso básico. Aprende técnicas fundamentales y captura momentos inolvidables.', 6, '2024-06-06', 90, 40, true, 80, 6, 6, 6);
+INSERT INTO public.events(name, description, id_event_category, start_date, duration_in_minutes, price, enabled_for_enrollment, max_assistance, id_creator_user, id_event_location, id) VALUES ('Charla sobre Medio Ambiente', 'Únete a nuestra charla sobre medio ambiente y descubre cómo puedes contribuir a un futuro más sostenible. ¡Juntos podemos marcar la diferencia!', 7, '2024-06-07', 150, 60, true, 120, 7, 7, 7);
+INSERT INTO public.events(name, description, id_event_category, start_date, duration_in_minutes, price, enabled_for_enrollment, max_assistance, id_creator_user, id_event_location, id) VALUES ('Noche de Cine al Aire Libre', 'Disfruta de una noche bajo las estrellas con nuestra proyección de cine al aire libre. Trae tus mantas y palomitas para una experiencia inolvidable.', 8, '2024-06-08', 180, 70, true, 150, 8, 8, 8);
+INSERT INTO public.events(name, description, id_event_category, start_date, duration_in_minutes, price, enabled_for_enrollment, max_assistance, id_creator_user, id_event_location, id) VALUES ('Clase de Baile Latino', 'Aprende los pasos de baile más candentes en nuestra clase de baile latino. ¡Diviértete y libera tu energía con ritmos apasionados!', 9, '2024-06-09', 120, 50, true, 100, 9, 9, 9);
 
 --
 -- TOC entry 4861 (class 0 OID 16429)
@@ -609,6 +608,86 @@ INSERT INTO public.locations VALUES (17, 'Barrio Caballito', -34.6223, -58.4388,
 INSERT INTO public.locations VALUES (18, 'Sierra de la Ventana', -38.1422, -61.7761, 15);
 INSERT INTO public.locations VALUES (19, 'Parque Nacional Nahuel Huapi', -41.1508, -71.3092, 17);
 INSERT INTO public.locations VALUES (20, 'San Carlos de Bariloche', -41.1335, -71.3103, 16);
+INSERT INTO public.locations VALUES (21, 'La Cumbrecita', -64.7737, -31.9101, 1);
+INSERT INTO public.locations VALUES (22, 'Villa General Belgrano', -64.5615, -31.9774, 2);
+INSERT INTO public.locations VALUES (23, 'Villa La Angostura', -71.6306, -40.7580, 3);
+INSERT INTO public.locations VALUES (24, 'El Calafate', -72.2776, -50.3378, 4);
+INSERT INTO public.locations VALUES (25, 'Puerto Madryn', -65.0380, -42.7692, 5);
+INSERT INTO public.locations VALUES (26, 'Colón', -58.1156, -32.2300, 6);
+INSERT INTO public.locations VALUES (27, 'San Martín de los Andes', -71.3436, -40.1652, 7);
+INSERT INTO public.locations VALUES (28, 'Merlo', -65.0265, -32.3392, 8);
+INSERT INTO public.locations VALUES (29, 'San Rafael', -68.3307, -34.6177, 9);
+INSERT INTO public.locations VALUES (30, 'Tilcara', -65.3500, -23.5774, 10);
+INSERT INTO public.locations VALUES (31, 'La Falda', -64.4871, -31.1017, 11);
+INSERT INTO public.locations VALUES (32, 'Capilla del Monte', -64.5220, -30.8597, 12);
+INSERT INTO public.locations VALUES (33, 'San Antonio de Areco', -59.4730, -34.2472, 13);
+INSERT INTO public.locations VALUES (34, 'Chascomús', -58.0126, -35.5734, 14);
+INSERT INTO public.locations VALUES (35, 'San Pedro', -59.6666, -33.6862, 15);
+INSERT INTO public.locations VALUES (36, 'Güemes', -64.8762, -25.2339, 16);
+INSERT INTO public.locations VALUES (37, 'Villa Gesell', -56.9777, -37.2632, 17);
+INSERT INTO public.locations VALUES (38, 'Luján', -59.1015, -34.5703, 18);
+INSERT INTO public.locations VALUES (39, 'Villa María', -63.2421, -32.4072, 19);
+INSERT INTO public.locations VALUES (40, 'Junín de los Andes', -71.0706, -39.9563, 20);
+INSERT INTO public.locations VALUES (41, 'San Juan', -68.5364, -31.5375, 21);
+INSERT INTO public.locations VALUES (42, 'Río Ceballos', -64.3136, -31.1734, 22);
+INSERT INTO public.locations VALUES (43, 'Jáchal', -68.7665, -30.2341, 23);
+INSERT INTO public.locations VALUES (44, 'Achiras', -64.7783, -33.1739, 1);
+INSERT INTO public.locations VALUES (45, 'Yerba Buena', -65.2994, -26.8525, 2);
+INSERT INTO public.locations VALUES (46, 'Perico', -65.1130, -24.3707, 3);
+INSERT INTO public.locations VALUES (47, 'Purmamarca', -65.4945, -22.1200, 4);
+INSERT INTO public.locations VALUES (48, 'La Quiaca', -65.5923, -22.1032, 5);
+INSERT INTO public.locations VALUES (49, 'Goya', -59.2611, -29.1406, 6);
+INSERT INTO public.locations VALUES (50, 'Villa Dolores', -65.3681, -31.9444, 7);
+INSERT INTO public.locations VALUES (51, 'San Fernando del Valle de Catamarca', -65.7795, -28.4696, 8);
+INSERT INTO public.locations VALUES (52, 'Comodoro Rivadavia', -67.4833, -45.8667, 9);
+INSERT INTO public.locations VALUES (53, 'Esquel', -71.3167, -42.9167, 10);
+INSERT INTO public.locations VALUES (54, 'Villa Carlos Paz', -64.4912, -31.4241, 11);
+INSERT INTO public.locations VALUES (55, 'La Paz', -59.1081, -30.7380, 12);
+INSERT INTO public.locations VALUES (56, 'Santiago del Estero', -64.2605, -27.7834, 13);
+INSERT INTO public.locations VALUES (57, 'San Luis', -66.3356, -33.2950, 14);
+INSERT INTO public.locations VALUES (58, 'Rosario de la Frontera', -64.6998, -25.7980, 15);
+INSERT INTO public.locations VALUES (59, 'San José de Jáchal', -68.7580, -30.2513, 16);
+INSERT INTO public.locations VALUES (60, 'Villa Ángela', -60.7054, -27.5733, 17);
+INSERT INTO public.locations VALUES (61, 'Rawson', -65.1023, -43.3002, 18);
+INSERT INTO public.locations VALUES (62, 'Ushuaia', -68.3029, -54.8070, 19);
+INSERT INTO public.locations VALUES (63, 'San Miguel de Tucumán', -65.2176, -26.8083, 20);
+INSERT INTO public.locations VALUES (64, 'Concordia', -58.0209, -31.3929, 21);
+INSERT INTO public.locations VALUES (65, 'Neuquén', -68.0591, -38.9516, 22);
+INSERT INTO public.locations VALUES (66, 'Choele Choel', -65.6857, -39.2907, 23);
+INSERT INTO public.locations VALUES (67, 'Villa La Bolsa', -64.4677, -31.4796, 1);
+INSERT INTO public.locations VALUES (68, 'Santa Rosa de Calamuchita', -64.5246, -32.0662, 2);
+INSERT INTO public.locations VALUES (69, 'Puerto San Julián', -67.7278, -49.3008, 3);
+INSERT INTO public.locations VALUES (70, 'Villa Mercedes', -65.4557, -33.6758, 4);
+INSERT INTO public.locations VALUES (71, 'Bell Ville', -62.6906, -32.6255, 5);
+INSERT INTO public.locations VALUES (72, 'Las Heras', -68.8126, -32.8213, 6);
+INSERT INTO public.locations VALUES (73, 'Río Grande', -67.7105, -54.8064, 7);
+INSERT INTO public.locations VALUES (74, 'Paso de los Libres', -57.0887, -29.7117, 8);
+INSERT INTO public.locations VALUES (75, 'San Pedro de Jujuy', -64.8667, -24.2333, 9);
+INSERT INTO public.locations VALUES (76, 'Pergamino', -60.5736, -33.8896, 10);
+INSERT INTO public.locations VALUES (77, 'Villa Unión', -68.0505, -30.8701, 11);
+INSERT INTO public.locations VALUES (78, 'Cafayate', -65.9742, -26.0822, 12);
+INSERT INTO public.locations VALUES (79, 'Santa Teresita', -56.7176, -36.5371, 13);
+INSERT INTO public.locations VALUES (80, 'La Toma', -65.6094, -33.0540, 14);
+INSERT INTO public.locations VALUES (81, 'San Luis del Palmar', -58.5467, -27.5072, 15);
+INSERT INTO public.locations VALUES (82, 'Tanti', -64.5802, -31.3496, 16);
+INSERT INTO public.locations VALUES (83, 'El Bolsón', -71.4977, -41.9603, 17);
+INSERT INTO public.locations VALUES (84, 'Malargüe', -69.5842, -35.4756, 18);
+INSERT INTO public.locations VALUES (85, 'Villa Gesell', -56.9777, -37.2632, 19);
+INSERT INTO public.locations VALUES (86, 'Esperanza', -60.9310, -31.4486, 20);
+INSERT INTO public.locations VALUES (87, 'Victoria', -60.2015, -32.6184, 21);
+INSERT INTO public.locations VALUES (88, 'San Vicente', -54.1308, -27.3785, 22);
+INSERT INTO public.locations VALUES (89, 'El Dorado', -54.6500, -26.5500, 23);
+INSERT INTO public.locations VALUES (90, 'Puan', -62.8089, -37.2357, 1);
+INSERT INTO public.locations VALUES (91, 'Jesús María', -64.0920, -30.9816, 2);
+INSERT INTO public.locations VALUES (92, 'Chascomús', -58.0126, -35.5734, 3);
+INSERT INTO public.locations VALUES (93, 'San Pedro', -59.6666, -33.6862, 4);
+INSERT INTO public.locations VALUES (94, 'General Alvear', -67.5833, -34.9167, 5);
+INSERT INTO public.locations VALUES (95, 'San Antonio de Areco', -59.4730, -34.2472, 6);
+INSERT INTO public.locations VALUES (96, 'Villa María', -63.2421, -32.4072, 7);
+INSERT INTO public.locations VALUES (97, 'San Nicolás de los Arroyos', -60.2159, -33.3350, 8);
+INSERT INTO public.locations VALUES (98, 'Pilar', -58.8661, -34.4587, 9);
+INSERT INTO public.locations VALUES (99, 'San Fernando', -58.5514, -34.4512, 10);
+INSERT INTO public.locations VALUES (100, 'Concepción del Uruguay', -58.2372, -32.4825, 11);
 
 
 --

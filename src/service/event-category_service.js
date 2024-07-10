@@ -29,7 +29,7 @@ export default class EventCategoryService {
         const repo = new EventCategoryRepository();
         const checkExistance = await repo.getById(data[data.length-1]);
         let response;
-        if(checkExistance.length !== 0){
+        if(checkExistance !== null){
             response = await repo.updateByIdAsync(data);
         }else{
             response = "BAD REQUEST: ID inexistente";

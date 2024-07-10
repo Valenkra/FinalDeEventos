@@ -18,7 +18,7 @@ export default class ProvinceService {
         const repo = new ProvinceRepository();
         const checkExistance = await repo.getById(id);
         let response;
-        if(checkExistance.length !== 0){
+        if(checkExistance !== null){
             response = await repo.deleteByIdAsync(id);
         }else{
             response = "BAD REQUEST: ID inexistente";
@@ -30,7 +30,7 @@ export default class ProvinceService {
         const repo = new ProvinceRepository();
         const checkExistance = await repo.getById(data[data.length-1]);
         let response;
-        if(checkExistance.length !== 0){
+        if(checkExistance !== null){
             response = await repo.updateByIdAsync(data);
         }else{
             response = "BAD REQUEST: ID inexistente";
@@ -49,7 +49,7 @@ export default class ProvinceService {
         const lRepo = new LocationsRepository();
         const checkExistance = await repo.getById(id);
         let response;
-        if(checkExistance.length !== 0){
+        if(checkExistance !== null){
             response = await lRepo.getLocationByProvinceId(id);
         }else{
             response = "BAD REQUEST: ID inexistente";

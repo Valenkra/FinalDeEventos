@@ -52,7 +52,8 @@ export default class EventService {
             eReturnArray[i]["event_category"] = ecReturnArray[i];
             eReturnArray[i]["creator_user"] = uReturnArray[i];
             eReturnArray[i]["tags"] = tReturnArray;
-        }
+        }   
+        
         return eReturnArray;
     }
 
@@ -73,12 +74,14 @@ export default class EventService {
         const pReturnArray = await pRepo.getProvinceByEventId(id);
         const tReturnArray = await tRepo.getTagsByEventId(id);
 
-        eReturnArray[0]["event_location"] = elReturnArray[0];
-        eReturnArray[0]["event_location"]["location"] = lReturnArray[0];
-        eReturnArray[0]["event_location"]["location"]["province"] = pReturnArray[0];
-        eReturnArray[0]["event_category"] = ecReturnArray[0];
-        eReturnArray[0]["creator_user"] = uReturnArray[0];
-        eReturnArray[0]["tags"] = tReturnArray;
+        if(eReturnArray !== null){
+            eReturnArray[0]["event_location"] = elReturnArray[0];
+            eReturnArray[0]["event_location"]["location"] = lReturnArray[0];
+            eReturnArray[0]["event_location"]["location"]["province"] = pReturnArray[0];
+            eReturnArray[0]["event_category"] = ecReturnArray[0];
+            eReturnArray[0]["creator_user"] = uReturnArray[0];
+            eReturnArray[0]["tags"] = tReturnArray;
+        }
         return eReturnArray;
     }
 
@@ -93,5 +96,22 @@ export default class EventService {
             eeReturnArray[i]["user"] = uReturnArray[i];
         }
         return eeReturnArray;
+    }
+
+    createAsync = async (data) => {
+        const lRepo = new EventLocationRepository();
+        const checkExistance = await lRepo.getByIdAsync(data["id_event_location"]);
+        let response;
+        if(checkExistance !== null){
+            if(checkExistance[0]["max_capacity"] >= data["max_assistance"]){
+            const repo = new EventRepository();
+            response = await repo.insertAsync(data);
+            }else{
+                response = "BAD REQUEST: Max Assistance no puede ser mayor a Max_Capacity de la locación";
+            }
+        }else{
+            response = "BAD REQUEST: ID inexistente";
+        }
+        return response;
     }
 }

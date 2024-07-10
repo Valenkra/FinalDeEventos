@@ -74,13 +74,14 @@ export default class EventRepository {
         try {
             await client.connect();
             let querys = "";
-            for (let i = 0; i < data.length; i++) {
-                querys += (i != data.length - 1) ? data[i] + ", " : data[i];
-                
+            for (const [key, value] of Object.entries(data)) {
+                querys += (key !== "name" && key !== "description" && key !== "start_date") ? `${value}, ` : `'${value}', `;
             }
             let sql = `INSERT INTO public.events(
-                id, name, description, id_event_category, start_date, duration_in_minutes, price, enabled_for_enrollment, max_assistance, id_creator_user, id_event_location)
-                VALUES ((SELECT MAX(id)+1 FROM public.events), ${querys})`;
+                name, description, id_event_category, start_date, duration_in_minutes, price, enabled_for_enrollment, max_assistance, id_creator_user, id_event_location, id)
+                VALUES (${querys}(SELECT MAX(id)+1 FROM public.events)) `;
+
+            console.log(sql);
             const result = await client.query(sql);
             await client.end();
             returnArray = result.rows;

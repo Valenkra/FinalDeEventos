@@ -23,37 +23,19 @@ export default class EventLocationService {
         return returnArray;
     }
 
-    getWithConditionAsync = async (querys) => {
-        const eRepo = new EventLocationRepository();
-        const lRepo = new LocationsRepository();
-        const pRepo = new ProvinceRepository();
-
-        const eReturnArray = await eRepo.getWithConditionAsync(querys);
-        const lReturnArray = await lRepo.getWithConditionAsync(querys);
-        const pReturnArray = await pRepo.getWithConditionAsync(querys);
-
-        for (let i = 0; i < eReturnArray.length; i++) {
-            eReturnArray[i]["id_location"] = lReturnArray[i];
-            eReturnArray[i]["id_location"]["province"] = pReturnArray[i];
-        }
-        return eReturnArray;
-    }
-
     getByIdAsync = async (id) => {
         const eRepo = new EventLocationRepository();
         const lRepo = new LocationsRepository();
         const pRepo = new ProvinceRepository();
 
         const eReturnArray = await eRepo.getByIdAsync(id);
-        const lReturnArray = await lRepo.getLocationByEventId(id);
-        const pReturnArray = await pRepo.getProvinceByEventId(id);
+        const lReturnArray = await lRepo.getLocationByEvenLocationId(id);
+        const pReturnArray = await pRepo.getProvinceByEventLocationId(id);
 
-        eReturnArray[0]["event_location"] = elReturnArray[0];
-        eReturnArray[0]["event_location"]["location"] = lReturnArray[0];
-        eReturnArray[0]["event_location"]["location"]["province"] = pReturnArray[0];
-        eReturnArray[0]["event_category"] = ecReturnArray[0];
-        eReturnArray[0]["creator_user"] = uReturnArray[0];
-        eReturnArray[0]["tags"] = tReturnArray;
+        if(eReturnArray.length > 0){
+        eReturnArray[0]["location"] = lReturnArray[0];
+        eReturnArray[0]["location"]["province"] = pReturnArray[0];
+        }       
         return eReturnArray;
     }
 

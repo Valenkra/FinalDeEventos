@@ -18,7 +18,7 @@ export default class ProvinceService {
         const repo = new ProvinceRepository();
         const checkExistance = await repo.getById(id);
         let response;
-        if(checkExistance !== null){
+        if(checkExistance !== null && checkExistance.length > 0){
             response = await repo.deleteByIdAsync(id);
         }else{
             response = "BAD REQUEST: ID inexistente";

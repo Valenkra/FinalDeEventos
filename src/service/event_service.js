@@ -6,6 +6,7 @@ import ProvinceRepository from "../repositories/province_repository.js";
 import TagsRepository from "../repositories/tags_repository.js";
 import EventEnrollmentsRepository from "../repositories/event-enrollment_repository.js";
 import UsersRepository from "../repositories/users_repository.js";
+import { response } from "express";
 
 export default class EventService {
     getAllIdsAsync = async () => {
@@ -167,5 +168,41 @@ export default class EventService {
             response = "BAD REQUEST: No esta autorizado porque no es dueño del evento";
         }
         return response;
+    }
+
+    inscribirUsuario = async (id, payload) => {
+        const enrollmentRepo = new EventEnrollmentsRepository();
+        const eventInfo = await this.getByIdAsync(id);
+        const enrollmentInfo = await enrollmentRepo.obtenerCantInscriptosAsync(id);
+        let response;
+        
+        if(eventInfo !== null && enrollmentInfo !== null){
+            if(enrollmentInfo[0]["count"] + 1 <= eventInfo[0]["max_assistance"]){
+                if(eventInfo[0]["enabled_for_enrollment"] == true){
+                    let querys = [`U.username = '${payload["username"]}'`,
+                        `U.password = '${payload["password"]}'`]
+                    const checkAssistance = await this.getEnrollmentDetailsAsync(id, querys);
+                    if(checkAssistance === null || checkAssistance.length == 0){
+                        if(new Date() < eventInfo[0]["start_date"]){
+                            const data = [`${payload["id"]}`,"''",
+                            `'${new Date().toISOString()}'`, false, "''", 0, id];
+                            
+                            response = await enrollmentRepo.insertAsync(data);
+                        }else{
+                            response = "BAD REQUEST: El evento ya terminó";
+                        }
+                    }else{
+                        response = "BAD REQUEST: Ya esta registrado al evento";
+                    }
+                }else{
+                    response = "BAD REQUEST: El evento no permite mas inscripciones";
+                }
+            }else{
+                response = "BAD REQUEST: Ya no entra mas gente al eventos";
+            }
+        }else{
+            response = "BAD REQUEST: ID inexistente";
+        }
+    return response;
     }
 }

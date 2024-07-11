@@ -126,4 +126,6 @@ export default class EventRepository {
         }
         return returnArray;
     }
+
+
 }

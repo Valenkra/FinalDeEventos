@@ -1,3 +1,4 @@
+import EventLocationRepository from "../repositories/event-location_repository.js";
 import LocationsRepository from "../repositories/location_repository.js";
 import ProvinceRepository from "../repositories/province_repository.js";
 
@@ -31,6 +32,17 @@ export default class LocationsService {
 
         if(lReturnArray !== null) lReturnArray[0]["province"] = pReturnArray[0];
         return lReturnArray;
+    }
+
+    getEventLocationByLocationId = async (id) => {
+        const repo = new EventLocationRepository();
+        const checkExistency = this.getAllIdsAsync(id);
+        if(checkExistency){
+            const returnArray = await repo.getEventLocationByLocationId(id);
+            return returnArray;
+        }else{
+            return false;
+        }
     }
 
 }

@@ -81,6 +81,8 @@ export default class EventEnrollmentsRepository {
             let sql = `INSERT INTO public.event_enrollments(
                 id, id_user, description, registration_date_time, attended, observations, rating, id_event)
                 VALUES ((SELECT MAX(id)+1 FROM public.events), ${querys})`;
+
+                console.log(sql)
             const result = await client.query(sql);
             await client.end();
             returnArray = result.rows;
@@ -99,6 +101,22 @@ export default class EventEnrollmentsRepository {
             INNER JOIN Events E ON E.id = EE.id_event
             INNER JOIN Users U ON U.id = EE.id_user
             WHERE E.id = ${id} and U.username != '${user}'`;
+            const result = await client.query(sql);
+            await client.end();
+            returnArray = result.rows;
+        } catch (error) {
+            console.log(error);
+        }
+        return returnArray;
+    }
+
+    obtenerCantInscriptosAsync = async (idEvent) => {
+        let returnArray = null;
+        const client = new Client(DBConfig);
+        try {
+            await client.connect();
+            let sql = `SELECT count(id_user) FROM public.event_enrollments
+            WHERE id_event = ${idEvent}`;
             const result = await client.query(sql);
             await client.end();
             returnArray = result.rows;

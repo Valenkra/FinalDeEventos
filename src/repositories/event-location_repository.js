@@ -83,6 +83,23 @@ export default class EventLocationRepository {
         return returnArray;
     }
 
+    getEventLocationByLocationId = async (id) => {
+        let returnArray = null;
+        const client = new Client(DBConfig);
+        try {
+            await client.connect();
+            let sql = `SELECT EL.Id, EL.name, EL.full_address, EL.max_capacity, EL.latitude, EL.longitude, EL.id_location FROM Locations L
+            INNER JOIN event_locations EL ON EL.id_location = L.id
+            WHERE L.id = ${id}`;
+            const result = await client.query(sql);
+            await client.end();
+            returnArray = result.rows;
+        } catch (error) {
+            console.log(error);
+        }
+        return returnArray;
+    }
+
     insertAsync = async (data) => {
         let returnArray = null;
         const client = new Client(DBConfig);

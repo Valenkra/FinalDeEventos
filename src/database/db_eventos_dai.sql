@@ -480,6 +480,7 @@ INSERT INTO public.event_categories VALUES (7, 'Eventos Deportivos', 7);
 INSERT INTO public.event_categories VALUES (8, 'Ferias', 8);
 INSERT INTO public.event_categories VALUES (9, 'Encuentros Culturales', 9);
 INSERT INTO public.event_categories VALUES (10, 'Charlas', 10);
+INSERT INTO public.event_categories VALUES (11, 'Gourmet', 11);
 
 
 --
@@ -536,6 +537,70 @@ INSERT INTO public.event_locations VALUES (17, 'Festival de Tango', 'Plaza Princ
 INSERT INTO public.event_locations VALUES (18, 'Exposición de Esculturas', 'Av. Libertador 1010', 200, -33.3016, -66.3378, 18, 18);
 INSERT INTO public.event_locations VALUES (19, 'Concierto de Música Clásica', 'Calle Principal 123', 250, -50, -69, 19, 19);
 INSERT INTO public.event_locations VALUES (20, 'Feria de Diseño', 'Calle 123, Ciudad', 120, -31.6107, -60.6973, 20, 20);
+INSERT INTO public.event_locations VALUES (21, 'Fiesta Estelar', 'Avenida de las Estrellas', 150, 40.7128, -74.0060, 1, 1);
+INSERT INTO public.event_locations VALUES (22, 'Carnaval Nocturno', 'Calle de las Luces', 200, 34.0522, -118.2437, 2, 2);
+INSERT INTO public.event_locations VALUES (23, 'Festival del Sol', 'Paseo Solar', 300, 51.5074, -0.1278, 3, 3);
+INSERT INTO public.event_locations VALUES (24, 'Noche de Gala', 'Avenida del Glamour', 400, 48.8566, 2.3522, 4, 4);
+INSERT INTO public.event_locations VALUES (25, 'Encuentro Lunar', 'Calle de los Astros', 450, 35.6895, 139.6917, 5, 5);
+INSERT INTO public.event_locations VALUES (26, 'Aurora Boreal', 'Calle de las Maravillas', 60, 37.7749, -122.4194, 6, 6);
+INSERT INTO public.event_locations VALUES (27, 'Sinfonía Estelar', 'Avenida del Cosmos', 250, 45.4215, -75.6919, 7, 7);
+INSERT INTO public.event_locations VALUES (28, 'Eclipse Magnético', 'Calle de las Sombras', 350, 52.5200, 13.4050, 8, 8);
+INSERT INTO public.event_locations VALUES (29, 'Galaxia Encantada', 'Paseo de las Estrellas', 180, -33.8688, 151.2093, 9, 9);
+INSERT INTO public.event_locations VALUES (30, 'Luz Lunar', 'Avenida de los Sueños', 280, 19.4326, -99.1332, 10, 10);
+INSERT INTO public.event_locations VALUES (31, 'Desfile de Fantasía', 'Avenida de los Ensueños', 380, -22.9068, -43.1729, 11, 11);
+INSERT INTO public.event_locations VALUES (32, 'Revolución de Colores', 'Calle del Arcoíris', 200, 37.7749, -122.4194, 12, 12);
+INSERT INTO public.event_locations VALUES (33, 'Cumbre Celestial', 'Montaña de las Estrellas', 300, 51.1789, -115.5715, 13, 13);
+INSERT INTO public.event_locations VALUES (34, 'Maratón Galáctico', 'Sendero de los Planetas', 450, 40.7128, -74.0060, 14, 14);
+INSERT INTO public.event_locations VALUES (35, 'Fiesta de las Constelaciones', 'Calle de las Constelaciones', 150, 34.0522, -118.2437, 15, 15);
+INSERT INTO public.event_locations VALUES (36, 'Noche Cósmica', 'Avenida de los Astros', 280, 48.8566, 2.3522, 16, 16);
+INSERT INTO public.event_locations VALUES (37, 'Encuentro Lunar', 'Paseo Lunar', 380, 35.6895, 139.6917, 17, 17);
+INSERT INTO public.event_locations VALUES (38, 'Festival Estelar', 'Avenida de las Estrellas', 420, 40.7128, -74.0060, 18, 18);
+INSERT INTO public.event_locations VALUES (39, 'Carnaval Galáctico', 'Calle de las Galaxias', 230, 34.0522, -118.2437, 19, 19);
+INSERT INTO public.event_locations VALUES (40, 'Desfile de Planetas', 'Avenida de los Planetas', 270, 51.5074, -0.1278, 20, 20);
+INSERT INTO public.event_locations VALUES (41, 'Luna Brillante', 'Calle de las Maravillas', 160, 37.7749, -122.4194, 1, 1);
+INSERT INTO public.event_locations VALUES (42, 'Estrella Fugaz', 'Avenida de los Sueños', 300, 45.4215, -75.6919, 2, 2);
+INSERT INTO public.event_locations VALUES (43, 'Galaxia Encantada', 'Calle de los Encantos', 180, 52.5200, 13.4050, 3, 3);
+INSERT INTO public.event_locations VALUES (44, 'Noche de Estrellas', 'Avenida de las Noches', 250, -33.8688, 151.2093, 4, 4);
+INSERT INTO public.event_locations VALUES (45, 'Fiesta Cósmica', 'Calle de las Maravillas', 320, 19.4326, -99.1332, 5, 5);
+INSERT INTO public.event_locations VALUES (46, 'Festival Lunar', 'Avenida de la Luna', 420, -22.9068, -43.1729, 6, 6);
+INSERT INTO public.event_locations VALUES (47, 'Celestial Parade', 'Rainbow Avenue', 380, 37.7749, -122.4194, 7, 7);
+INSERT INTO public.event_locations VALUES (48, 'Revolution of Colors', 'Arcade Street', 200, 51.1789, -115.5715, 8, 8);
+INSERT INTO public.event_locations VALUES (49, 'Heavenly Summit', 'Star Mountain', 300, 40.7128, -74.0060, 9, 9);
+INSERT INTO public.event_locations VALUES (50, 'Galactic Marathon', 'Planet Trail', 450, 34.0522, -118.2437, 10, 10);
+INSERT INTO public.event_locations VALUES (51, 'Constellation Party', 'Constellation Street', 150, 48.8566, 2.3522, 11, 11);
+INSERT INTO public.event_locations VALUES (52, 'Cosmic Night', 'Astro Avenue', 280, 35.6895, 139.6917, 12, 12);
+INSERT INTO public.event_locations VALUES (53, 'Lunar Encounter', 'Moonwalk', 380, 40.7128, -74.0060, 13, 13);
+INSERT INTO public.event_locations VALUES (54, 'Stellar Festival', 'Starlight Avenue', 420, 34.0522, -118.2437, 14, 14);
+INSERT INTO public.event_locations VALUES (55, 'Galactic Carnival', 'Galaxy Street', 230, 51.5074, -0.1278, 15, 15);
+INSERT INTO public.event_locations VALUES (56, 'Planet Parade', 'Planet Avenue', 270, 37.7749, -122.4194, 16, 16);
+INSERT INTO public.event_locations VALUES (57, 'Bright Moon', 'Wonder Street', 160, 45.4215, -75.6919, 17, 17);
+INSERT INTO public.event_locations VALUES (58, 'Shooting Star', 'Dream Avenue', 300, 52.5200, 13.4050, 18, 18);
+INSERT INTO public.event_locations VALUES (59, 'Enchanted Galaxy', 'Enchantment Street', 180, -33.8688, 151.2093, 19, 19);
+INSERT INTO public.event_locations VALUES (60, 'Starry Night', 'Night Avenue', 320, 19.4326, -99.1332, 20, 20);
+INSERT INTO public.event_locations VALUES (61, 'Cosmic Gala', 'Galactic Street', 420, -22.9068, -43.1729, 1, 1);
+INSERT INTO public.event_locations VALUES (62, 'Lunar Festival', 'Moon Avenue', 380, 37.7749, -122.4194, 2, 2);
+INSERT INTO public.event_locations VALUES (63, 'Starlit Parade', 'Starlit Avenue', 200, 51.1789, -115.5715, 3, 3);
+INSERT INTO public.event_locations VALUES (64, 'Celestial Summit', 'Celestial Mountain', 300, 40.7128, -74.0060, 4, 4);
+INSERT INTO public.event_locations VALUES (65, 'Galactic Marathon II', 'Planet Trail II', 450, 34.0522, -118.2437, 5, 5);
+INSERT INTO public.event_locations VALUES (66, 'Starlight Soiree', 'Starlight Street', 150, 48.8566, 2.3522, 6, 6);
+INSERT INTO public.event_locations VALUES (67, 'Astro Carnival', 'Astro Street', 280, 35.6895, 139.6917, 7, 7);
+INSERT INTO public.event_locations VALUES (68, 'Moonlit Encounter', 'Moonlit Street', 380, 40.7128, -74.0060, 8, 8);
+INSERT INTO public.event_locations VALUES (69, 'Stellar Fiesta', 'Stellar Avenue', 420, 34.0522, -118.2437, 9, 9);
+INSERT INTO public.event_locations VALUES (70, 'Galactic Glow', 'Galactic Avenue', 230, 51.5074, -0.1278, 10, 10);
+INSERT INTO public.event_locations VALUES (71, 'Planet Paradise', 'Paradise Street', 270, 37.7749, -122.4194, 11, 11);
+INSERT INTO public.event_locations VALUES (72, 'Lunar Light', 'Light Avenue', 160, 45.4215, -75.6919, 12, 12);
+INSERT INTO public.event_locations VALUES (73, 'Shooting Star Spectacle', 'Dream Street', 300, 52.5200, 13.4050, 13, 13);
+INSERT INTO public.event_locations VALUES (74, 'Enchanted Galaxy II', 'Enchantment Avenue', 180, -33.8688, 151.2093, 14, 14);
+INSERT INTO public.event_locations VALUES (75, 'Night Sky', 'Sky Street', 320, 19.4326, -99.1332, 15, 15);
+INSERT INTO public.event_locations VALUES (76, 'Cosmic Carnival', 'Cosmic Street', 420, -22.9068, -43.1729, 16, 16);
+INSERT INTO public.event_locations VALUES (77, 'Lunar Spectacular', 'Spectacular Avenue', 380, 37.7749, -122.4194, 17, 17);
+INSERT INTO public.event_locations VALUES (78, 'Starry Soiree', 'Starry Street', 200, 51.1789, -115.5715, 18, 18);
+INSERT INTO public.event_locations VALUES (79, 'Celestial Celebration', 'Celebration Street', 300, 40.7128, -74.0060, 19, 19);
+INSERT INTO public.event_locations VALUES (80, 'Galactic Gathering', 'Gathering Avenue', 450, 34.0522, -118.2437, 20, 20);
+INSERT INTO public.event_locations VALUES (81, 'Constellation Gala', 'Constellation Avenue', 150, 48.8566, 2.3522, 1, 1);
+INSERT INTO public.event_locations VALUES (82, 'Cosmic Parade', 'Cosmic Avenue', 280, 35.6895, 139.6917, 2, 2);
+INSERT INTO public.event_locations VALUES (83, 'Lunar Revelry', 'Revelry Street', 380, 40.7128, -74.0060, 3, 3);
+INSERT INTO public.event_locations VALUES (84, 'Starlight Celebration', 'Starlight Avenue II', 420, 34.0522, -118.2437, 4, 4);
 
 
 --
@@ -554,7 +619,7 @@ INSERT INTO public.event_tags VALUES (7, 5, 3);
 INSERT INTO public.event_tags VALUES (8, 1, 6);
 INSERT INTO public.event_tags VALUES (9, 3, 9);
 INSERT INTO public.event_tags VALUES (10, 6, 5);
-INSERT INTO public.event_tags VALUES (11, 2, 2);
+INSERT INTO public.event_tags VALUES (11, 8, 2);
 INSERT INTO public.event_tags VALUES (12, 5, 8);
 INSERT INTO public.event_tags VALUES (13, 4, 4);
 INSERT INTO public.event_tags VALUES (14, 9, 1);
@@ -564,6 +629,16 @@ INSERT INTO public.event_tags VALUES (17, 6, 7);
 INSERT INTO public.event_tags VALUES (18, 1, 9);
 INSERT INTO public.event_tags VALUES (19, 3, 2);
 INSERT INTO public.event_tags VALUES (20, 8, 5);
+INSERT INTO public.event_tags VALUES (21, 1, 1);
+INSERT INTO public.event_tags VALUES (22, 2, 2);
+INSERT INTO public.event_tags VALUES (23, 3, 3);
+INSERT INTO public.event_tags VALUES (24, 4, 4);
+INSERT INTO public.event_tags VALUES (25, 4, 3);
+INSERT INTO public.event_tags VALUES (26, 6, 6);
+INSERT INTO public.event_tags VALUES (27, 7, 7);
+INSERT INTO public.event_tags VALUES (28, 8, 8);
+INSERT INTO public.event_tags VALUES (29, 9, 9);
+INSERT INTO public.event_tags VALUES (30, 10, 10);
 
 
 --
@@ -581,6 +656,17 @@ INSERT INTO public.events(name, description, id_event_category, start_date, dura
 INSERT INTO public.events(name, description, id_event_category, start_date, duration_in_minutes, price, enabled_for_enrollment, max_assistance, id_creator_user, id_event_location, id) VALUES ('Charla sobre Medio Ambiente', 'Únete a nuestra charla sobre medio ambiente y descubre cómo puedes contribuir a un futuro más sostenible. ¡Juntos podemos marcar la diferencia!', 7, '2024-06-07', 150, 60, true, 120, 7, 7, 7);
 INSERT INTO public.events(name, description, id_event_category, start_date, duration_in_minutes, price, enabled_for_enrollment, max_assistance, id_creator_user, id_event_location, id) VALUES ('Noche de Cine al Aire Libre', 'Disfruta de una noche bajo las estrellas con nuestra proyección de cine al aire libre. Trae tus mantas y palomitas para una experiencia inolvidable.', 8, '2024-06-08', 180, 70, true, 150, 8, 8, 8);
 INSERT INTO public.events(name, description, id_event_category, start_date, duration_in_minutes, price, enabled_for_enrollment, max_assistance, id_creator_user, id_event_location, id) VALUES ('Clase de Baile Latino', 'Aprende los pasos de baile más candentes en nuestra clase de baile latino. ¡Diviértete y libera tu energía con ritmos apasionados!', 9, '2024-06-09', 120, 50, true, 100, 9, 9, 9);
+INSERT INTO public.events(name, description, id_event_category, start_date, duration_in_minutes, price, enabled_for_enrollment, max_assistance, id_creator_user, id_event_location, id) VALUES ('Taller de Fotografía Creativa', 'Descubre los secretos de la fotografía creativa en nuestro taller intensivo. Aprende técnicas avanzadas para capturar momentos únicos.', 7, '2024-07-15', 180, 80, true, 50, 7, 7, 10);
+INSERT INTO public.events(name, description, id_event_category, start_date, duration_in_minutes, price, enabled_for_enrollment, max_assistance, id_creator_user, id_event_location, id) VALUES ('Concierto Acústico', 'Disfruta de una noche íntima con música acústica de calidad. Artistas locales te transportarán con sus melodías y letras profundas.', 3, '2024-08-05', 150, 40, true, 80, 3, 3, 11);
+INSERT INTO public.events(name, description, id_event_category, start_date, duration_in_minutes, price, enabled_for_enrollment, max_assistance, id_creator_user, id_event_location, id) VALUES ('Exposición de Arte Contemporáneo', 'Explora las obras más recientes de artistas contemporáneos locales e internacionales. Una experiencia visual que no te puedes perder.', 8, '2024-09-20', 120, 20, true, 200, 8, 8, 12);
+INSERT INTO public.events(name, description, id_event_category, start_date, duration_in_minutes, price, enabled_for_enrollment, max_assistance, id_creator_user, id_event_location, id) VALUES ('Feria de Diseño y Moda', 'Descubre las últimas tendencias en diseño y moda en nuestra feria anual. Con desfiles, talleres y productos exclusivos para todos los amantes del estilo.', 6, '2024-07-30', 240, 60, true, 150, 6, 6, 13);
+INSERT INTO public.events(name, description, id_event_category, start_date, duration_in_minutes, price, enabled_for_enrollment, max_assistance, id_creator_user, id_event_location, id) VALUES ('Curso de Cocina Internacional', 'Viaja por el mundo a través de sabores y técnicas culinarias en nuestro curso intensivo de cocina internacional. Desde sushi japonés hasta tapas españolas, aprenderás a preparar platos auténticos.', 4, '2024-08-10', 180, 70, true, 40, 4, 4, 14);
+INSERT INTO public.events(name, description, id_event_category, start_date, duration_in_minutes, price, enabled_for_enrollment, max_assistance, id_creator_user, id_event_location, id) VALUES ('Charla Motivacional: Alcanzando Tus Metas', 'Únete a nosotros para una charla inspiradora sobre cómo establecer y alcanzar metas significativas en la vida personal y profesional.', 5, '2024-09-05', 90, 0, true, 200, 5, 5, 15);
+INSERT INTO public.events(name, description, id_event_category, start_date, duration_in_minutes, price, enabled_for_enrollment, max_assistance, id_creator_user, id_event_location, id) VALUES ('Festival de Cine Independiente', 'Sumérgete en el mundo del cine independiente con proyecciones de películas innovadoras y conversaciones con directores y actores.', 2, '2024-08-25', 300, 25, true, 300, 2, 2, 16);
+INSERT INTO public.events(name, description, id_event_category, start_date, duration_in_minutes, price, enabled_for_enrollment, max_assistance, id_creator_user, id_event_location, id) VALUES ('Curso de Escritura Creativa', 'Desarrolla tu creatividad literaria en nuestro curso de escritura creativa. Aprende técnicas para escribir cuentos, poesía y más.', 1, '2024-07-20', 150, 50, true, 30, 1, 1, 17);
+INSERT INTO public.events(name, description, id_event_category, start_date, duration_in_minutes, price, enabled_for_enrollment, max_assistance, id_creator_user, id_event_location, id) VALUES ('Fiesta Temática de los 80s', 'Revive la magia de los años 80 en nuestra fiesta temática. Con música, vestimenta y ambiente retro que te transportará en el tiempo.', 10, '2024-09-15', 180, 35, true, 120, 10, 10, 18);
+INSERT INTO public.events(name, description, id_event_category, start_date, duration_in_minutes, price, enabled_for_enrollment, max_assistance, id_creator_user, id_event_location, id) VALUES ('Seminario de Marketing Digital', 'Domina las estrategias de marketing digital en nuestro seminario intensivo. Ideal para emprendedores y profesionales que buscan potenciar su negocio en línea.', 11, '2024-08-15', 120, 60, true, 50, 11, 11, 19);
+
 
 --
 -- TOC entry 4861 (class 0 OID 16429)

@@ -78,7 +78,7 @@ export default class ProvinceRepository {
         const client = new Client(DBConfig);
         try {
             await client.connect();
-            const sql = `SELECT 	PP.id, PP.name, PP.full_name, PP.latitude, PP.longitude, PP.display_order
+            const sql = `SELECT PP.id, PP.name, PP.full_name, PP.latitude, PP.longitude, PP.display_order
             FROM event_locations EL
             INNER JOIN locations L ON EL.id_location = L.id
             INNER JOIN provinces PP ON PP.id = L.id_province

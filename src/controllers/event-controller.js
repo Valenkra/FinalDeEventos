@@ -169,7 +169,7 @@ router.post("", async (req, res) => {
                             }else{
                                 if(value != "true" && value != "false" && key === "enabled_for_enrollment"){
                                     error["error"] = `${key} debe ser un booleano.`;
-                                    return res.setHeader('Content-Type', 'application/json').status(200).json(error);
+                                    return res.setHeader('Content-Type', 'application/json').status(400).json(error);
                                 }else{
                                     response[`${key}`] = value;
                                 }
@@ -243,7 +243,7 @@ router.put("", async (req, res) => {
                             }else{
                                 if(value != "true" && value != "false" && key === "enabled_for_enrollment"){
                                     error["error"] = `${key} debe ser un booleano.`;
-                                    return res.setHeader('Content-Type', 'application/json').status(200).json(error);
+                                    return res.setHeader('Content-Type', 'application/json').status(400).json(error);
                                 }else{
                                     response[`${key}`] = value;
                                 }

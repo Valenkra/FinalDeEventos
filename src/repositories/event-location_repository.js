@@ -89,14 +89,14 @@ export default class EventLocationRepository {
         try {
             await client.connect();
             let querys = "";
-
-            for (let i = 0; i < data.length; i++) {
-                querys += (i != data.length - 1) ? data[i] + ", " : data[i];
+            for (const [key, value] of Object.entries(data)) {
+                querys += (key !== "name" && key !== "full_address") ? `${value}` : `'${value}'`;
+                querys += (key !== "id_location") ? ", " : "";
             }
-
             let sql = `INSERT INTO event_locations(
                 id, name, full_address, max_capacity, latitude, longitude, id_creator_user, id_location)
                 VALUES ((SELECT MAX(id)+1 FROM event_locations), ${querys})`;
+                
             const result = await client.query(sql);
             await client.end();
             returnArray = result.rows;
@@ -113,11 +113,11 @@ export default class EventLocationRepository {
             await client.connect();
             let querys = "";
             for (let i = 0; i < data.length - 1; i++) {
-                querys += (i != data.length - 1) ? data[i] + ", " : data[i];
+                querys += (i != data.length - 2) ? data[i] + ", " : data[i];
             }
             let sql = `UPDATE event_locations
                 SET ${querys}
-                WHERE ${data[data.length - 1]}`;
+                WHERE id=${data[data.length - 1]}`;
             const result = await client.query(sql);
             await client.end();
             returnArray = result.rows;

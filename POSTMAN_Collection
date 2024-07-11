@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ed3bd581-a3cd-4c0d-b418-0c00fd709467",
+		"_postman_id": "5de46bc5-c15d-428a-98c2-ea04095dfecf",
 		"name": "Final De Eventos",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -112,7 +112,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidmljdG9yaWFoZXJyZXJhQGdtYWlsLmNvbSIsInBhc3N3IjoicGFzc3dvcmQxMjM0NTY3ODkiLCJpYXQiOjE3MjA2MTE4OTgsImV4cCI6MTcyMDYxNTQ5OCwiaXNzIjoidmFsZW5ZbmFjY2FjaGUifQ.W0QvrLrvGUSLN5doM770X9EWW82SEuJy9p9MPpjOA6E",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidmljdG9yaWFoZXJyZXJhQGdtYWlsLmNvbSIsInBhc3N3IjoicGFzc3dvcmQxMjM0NTY3ODkiLCJpYXQiOjE3MjA2OTk4MjIsImV4cCI6MTcyMDcwMzQyMiwiaXNzIjoidmFsZW5ZbmFjY2FjaGUifQ.nozgql8DlOSmswNZeBymSxs0oJAOT-H0vXbQ4kRYsY8",
 									"type": "string"
 								}
 							]
@@ -120,7 +120,75 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/event?name=Taylor Swift Eras Tour&description=Alto evento de swifites&id_event_category=1&start_date=2024-05-06&duration_in_minutes=67567&price=57576&enabled_for_enrollment=true&max_assistance=6786&id_event_location=4",
+							"raw": "http://localhost:3000/api/event?name=Taylor Swift Eras Tour&description=Alto evento de swifites&id_event_category=1&start_date=2024-05-06&duration_in_minutes=67567&price=57576&enabled_for_enrollment=true&max_assistance=200&id_event_location=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"event"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Taylor Swift Eras Tour"
+								},
+								{
+									"key": "description",
+									"value": "Alto evento de swifites"
+								},
+								{
+									"key": "id_event_category",
+									"value": "1"
+								},
+								{
+									"key": "start_date",
+									"value": "2024-05-06"
+								},
+								{
+									"key": "duration_in_minutes",
+									"value": "67567"
+								},
+								{
+									"key": "price",
+									"value": "57576"
+								},
+								{
+									"key": "enabled_for_enrollment",
+									"value": "true"
+								},
+								{
+									"key": "max_assistance",
+									"value": "200"
+								},
+								{
+									"key": "id_event_location",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar evento",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidmljdG9yaWFoZXJyZXJhQGdtYWlsLmNvbSIsInBhc3N3IjoicGFzc3dvcmQxMjM0NTY3ODkiLCJpYXQiOjE3MjA2OTg1NDMsImV4cCI6MTcyMDcwMjE0MywiaXNzIjoidmFsZW5ZbmFjY2FjaGUifQ.nX5de6YOUCESrfSP-G94GNTjjngg7FXIom4_ohL-B1k",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/event?name=Taylor Swift Eras Tour&description=Alto evento de swifites&id_event_category=1&start_date=2024-05-06&duration_in_minutes=67567&price=57576&enabled_for_enrollment=true&max_assistance=6786&id_event_location=4&id=10",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -166,27 +234,11 @@
 								{
 									"key": "id_event_location",
 									"value": "4"
+								},
+								{
+									"key": "id",
+									"value": "10"
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Actualizar evento",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/api/event",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"event"
 							]
 						}
 					},
@@ -454,6 +506,16 @@
 				{
 					"name": "Todos los event location",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidmljdG9yaWFoZXJyZXJhQGdtYWlsLmNvbSIsInBhc3N3IjoicGFzc3dvcmQxMjM0NTY3ODkiLCJpYXQiOjE3MjA3MDMxNjUsImV4cCI6MTcyMDcwNjc2NSwiaXNzIjoidmFsZW5ZbmFjY2FjaGUifQ.yhV3eJmjXaeTekHkmEwHyI-ErEzJB30Jml46auU38j8",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -474,10 +536,20 @@
 				{
 					"name": "Event location por ID",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidmljdG9yaWFoZXJyZXJhQGdtYWlsLmNvbSIsInBhc3N3IjoicGFzc3dvcmQxMjM0NTY3ODkiLCJpYXQiOjE3MjA3MDMxNjUsImV4cCI6MTcyMDcwNjc2NSwiaXNzIjoidmFsZW5ZbmFjY2FjaGUifQ.yhV3eJmjXaeTekHkmEwHyI-ErEzJB30Jml46auU38j8",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/event-location/7",
+							"raw": "http://localhost:3000/api/event-location/21",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -486,7 +558,166 @@
 							"path": [
 								"api",
 								"event-location",
-								"7"
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insertar Event Location",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidmljdG9yaWFoZXJyZXJhQGdtYWlsLmNvbSIsInBhc3N3IjoicGFzc3dvcmQxMjM0NTY3ODkiLCJpYXQiOjE3MjA3MDE3MDQsImV4cCI6MTcyMDcwNTMwNCwiaXNzIjoidmFsZW5ZbmFjY2FjaGUifQ.Y8q2F3hb5ThBGTzO7MJIeUq5QivZwPzscEnHp2xw48w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/event-location/?name=skjsdkfj&full_address=dsdsfsdf&max_capacity=333&latitude=3435345&longitude=4&id_location=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"event-location",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "skjsdkfj"
+								},
+								{
+									"key": "full_address",
+									"value": "dsdsfsdf"
+								},
+								{
+									"key": "max_capacity",
+									"value": "333"
+								},
+								{
+									"key": "latitude",
+									"value": "3435345"
+								},
+								{
+									"key": "longitude",
+									"value": "4"
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "id_location",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar event location",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidmljdG9yaWFoZXJyZXJhQGdtYWlsLmNvbSIsInBhc3N3IjoicGFzc3dvcmQxMjM0NTY3ODkiLCJpYXQiOjE3MjA3MDUwMTQsImV4cCI6MTcyMDcxMjIxNCwiaXNzIjoidmFsZW5ZbmFjY2FjaGUifQ.hDhQBrO_x2tLKKvD4woDq3Eo1mE7vHuS8Bs0Vm7RpHo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/event-location/?name=skjsdkfj&full_address=dsdsfsdf&max_capacity=333&latitude=3435345&longitude=4&id_location=3&id=21",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"event-location",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "skjsdkfj"
+								},
+								{
+									"key": "full_address",
+									"value": "dsdsfsdf"
+								},
+								{
+									"key": "max_capacity",
+									"value": "333"
+								},
+								{
+									"key": "latitude",
+									"value": "3435345"
+								},
+								{
+									"key": "longitude",
+									"value": "4"
+								},
+								{
+									"key": "display_order",
+									"value": "3",
+									"disabled": true
+								},
+								{
+									"key": "id_location",
+									"value": "3"
+								},
+								{
+									"key": "id",
+									"value": "21"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete event location",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidmljdG9yaWFoZXJyZXJhQGdtYWlsLmNvbSIsInBhc3N3IjoicGFzc3dvcmQxMjM0NTY3ODkiLCJpYXQiOjE3MjA3MDUwMTQsImV4cCI6MTcyMDcxMjIxNCwiaXNzIjoidmFsZW5ZbmFjY2FjaGUifQ.hDhQBrO_x2tLKKvD4woDq3Eo1mE7vHuS8Bs0Vm7RpHo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/event-location/21",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"event-location",
+								"21"
 							]
 						}
 					},

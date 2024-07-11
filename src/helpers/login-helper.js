@@ -13,7 +13,7 @@ export default class LogInHelper {
     generarToken = async (user, passw) => {
         const payload = this.setPayload(user,passw);
         const options = {
-            expiresIn: '1h',
+            expiresIn: '2h',
             issuer: 'valenYnaccache'
         }
         const token = await jwt.sign(payload, SECRETKEY, options);

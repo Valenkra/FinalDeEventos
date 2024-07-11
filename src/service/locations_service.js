@@ -32,4 +32,5 @@ export default class LocationsService {
         if(lReturnArray !== null) lReturnArray[0]["province"] = pReturnArray[0];
         return lReturnArray;
     }
+
 }

@@ -80,6 +80,24 @@ export default class UsersRepository {
         return returnArray;
     }
 
+    checkForOwnerByEventId = async (id) => {
+        let returnArray = null;
+        const client = new Client(DBConfig);
+        try {
+            await client.connect();
+            let sql = `SELECT U.username, U.password, U.id FROM Events E
+            INNER JOIN Users U ON U.id = E.id_creator_user
+            WHERE E.id=${id}`;
+
+            const result = await client.query(sql);
+            await client.end();
+            returnArray = result.rows;
+        } catch (error) {
+            console.log(error);
+        }
+        return returnArray;
+    }
+
     insertUserAsync = async (fName, lName, user, passw) => {
         let returnArray = null;
         const client = new Client(DBConfig);

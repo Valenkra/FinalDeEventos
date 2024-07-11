@@ -132,10 +132,8 @@ router.get("/:id/enrollment", async (req, res) => {
 });
 
 router.post("", async (req, res) => {
-    console.log("hola")
     let token = tokenHelper.extractToken(req.headers.authorization);
     if(token !== false){
-        console.log(token)
         let payload = await tokenHelper.autenticarUsuario(token);
         if(payload["error"] === undefined){
             const response = {
@@ -147,7 +145,7 @@ router.post("", async (req, res) => {
                 price: null,
                 enabled_for_enrollment: null,
                 max_assistance: null,
-                id_creator_user: payload["id"], 
+                id_creator_user: payload["id"],
                 id_event_location: null
             }
             
@@ -181,7 +179,6 @@ router.post("", async (req, res) => {
                 }
             }
 
-            console.log("llegue");
                 
             let oneIsNull = false;
             for (const [key, value] of Object.entries(response)) {
@@ -194,7 +191,7 @@ router.post("", async (req, res) => {
             }else{
                     const returnMsg = await svc.createAsync(response);
                     if(returnMsg == ""){
-                        return res.setHeader('Content-Type', 'application/json').status(200).send(`Provincia actualizada con exito!`);
+                        return res.setHeader('Content-Type', 'application/json').status(200).send(`Evento creado con exito!`);
                     }else{
                         return res.setHeader('Content-Type', 'text/plain').status(404).send(`${returnMsg}`);
                     }
@@ -208,10 +205,8 @@ router.post("", async (req, res) => {
 })
 
 router.put("", async (req, res) => {
-    console.log("hola")
     let token = tokenHelper.extractToken(req.headers.authorization);
     if(token !== false){
-        console.log(token)
         let payload = await tokenHelper.autenticarUsuario(token);
         if(payload["error"] === undefined){
             const response = {
@@ -224,7 +219,8 @@ router.put("", async (req, res) => {
                 enabled_for_enrollment: null,
                 max_assistance: null,
                 id_creator_user: payload["id"], 
-                id_event_location: null
+                id_event_location: null,
+                id: null
             }
             
             const error = {
@@ -256,33 +252,49 @@ router.put("", async (req, res) => {
                     }
                 }
             }
-
-            console.log("llegue");
                 
             let oneIsNull = false;
             for (const [key, value] of Object.entries(response)) {
-                if(value === null) oneIsNull = true;
+                if(value === null && key != "id") oneIsNull = true;
             }
 
-            if(oneIsNull) {
-                error["error"] = "Faltan parámetros.";
+            if(response["id"] === null){
+                error["error"] = "Falta un ID válido.";
                 return res.setHeader('Content-Type', 'application/json').status(400).json(error);
             }else{
-                    let data = [];
-                    for (const [key, value] of Object.entries(response)) {
-                        if(value !== null && key != "id"){
-                            if(key === "description" || key === "name"){
-                            data.push(`${key}='${value}'`);}
-                            else{
-                                data.push(`${key}=${value}`)
+                if(oneIsNull) {
+                    error["error"] = "Faltan parámetros.";
+                    return res.setHeader('Content-Type', 'application/json').status(400).json(error);
+                }else{
+                        let data = [];
+                        for (const [key, value] of Object.entries(response)) {
+                            if(value !== null && key != "id"){
+                                if(key === "description" || key === "name" || key === "start_date"){
+                                data.push(`${key}='${value}'`);}
+                                else{
+                                    data.push(`${key}=${value}`)
+                                }
+                            };
+                        }
+                        
+                        data.push(`${response["id"]}`);
+
+                        const returnMsg = await svc.updateAsync(data, payload);
+                        if(returnMsg == ""){
+                            return res.setHeader('Content-Type', 'application/json').status(200).send(`Evento actualizado con exito!`);
+                        }else{
+                            switch(returnMsg.split(":")[1].substring(1, 3)){
+                                case 'ID':
+                                    return res.setHeader('Content-Type', 'text/plain').status(404).send(`${returnMsg}`);
+                                    break;
+                                case 'No':
+                                    return res.setHeader('Content-Type', 'text/plain').status(401).send(`${returnMsg}`);
+                                    break;
+                                default:
+                                    return res.setHeader('Content-Type', 'text/plain').status(400).send(`${returnMsg}`);
+                                    break;
                             }
-                        };
-                    }
-                    const returnMsg = await svc.createAsync(data)
-                    if(returnMsg == ""){
-                        return res.setHeader('Content-Type', 'application/json').status(200).send(`Provincia actualizada con exito!`);
-                    }else{
-                        return res.setHeader('Content-Type', 'text/plain').status(404).send(`${returnMsg}`);
+                        }
                     }
                 }
             }else {
@@ -294,7 +306,33 @@ router.put("", async (req, res) => {
 })
 
 router.delete("/:id", async (req, res) => {
-
+    const id = req.params.id;
+    let token = tokenHelper.extractToken(req.headers.authorization);
+    if(token !== false){
+        let payload = await tokenHelper.autenticarUsuario(token);
+        if(payload["error"] === undefined){
+            const returnArray = await svc.deleteAsync(id, payload);
+            if(returnArray == ""){
+                res.setHeader('Content-Type', 'application/json').status(200).json("Se ha eliminado el evento con éxito");
+            } else{
+                switch(returnArray.split(":")[1].substring(1, 3)){
+                    case 'ID':
+                        return res.setHeader('Content-Type', 'text/plain').status(404).send(`${returnArray}`);
+                        break;
+                    case 'No':
+                        return res.setHeader('Content-Type', 'text/plain').status(401).send(`${returnArray}`);
+                        break;
+                    default:
+                        return res.setHeader('Content-Type', 'text/plain').status(400).send(`${returnArray}`);
+                        break;
+                }
+            }
+        }else {
+            return res.setHeader('Content-Type', 'text/plain').status(404).send("Falta de token válido. Por favor, ingresá un token en el área de 'Authorization>Bearer Token'");
+        }
+    } else{
+        return res.setHeader('Content-Type', 'text/plain').status(404).send("Falta de token válido. Por favor, ingresá un token en el área de 'Authorization>Bearer Token'");
+    }
 })
 
 router.post("/:id/enrollment", async (req, res) => {

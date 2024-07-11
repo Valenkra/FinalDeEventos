@@ -89,4 +89,22 @@ export default class EventEnrollmentsRepository {
         }
         return returnArray;
     }
+
+    checkForUsersEnrolled = async (id, user) => {
+        let returnArray = null;
+        const client = new Client(DBConfig);
+        try {
+            await client.connect();
+            let sql = `SELECT EE.id, U.username, E.id, E.name FROM Event_enrollments EE
+            INNER JOIN Events E ON E.id = EE.id_event
+            INNER JOIN Users U ON U.id = EE.id_user
+            WHERE E.id = ${id} and U.username != '${user}'`;
+            const result = await client.query(sql);
+            await client.end();
+            returnArray = result.rows;
+        } catch (error) {
+            console.log(error);
+        }
+        return returnArray;
+    }
 }

@@ -1,11 +1,11 @@
 import EventRepository from "../repositories/event_repository.js";
-import UsersRepository from "../repositories/users_repository.js";
 import LocationsRepository from "../repositories/location_repository.js";
 import EventCategoryRepository from "../repositories/event-category_repository.js";
 import EventLocationRepository from "../repositories/event-location_repository.js";
 import ProvinceRepository from "../repositories/province_repository.js";
 import TagsRepository from "../repositories/tags_repository.js";
 import EventEnrollmentsRepository from "../repositories/event-enrollment_repository.js";
+import UsersRepository from "../repositories/users_repository.js";
 
 export default class EventService {
     getAllIdsAsync = async () => {
@@ -104,13 +104,67 @@ export default class EventService {
         let response;
         if(checkExistance !== null){
             if(checkExistance[0]["max_capacity"] >= data["max_assistance"]){
-            const repo = new EventRepository();
-            response = await repo.insertAsync(data);
+                const repo = new EventRepository();
+                response = await repo.insertAsync(data);
+                console.log(data);
             }else{
                 response = "BAD REQUEST: Max Assistance no puede ser mayor a Max_Capacity de la locación";
             }
         }else{
             response = "BAD REQUEST: ID inexistente";
+        }
+        return response;
+    }
+
+    updateAsync = async (data, payload) => {
+        const lRepo = new EventLocationRepository();
+        const uRepo = new UsersRepository();
+        const checkForIdExistance = await lRepo.getByIdAsync(data[data.length-1]);
+        let payloadOwner = await uRepo.checkForOwnerByEventId(data[data.length-1]);
+        const checkExistance = await lRepo.getByIdAsync(data[data.length-2].split("=")[1]);
+        let response;
+        if(payloadOwner !== null && payload["username"] == payloadOwner[0]["username"] && payload["id"] == payloadOwner[0]["id"]){
+            if(checkForIdExistance !== null){
+                if(checkExistance !== null){
+                    if(checkExistance[0]["max_capacity"] >= data[8].split("=")[1]){
+                    const repo = new EventRepository();
+                    response = await repo.updateByIdAsync(data);
+                    }else{
+                        response = "BAD REQUEST: Max Assistance no puede ser mayor a Max_Capacity de la locación";
+                    }
+                }else{
+                    response = "BAD REQUEST: ID Event Location inexistente";
+                }                                       
+            }else{
+                response = "BAD REQUEST: ID inexistente";
+            }
+        }else{
+            response = "BAD REQUEST: No esta autorizado porque no es dueño del evento";
+        }
+        return response;
+    }
+
+    deleteAsync = async (id, payload) => {
+        const uRepo = new UsersRepository();
+        const repo = new EventRepository();
+        const eeRepo = new EventEnrollmentsRepository();
+
+        let payloadOwner = await uRepo.checkForOwnerByEventId(id);
+        const checkForIdExistance = await repo.getByIdAsync(id);
+
+        let response;
+        if(payloadOwner !== null && payload["username"] == payloadOwner[0]["username"] && payload["id"] == payloadOwner[0]["id"]){
+            if(checkForIdExistance !== null){
+                if(eeRepo.checkForUsersEnrolled(id, payload["username"]) === null){
+                    response = await repo.deleteByIdAsync(id);
+                }else{
+                    response = "BAD REQUEST: Ya hay usuarios registrados al evento y no sos vos";
+                }
+            }else{
+                response = "BAD REQUEST: ID inexistente";
+            }
+        }else{
+            response = "BAD REQUEST: No esta autorizado porque no es dueño del evento";
         }
         return response;
     }

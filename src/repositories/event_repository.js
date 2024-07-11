@@ -81,7 +81,6 @@ export default class EventRepository {
                 name, description, id_event_category, start_date, duration_in_minutes, price, enabled_for_enrollment, max_assistance, id_creator_user, id_event_location, id)
                 VALUES (${querys}(SELECT MAX(id)+1 FROM public.events)) `;
 
-            console.log(sql);
             const result = await client.query(sql);
             await client.end();
             returnArray = result.rows;
@@ -98,11 +97,11 @@ export default class EventRepository {
             await client.connect();
             let querys = "";
             for (let i = 0; i < data.length - 1; i++) {
-                querys += (i != data.length - 1) ? data[i] + ", " : data[i];
+                querys += (i != data.length - 2) ? data[i] + ", " : data[i];
             }
             let sql = `UPDATE public.events
                 SET ${querys}
-                WHERE ${data[data.length - 1]}`;
+                WHERE id=${data[data.length - 1]}`;
             const result = await client.query(sql);
             await client.end();
             returnArray = result.rows;

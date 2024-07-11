@@ -364,7 +364,30 @@ router.post("/:id/enrollment", async (req, res) => {
 })
 
 router.delete("/:id/enrollment", async (req, res) => {
-
+    const id = req.params.id;
+    let token = tokenHelper.extractToken(req.headers.authorization);
+    if(token !== false){
+        let payload = await tokenHelper.autenticarUsuario(token);
+        if(payload["error"] === undefined){
+            const returnMsg = await svc.eliminarUsuario(id, payload);
+            if(returnMsg == "" || returnMsg === null){
+                res.setHeader('Content-Type', 'application/json').status(200).json("Enhorabuena, te hemos sacado del evento.");
+            } else{
+                switch(returnMsg.split(":")[1].substring(1, 3)){
+                    case 'ID':
+                        return res.setHeader('Content-Type', 'text/plain').status(404).send(`${returnMsg}`);
+                        break;
+                    default:
+                        return res.setHeader('Content-Type', 'text/plain').status(400).send(`${returnMsg}`);
+                        break;
+                }
+            }
+        }else {
+            return res.setHeader('Content-Type', 'text/plain').status(401).send("Falta de token válido. Por favor, ingresá un token en el área de 'Authorization>Bearer Token'");
+        }
+    }else {
+        return res.setHeader('Content-Type', 'text/plain').status(401).send("Falta de token válido. Por favor, ingresá un token en el área de 'Authorization>Bearer Token'");
+    }
 })
 
 router.patch("/:id/enrollment", async (req, res) => {

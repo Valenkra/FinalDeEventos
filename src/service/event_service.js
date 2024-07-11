@@ -205,4 +205,29 @@ export default class EventService {
         }
     return response;
     }
+
+    eliminarUsuario = async (id, payload) => {
+        const enrollmentRepo = new EventEnrollmentsRepository();
+        const eventInfo = await this.getByIdAsync(id);
+        const enrollmentInfo = await enrollmentRepo.obtenerCantInscriptosAsync(id);
+        let response;
+        
+        if(eventInfo !== null && enrollmentInfo !== null){
+            let querys = [`U.username = '${payload["username"]}'`,
+                `U.password = '${payload["password"]}'`]
+            const checkAssistance = await this.getEnrollmentDetailsAsync(id, querys);
+            if(checkAssistance !== null || checkAssistance.length != 0){
+                if(new Date() < eventInfo[0]["start_date"]){
+                    response = await enrollmentRepo.deleteUser(id, payload["id"]);
+                }else{
+                    response = "BAD REQUEST: El evento ya terminó";
+                }
+            }else{
+                response = "BAD REQUEST: No te encuentas registrado al evento";
+            }
+        }else{
+            response = "BAD REQUEST: ID inexistente";
+        }
+        return response;
+    }
 }

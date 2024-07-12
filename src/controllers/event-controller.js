@@ -56,7 +56,7 @@ router.get("", async (req, res) => {
             }
         }
         const returnArray = await svc.getWithConditionAsync(querys);
-        if(typeof returnArray !== null){
+        if(typeof returnArray !== null ){
             if(returnArray.length !== 0) res.setHeader('Content-Type', 'application/json').status(200).json(returnArray);
             else res.setHeader('Content-Type', 'text/plain').status(404).send("No se encontró nada. Revisá las KEY o VALUES");
         } else{
@@ -69,10 +69,10 @@ router.get("", async (req, res) => {
 router.get("/:id", async (req, res) => {
     const id = req.params.id;
     const returnArray = await svc.getByIdAsync(id);
-    if(returnArray !== null){
+    if(returnArray !== null && returnArray.length != 0){
         res.setHeader('Content-Type', 'application/json').status(200).json(returnArray);
     } else{
-        res.setHeader('Content-Type', 'text/plain').status(404).send("No se encontró nada. Revisá las KEY o VALUES");
+        res.setHeader('Content-Type', 'text/plain').status(404).send("BAD REQUEST: El ID no existe.");
     }
 });
 
@@ -311,8 +311,14 @@ router.delete("/:id", async (req, res) => {
     const id = req.params.id;
     let token = tokenHelper.extractToken(req.headers.authorization);
     if(token !== false){
+        const validarId = validaciones.getIntegerOrDefault(id, -1);
         let payload = await tokenHelper.autenticarUsuario(token);
         if(payload["error"] === undefined){
+
+            if(validarId === -1 || validarId <= 0){
+                return res.setHeader('Content-Type', 'text/plain').status(404).send("El id debe ser un número positivo");
+            }
+
             const returnArray = await svc.deleteAsync(id, payload);
             if(returnArray == ""){
                 res.setHeader('Content-Type', 'application/json').status(200).json("Se ha eliminado el evento con éxito");

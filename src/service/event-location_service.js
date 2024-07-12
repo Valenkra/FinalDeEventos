@@ -99,18 +99,18 @@ export default class EventLocationService {
         const uRepo = new UsersRepository();
         const repo = new EventLocationRepository();
 
-        let payloadOwner = await uRepo.checkForOwnerByEventLocationId(id);
         const checkForIdExistance = await repo.getByIdAsync(id);
 
         let response;
-        if(payloadOwner !== null && payload["username"] == payloadOwner[0]["username"] && payload["id"] == payloadOwner[0]["id"]){
-            if(checkForIdExistance !== null && checkForIdExistance.length != 0){
+        if(checkForIdExistance !== null && checkForIdExistance.length != 0){
+            let payloadOwner = await uRepo.checkForOwnerByEventLocationId(id);
+            if(payloadOwner !== null && payload["username"] == payloadOwner[0]["username"] && payload["id"] == payloadOwner[0]["id"]){
                 response = await repo.deleteByIdAsync(id);
             }else{
-                response = "BAD REQUEST: ID inexistente";
+                response = "BAD REQUEST: No esta autorizado porque no es dueño del evento";
             }
         }else{
-            response = "BAD REQUEST: No esta autorizado porque no es dueño del evento";
+            response = "BAD REQUEST: ID inexistente";
         }
         return response;
     }

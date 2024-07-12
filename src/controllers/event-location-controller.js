@@ -218,6 +218,11 @@ router.delete("/:id", async (req, res) => {
     if(token !== false){
         let payload = await tokenHelper.autenticarUsuario(token);
         if(payload["error"] === undefined){
+            const validarId = validaciones.getIntegerOrDefault(id, -1);
+            if(validarId === -1 || validarId <= 0){
+                return res.setHeader('Content-Type', 'text/plain').status(404).send("El id debe ser un número positivo");
+            }
+
             const returnArray = await svc.deleteAsync(id, payload);
             if(returnArray == ""){
                 res.setHeader('Content-Type', 'application/json').status(200).json("Se ha eliminado el evento con éxito");

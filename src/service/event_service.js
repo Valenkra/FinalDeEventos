@@ -75,7 +75,7 @@ export default class EventService {
         const pReturnArray = await pRepo.getProvinceByEventId(id);
         const tReturnArray = await tRepo.getTagsByEventId(id);
 
-        if(eReturnArray !== null){
+        if(eReturnArray !== null && eReturnArray.length != 0){
             eReturnArray[0]["event_location"] = elReturnArray[0];
             eReturnArray[0]["event_location"]["location"] = lReturnArray[0];
             eReturnArray[0]["event_location"]["location"]["province"] = pReturnArray[0];
@@ -149,30 +149,26 @@ export default class EventService {
         const repo = new EventRepository();
         const eeRepo = new EventEnrollmentsRepository();
 
-        let payloadOwner = await uRepo.checkForOwnerByEventId(id);
         const checkForIdExistance = await repo.getByIdAsync(id);
-
         let response;
-        if(payloadOwner !== null && payload.length != 0){
-            if(payload["username"] == payloadOwner[0]["username"] && payload["id"] == payloadOwner[0]["id"]){
-                
-                if(checkForIdExistance !== null){
-                    const inscripciones = await eeRepo.checkForUsersEnrolled(id, payload["username"]);
-                    console.log(inscripciones)
-                    if(inscripciones === null || inscripciones.length== 0){
-                        response = await repo.deleteByIdAsync(id);
-                    }else{
-                        response = "BAD REQUEST: Ya hay usuarios registrados al evento y no sos vos";
-                    }
+
+        if(checkForIdExistance !== null && checkForIdExistance.length != 0){
+            let payloadOwner = await uRepo.checkForOwnerByEventId(id);
+            if(payloadOwner !== null && payload["username"] == payloadOwner[0]["username"] && payload["id"] == payloadOwner[0]["id"]){
+                const inscripciones = await eeRepo.checkForUsersEnrolled(id, payload["username"]);
+                console.log(inscripciones)
+                if(inscripciones === null || inscripciones.length== 0){
+                    response = await repo.deleteByIdAsync(id);
                 }else{
-                    response = "BAD REQUEST: ID inexistente";
+                    response = "BAD REQUEST: Ya hay usuarios registrados al evento y no sos vos";
                 }
             }else{
                 response = "BAD REQUEST: No esta autorizado porque no es dueño del evento";
             }
         }else{
-            response = "BAD REQUEST: No esta autorizado porque no es dueño del evento";
+            response = "BAD REQUEST: ID inexistente";
         }
+        
         return response;
     }
 

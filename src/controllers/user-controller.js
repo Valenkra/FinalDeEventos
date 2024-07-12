@@ -45,7 +45,6 @@ router.post("/login", async (req, res) => {
         const returnArray = await svc.logInAsync(strHelp.toLower(response["username"]), strHelp.toLower(response["password"]));
         if(returnArray.length !== 0){
             const token = await loginHelp.generarToken(strHelp.toLower(response["username"]), strHelp.toLower(response["password"]));
-            console.log(token);
             exitMsg["success"] = true;
             exitMsg["token"] = `${token}`;
             STATUS = 200;

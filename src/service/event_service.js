@@ -153,15 +153,22 @@ export default class EventService {
         const checkForIdExistance = await repo.getByIdAsync(id);
 
         let response;
-        if(payloadOwner !== null && payload["username"] == payloadOwner[0]["username"] && payload["id"] == payloadOwner[0]["id"]){
-            if(checkForIdExistance !== null){
-                if(eeRepo.checkForUsersEnrolled(id, payload["username"]) === null){
-                    response = await repo.deleteByIdAsync(id);
+        if(payloadOwner !== null && payload.length != 0){
+            if(payload["username"] == payloadOwner[0]["username"] && payload["id"] == payloadOwner[0]["id"]){
+                
+                if(checkForIdExistance !== null){
+                    const inscripciones = await eeRepo.checkForUsersEnrolled(id, payload["username"]);
+                    console.log(inscripciones)
+                    if(inscripciones === null || inscripciones.length== 0){
+                        response = await repo.deleteByIdAsync(id);
+                    }else{
+                        response = "BAD REQUEST: Ya hay usuarios registrados al evento y no sos vos";
+                    }
                 }else{
-                    response = "BAD REQUEST: Ya hay usuarios registrados al evento y no sos vos";
+                    response = "BAD REQUEST: ID inexistente";
                 }
             }else{
-                response = "BAD REQUEST: ID inexistente";
+                response = "BAD REQUEST: No esta autorizado porque no es dueño del evento";
             }
         }else{
             response = "BAD REQUEST: No esta autorizado porque no es dueño del evento";

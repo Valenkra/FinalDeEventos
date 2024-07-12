@@ -107,7 +107,6 @@ export default class EventService {
             if(checkExistance[0]["max_capacity"] >= data["max_assistance"]){
                 const repo = new EventRepository();
                 response = await repo.insertAsync(data);
-                console.log(data);
             }else{
                 response = "BAD REQUEST: Max Assistance no puede ser mayor a Max_Capacity de la locación";
             }
@@ -182,7 +181,7 @@ export default class EventService {
                     let querys = [`U.username = '${payload["username"]}'`,
                         `U.password = '${payload["password"]}'`]
                     const checkAssistance = await this.getEnrollmentDetailsAsync(id, querys);
-                    if(checkAssistance === null || checkAssistance.length == 0){
+                    if(checkAssistance === null && checkAssistance.length == 0){
                         if(new Date() < eventInfo[0]["start_date"]){
                             const data = [`${payload["id"]}`,"''",
                             `'${new Date().toISOString()}'`, false, "''", 0, id];
@@ -216,7 +215,7 @@ export default class EventService {
             let querys = [`U.username = '${payload["username"]}'`,
                 `U.password = '${payload["password"]}'`]
             const checkAssistance = await this.getEnrollmentDetailsAsync(id, querys);
-            if(checkAssistance !== null || checkAssistance.length != 0){
+            if(checkAssistance !== null && checkAssistance.length != 0){
                 if(new Date() < eventInfo[0]["start_date"]){
                     response = await enrollmentRepo.deleteUser(id, payload["id"]);
                 }else{
@@ -230,4 +229,5 @@ export default class EventService {
         }
         return response;
     }
+
 }

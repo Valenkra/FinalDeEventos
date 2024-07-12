@@ -1,10 +1,12 @@
 import { Router } from "express";
 import EventService from "../service/event_service.js";
+import EventEnrollmentService from "../service/event-enrollment_service.js";
 import TokenHelper from "../helpers/token-helper.js";
 import StringHelper from "../helpers/string-helper.js";
 import ValidacionesHelper from "../helpers/validaciones-helper.js";
 const router = Router();
 const svc = new EventService();
+const enrollment_svc = new EventEnrollmentService();
 const tokenHelper = new TokenHelper();
 const str = new StringHelper();
 const validaciones = new ValidacionesHelper();
@@ -390,8 +392,64 @@ router.delete("/:id/enrollment", async (req, res) => {
     }
 })
 
-router.patch("/:id/enrollment", async (req, res) => {
-    
+router.patch("/:id/enrollment/:rating", async (req, res) => {
+    const id = req.params.id;
+    const rating = req.params.id;
+    let token = tokenHelper.extractToken(req.headers.authorization);
+    if(token !== false){
+        let payload = await tokenHelper.autenticarUsuario(token);
+        if(payload["error"] === undefined){
+            const response = {
+                observations: null
+            }
+            
+            const error = {
+                error: null
+            }        
+
+            for (const [key, value] of Object.entries(req.query)) {
+                if(response[`${key}`] !== undefined){            
+                    if(str.minChars(value) === true && str.maxChars(value) === true) response[`${key}`] = value;
+                    else{
+                        error["error"] = `${key} debe tener entre 3 y 100 letras`;
+                        return res.setHeader('Content-Type', 'application/json').status(400).json(error);
+                    }   
+                }
+            }
+
+            if(validaciones.getIntegerOrDefault(rating, -1) <= 0 &&
+            validaciones.getIntegerOrDefault(rating, -1) > 10){
+                error["error"] = `El rating debe ser un número del 1 al 10`;
+                return res.setHeader('Content-Type', 'application/json').status(400).json(error);
+            }
+
+            let oneIsNull = false;
+            for (const [key, value] of Object.entries(response)) {
+                if(value === null && key != "id") oneIsNull = true;
+            }
+
+            const data = [id, payload, rating, `, observations= ${response["observations"]}`, oneIsNull];
+
+            const returnMsg = await enrollment_svc.updateRating(data);
+            if(returnMsg == "" || returnMsg === null){
+                res.setHeader('Content-Type', 'application/json').status(200).json("Enhorabuena, hemos actualizado del evento.");
+            } else{
+                switch(returnMsg.split(":")[1].substring(1, 3)){
+                    case 'ID':
+                        return res.setHeader('Content-Type', 'text/plain').status(404).send(`${returnMsg}`);
+                        break;
+                    default:
+                        return res.setHeader('Content-Type', 'text/plain').status(400).send(`${returnMsg}`);
+                        break;
+                }
+            }
+
+        }else {
+            return res.setHeader('Content-Type', 'text/plain').status(401).send("Falta de token válido. Por favor, ingresá un token en el área de 'Authorization>Bearer Token'");
+        }
+    }else {
+        return res.setHeader('Content-Type', 'text/plain').status(401).send("Falta de token válido. Por favor, ingresá un token en el área de 'Authorization>Bearer Token'");
+    }
 })
 
 export default router;

@@ -141,4 +141,21 @@ export default class EventEnrollmentsRepository {
         }
         return returnArray;
     }
+
+    updateEventRating = async (data) => {
+        let returnArray = null;
+        const client = new Client(DBConfig);
+        try {
+            await client.connect();
+            let sql = `UPDATE Event_enrollments
+            SET rating=${data[2]}${(data[data.length-1] === false) ? data[3] : ''}
+            WHERE id_user = ${data[1]["id"]} and id_event = ${data[0]};`;
+            const result = await client.query(sql);
+            await client.end();
+            returnArray = result.rows;
+        } catch (error) {
+            console.log(error);
+        }
+        return returnArray;
+    }
 }

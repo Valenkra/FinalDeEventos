@@ -70,19 +70,31 @@ router.get("", async (req, res) => {
                 querys.push(`${prefijo}.${myKey} = '${value}'`);
             }
         }
-    }
-    const returnArray = await svc.getWithConditionAsync(querys);
-    if(typeof returnArray !== null){
-        if(returnArray.length !== 0) res.setHeader('Content-Type', 'application/json').status(200).json(returnArray);
-        else res.setHeader('Content-Type', 'text/plain').status(404).send("No se encontró nada. Revisá las KEY o VALUES");
-    } else{
-        res.setHeader('Content-Type', 'text/plain').status(404).send("No se encontró nada. Revisá las KEY o VALUES");
+        const returnArray = await svc.getWithConditionAsync(querys);
+        if(typeof returnArray !== null){
+            if(returnArray.length !== 0) return res.setHeader('Content-Type', 'application/json').status(200).json(returnArray);
+            else return res.setHeader('Content-Type', 'text/plain').status(404).send("No se encontró nada. Revisá las KEY o VALUES");
+        } else{
+            return res.setHeader('Content-Type', 'text/plain').status(404).send("No se encontró nada. Revisá las KEY o VALUES");
+        }   
+    }else{
+        const returnArray = await svc.getAllAsync();
+        if(typeof returnArray !== null && returnArray.length != 0){
+            return res.setHeader('Content-Type', 'application/json').status(200).json(returnArray);
+        } else{
+            return res.setHeader('Content-Type', 'text/plain').status(404).send("No se encontró nada. Revisá las KEY o VALUES");
+        }  
     }
 });
 
 // 4 Detalle de un evento
 router.get("/:id", async (req, res) => {
-    const id = req.params.id;
+    const id = req.params.id;  
+    const validarId = validaciones.getIntegerOrDefault(id, -1);
+    if(validarId === -1 || validarId <= 0){
+        return res.setHeader('Content-Type', 'text/plain').status(400).send("El id debe ser un número positivo");
+    }
+    
     const returnArray = await svc.getByIdAsync(id);
     if(returnArray !== null && returnArray.length != 0){
         res.setHeader('Content-Type', 'application/json').status(200).json(returnArray);
@@ -93,7 +105,12 @@ router.get("/:id", async (req, res) => {
 
 // 5 Listado de participantes
 router.get("/:id/enrollment", async (req, res) => {
-    const id = req.params.id;
+    const id = req.params.id;  
+    const validarId = validaciones.getIntegerOrDefault(id, -1);
+    if(validarId === -1 || validarId <= 0){
+        return res.setHeader('Content-Type', 'text/plain').status(400).send("El id debe ser un número positivo");
+    }
+    
 
     const response = {
         first_name: null,
@@ -303,6 +320,11 @@ router.put("", async (req, res) => {
                 if(value === null && key != "id") oneIsNull = true;
             }
 
+            const validarId = validaciones.getIntegerOrDefault(response["id"], -1);
+            if(validarId === -1 || validarId <= 0){
+                return res.setHeader('Content-Type', 'text/plain').status(400).send("El id debe ser un número positivo");
+            }
+
             if(response["id"] === null){
                 error["error"] = "Falta un ID válido.";
                 return res.setHeader('Content-Type', 'application/json').status(400).json(error);
@@ -359,7 +381,7 @@ router.delete("/:id", async (req, res) => {
         if(payload["error"] === undefined){
 
             if(validarId === -1 || validarId <= 0){
-                return res.setHeader('Content-Type', 'text/plain').status(404).send("El id debe ser un número positivo");
+                return res.setHeader('Content-Type', 'text/plain').status(400).send("El id debe ser un número positivo");
             }
 
             const returnArray = await svc.deleteAsync(id, payload);
@@ -388,6 +410,12 @@ router.delete("/:id", async (req, res) => {
 
 router.post("/:id/enrollment", async (req, res) => {
     const id = req.params.id;
+    
+    const validarId = validaciones.getIntegerOrDefault(id, -1);
+    if(validarId === -1 || validarId <= 0){
+        return res.setHeader('Content-Type', 'text/plain').status(400).send("El id debe ser un número positivo");
+    }
+
     let token = tokenHelper.extractToken(req.headers.authorization);
     if(token !== false){
         let payload = await tokenHelper.autenticarUsuario(token);
@@ -415,7 +443,12 @@ router.post("/:id/enrollment", async (req, res) => {
 })
 
 router.delete("/:id/enrollment", async (req, res) => {
-    const id = req.params.id;
+    const id = req.params.id;    
+    const validarId = validaciones.getIntegerOrDefault(id, -1);
+    if(validarId === -1 || validarId <= 0){
+        return res.setHeader('Content-Type', 'text/plain').status(400).send("El id debe ser un número positivo");
+    }
+
     let token = tokenHelper.extractToken(req.headers.authorization);
     if(token !== false){
         let payload = await tokenHelper.autenticarUsuario(token);
@@ -443,7 +476,12 @@ router.delete("/:id/enrollment", async (req, res) => {
 
 router.patch("/:id/enrollment/:rating", async (req, res) => {
     const id = req.params.id;
-    const rating = req.params.id;
+    const rating = req.params.id;   
+    const validarId = validaciones.getIntegerOrDefault(id, -1);
+    if(validarId === -1 || validarId <= 0){
+        return res.setHeader('Content-Type', 'text/plain').status(400).send("El id debe ser un número positivo");
+    }
+
     let token = tokenHelper.extractToken(req.headers.authorization);
     if(token !== false){
         let payload = await tokenHelper.autenticarUsuario(token);

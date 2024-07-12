@@ -34,7 +34,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/event/?name=hola",
+							"raw": "http://localhost:3000/api/event/?name=Concierto de Verano",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -48,7 +48,7 @@
 							"query": [
 								{
 									"key": "name",
-									"value": "hola"
+									"value": "Concierto de Verano"
 								}
 							]
 						}
@@ -61,7 +61,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/event/4/enrollment?rating=4.2",
+							"raw": "http://localhost:3000/api/event/6/enrollment?rating=4.2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -70,7 +70,7 @@
 							"path": [
 								"api",
 								"event",
-								"4",
+								"6",
 								"enrollment"
 							],
 							"query": [
@@ -99,7 +99,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/event/21",
+							"raw": "http://localhost:3000/api/event/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -108,7 +108,7 @@
 							"path": [
 								"api",
 								"event",
-								"21"
+								"4"
 							]
 						}
 					},
@@ -199,7 +199,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{   \r\n    \"name\": \"The Eras Tour\",\r\n    \"description\": \"El show de Taylor\",\r\n    \"id_event_category\": 3,\r\n    \"start_date\": \"2024-05-06\",\r\n    \"duration_in_minutes\": 34534,\r\n    \"price\": 345435,\r\n    \"enabled_for_enrollment\": true,\r\n    \"max_assistance\": 80,\r\n    \"id_event_location\": 3,\r\n    \"id\":4\r\n }",
+							"raw": "{   \r\n    \"name\": \"The Eras Tour\",\r\n    \"description\": \"El show de Taylor\",\r\n    \"id_event_category\": 3,\r\n    \"start_date\": \"2024-05-06\",\r\n    \"duration_in_minutes\": 34534,\r\n    \"price\": 345435,\r\n    \"enabled_for_enrollment\": true,\r\n    \"max_assistance\": 80,\r\n    \"id_event_location\": 3,\r\n    \"id\": 24\r\n }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -216,58 +216,6 @@
 							"path": [
 								"api",
 								"event"
-							],
-							"query": [
-								{
-									"key": "name",
-									"value": "Taylor Swift Eras Tour",
-									"disabled": true
-								},
-								{
-									"key": "description",
-									"value": "Alto evento de swifites",
-									"disabled": true
-								},
-								{
-									"key": "id_event_category",
-									"value": "1",
-									"disabled": true
-								},
-								{
-									"key": "start_date",
-									"value": "2024-05-06",
-									"disabled": true
-								},
-								{
-									"key": "duration_in_minutes",
-									"value": "67567",
-									"disabled": true
-								},
-								{
-									"key": "price",
-									"value": "57576",
-									"disabled": true
-								},
-								{
-									"key": "enabled_for_enrollment",
-									"value": "true",
-									"disabled": true
-								},
-								{
-									"key": "max_assistance",
-									"value": "6786",
-									"disabled": true
-								},
-								{
-									"key": "id_event_location",
-									"value": "4",
-									"disabled": true
-								},
-								{
-									"key": "id",
-									"value": "10",
-									"disabled": true
-								}
 							]
 						}
 					},
@@ -921,7 +869,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"full_name\": \"El gran castillaje\",\r\n    \"longitude\": 4435345,\r\n    \"display_order\": 4,\r\n    \"id\":  5\r\n}",
+							"raw": "{\r\n    \"full_name\": \"El gran castillaje\",\r\n    \"longitude\": 4435345,\r\n    \"display_order\": 4,\r\n    \"id\":  5545\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -949,7 +897,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/province/3",
+							"raw": "http://localhost:3000/api/province/6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -958,7 +906,7 @@
 							"path": [
 								"api",
 								"province",
-								"3"
+								"6"
 							]
 						}
 					},

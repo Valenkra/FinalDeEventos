@@ -29,7 +29,12 @@ router.get("", async (req, res) => {
 
 // 4 Detalle de un evento
 router.get("/:id", async (req, res) => {
-    const id = req.params.id;
+    const id = req.params.id;  
+    const validarId = validaciones.getIntegerOrDefault(id, -1);
+    if(validarId === -1 || validarId <= 0){
+        return res.setHeader('Content-Type', 'text/plain').status(400).send("El id debe ser un número positivo");
+    }
+    
     let token = tokenHelper.extractToken(req.headers.authorization);
     if(token !== false){
         let payload = await tokenHelper.autenticarUsuario(token);
@@ -93,25 +98,19 @@ router.post("", async (req, res) => {
             for (const [key, value] of Object.entries(response)) {
                 if(value === null && key != "id") oneIsNull = true;
             }
-
-            if(response["id"] === null){
-                error["error"] = "Falta un ID válido.";
+            if(oneIsNull) {
+                error["error"] = "Faltan parámetros. Revise el nombre de las KEYs";
                 return res.setHeader('Content-Type', 'application/json').status(400).json(error);
             }else{
-                if(oneIsNull) {
-                    error["error"] = "Faltan parámetros. Revise el nombre de las KEYs";
-                    return res.setHeader('Content-Type', 'application/json').status(400).json(error);
-                }else{
-                        const returnMsg = await svc.createAsync(response);
-                        if(returnMsg == ""){
-                            return res.setHeader('Content-Type', 'application/json').status(200).send(`Evento creado con exito!`);
-                        }else{
-                            return res.setHeader('Content-Type', 'text/plain').status(404).send(`${returnMsg}`);
-                        }
+                    const returnMsg = await svc.createAsync(response);
+                    if(returnMsg == ""){
+                        return res.setHeader('Content-Type', 'application/json').status(200).send(`Evento creado con exito!`);
+                    }else{
+                        return res.setHeader('Content-Type', 'text/plain').status(404).send(`${returnMsg}`);
                     }
                 }
-                }else {
-                    return res.setHeader('Content-Type', 'text/plain').status(401).send("Falta de token válido. Por favor, ingresá un token en el área de 'Authorization>Bearer Token'");
+            }else {
+                return res.setHeader('Content-Type', 'text/plain').status(401).send("Falta de token válido. Por favor, ingresá un token en el área de 'Authorization>Bearer Token'");
             }
         } else{
             return res.setHeader('Content-Type', 'text/plain').status(401).send("Falta de token válido. Por favor, ingresá un token en el área de 'Authorization>Bearer Token'");
@@ -162,6 +161,11 @@ router.put("", async (req, res) => {
             let oneIsNull = false;
             for (const [key, value] of Object.entries(response)) {
                 if(value === null && key != "id") oneIsNull = true;
+            }
+
+            const validarId = validaciones.getIntegerOrDefault(response["id"], -1);
+            if(validarId === -1 || validarId <= 0){
+                return res.setHeader('Content-Type', 'text/plain').status(400).send("El id debe ser un número positivo");
             }
 
             if(response["id"] === null){
@@ -219,7 +223,7 @@ router.delete("/:id", async (req, res) => {
         if(payload["error"] === undefined){
             const validarId = validaciones.getIntegerOrDefault(id, -1);
             if(validarId === -1 || validarId <= 0){
-                return res.setHeader('Content-Type', 'text/plain').status(404).send("El id debe ser un número positivo");
+                return res.setHeader('Content-Type', 'text/plain').status(400).send("El id debe ser un número positivo");
             }
 
             const returnArray = await svc.deleteAsync(id, payload);

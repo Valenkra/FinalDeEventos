@@ -29,8 +29,7 @@ export default class LocationsService {
 
         const lReturnArray = await lRepo.getById(id);
         const pReturnArray = await pRepo.getProvinceByLocationId(id);
-
-        if(lReturnArray !== null) lReturnArray[0]["province"] = pReturnArray[0];
+        if(lReturnArray !== null && lReturnArray.length != 0) lReturnArray[0]["province"] = pReturnArray[0];
         return lReturnArray;
     }
 

@@ -30,7 +30,7 @@ export default class ProvinceService {
         const repo = new ProvinceRepository();
         const checkExistance = await repo.getById(data[data.length-1]);
         let response;
-        if(checkExistance !== null){
+        if(checkExistance !== null && checkExistance.length != 0){
             response = await repo.updateByIdAsync(data);
         }else{
             response = "BAD REQUEST: ID inexistente";

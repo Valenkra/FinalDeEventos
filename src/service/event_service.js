@@ -46,14 +46,16 @@ export default class EventService {
         const pReturnArray = await pRepo.getWithConditionAsync(querys);
         const tReturnArray = await tRepo.getWithConditionAsync(querys);
 
-        for (let i = 0; i < eReturnArray.length; i++) {
-            eReturnArray[i]["event_location"] = elReturnArray[i];
-            eReturnArray[i]["event_location"]["location"] = lReturnArray[i];
-            eReturnArray[i]["event_location"]["location"]["province"] = pReturnArray[i];
-            eReturnArray[i]["event_category"] = ecReturnArray[i];
-            eReturnArray[i]["creator_user"] = uReturnArray[i];
-            eReturnArray[i]["tags"] = tReturnArray;
-        }   
+        if(eReturnArray !== null && eReturnArray.length != 0){
+            for (let i = 0; i < eReturnArray.length; i++) {
+                eReturnArray[i]["event_location"] = elReturnArray[i];
+                eReturnArray[i]["event_location"]["location"] = lReturnArray[i];
+                eReturnArray[i]["event_location"]["location"]["province"] = pReturnArray[i];
+                eReturnArray[i]["event_category"] = ecReturnArray[i];
+                eReturnArray[i]["creator_user"] = uReturnArray[i];
+                eReturnArray[i]["tags"] = tReturnArray;
+            }   
+        }
         
         return eReturnArray;
     }

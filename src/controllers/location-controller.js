@@ -1,9 +1,11 @@
 import { Router } from "express";
 import LocationService from "../service/locations_service.js";
 import TokenHelper from "../helpers/token-helper.js";
+import ValidacionesHelper from "../helpers/validaciones-helper.js";
 const router = Router();
 const svc = new LocationService();
 const tokenHelper = new TokenHelper();
+const validaciones = new ValidacionesHelper();
 
 // 3 Busqueda de un evento
 router.get("", async (req, res) => {
@@ -13,7 +15,12 @@ router.get("", async (req, res) => {
 
 // 4 Detalle de un evento
 router.get("/:id", async (req, res) => {
-    const id = req.params.id;
+    const id = req.params.id;  
+    const validarId = validaciones.getIntegerOrDefault(id, -1);
+    if(validarId === -1 || validarId <= 0){
+        return res.setHeader('Content-Type', 'text/plain').status(400).send("El id debe ser un número positivo");
+    }
+    
     const returnArray = await svc.getByIdAsync(id);
     if(returnArray.length != 0){
         res.setHeader('Content-Type', 'application/json').status(200).json(returnArray);
@@ -24,7 +31,12 @@ router.get("/:id", async (req, res) => {
 
 // 5 Listado de participantes
 router.get("/:id/event-location", async (req, res) => {
-    const id = req.params.id;
+    const id = req.params.id;  
+    const validarId = validaciones.getIntegerOrDefault(id, -1);
+    if(validarId === -1 || validarId <= 0){
+        return res.setHeader('Content-Type', 'text/plain').status(400).send("El id debe ser un número positivo");
+    }
+    
     let token = tokenHelper.extractToken(req.headers.authorization);
     if(token !== false){
         let payload = await tokenHelper.autenticarUsuario(token);

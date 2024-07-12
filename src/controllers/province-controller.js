@@ -15,7 +15,12 @@ router.get("", async (req, res) => {
 
 // 4 Detalle de un evento
 router.get("/:id", async (req, res) => {
-    const id = req.params.id;
+    const id = req.params.id;  
+    const validarId = validaciones.getIntegerOrDefault(id, -1);
+    if(validarId === -1 || validarId <= 0){
+        return res.setHeader('Content-Type', 'text/plain').status(400).send("El id debe ser un número positivo");
+    }
+    
     const returnArray = await svc.getByIdAsync(id);
     if(returnArray.length != 0){
         res.setHeader('Content-Type', 'application/json').status(200).json(returnArray);
@@ -25,7 +30,12 @@ router.get("/:id", async (req, res) => {
 })
 
 router.get("/:id/locations", async (req, res) => {
-    const id = req.params.id;
+    const id = req.params.id;  
+    const validarId = validaciones.getIntegerOrDefault(id, -1);
+    if(validarId === -1 || validarId <= 0){
+        return res.setHeader('Content-Type', 'text/plain').status(400).send("El id debe ser un número positivo");
+    }
+    
     const returnArray = await svc.getLocationsAsync(id);
     if(returnArray.length != 0){
         res.setHeader('Content-Type', 'application/json').status(200).json(returnArray);
@@ -124,6 +134,11 @@ router.put("", async (req, res) => {
         if(value !== null && key != "id") oneIsTrue = true;
     }
 
+    const validarId = validaciones.getIntegerOrDefault(response["id"], -1);
+    if(validarId === -1 || validarId <= 0){
+        return res.setHeader('Content-Type', 'text/plain').status(400).send("El id debe ser un número positivo");
+    }
+
     if(response["id"] === null){
         error["error"] = "Falta un ID válido.";
         return res.setHeader('Content-Type', 'application/json').status(400).json(error);
@@ -157,7 +172,12 @@ router.put("", async (req, res) => {
 
 
 router.delete("/:id", async (req, res) => {
-    const id = req.params.id;
+    const id = req.params.id;  
+    const validarId = validaciones.getIntegerOrDefault(id, -1);
+    if(validarId === -1 || validarId <= 0){
+        return res.setHeader('Content-Type', 'text/plain').status(400).send("El id debe ser un número positivo");
+    }
+    
     const returnMsg = await svc.deleteByIdAsync(id);
     if(returnMsg.length == 0){
         res.setHeader('Content-Type', 'application/json').status(200).send(`Provincia eliminada con exito!`);

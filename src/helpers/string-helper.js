@@ -1,8 +1,10 @@
+import moment from "moment";
+
 export const MAXCHARS = 100;
 
 export default class StringHelper {
     minChars = (str) => {
-        return (str.length >= 2 === true);
+        return (str.length > 2 === true);
     }
     
     verifyEmail = (email) => {
@@ -12,6 +14,14 @@ export default class StringHelper {
             if(emailStructure.length === 2) return true;
             else return false;
         } else return false;
+    }
+
+    verifyDate = (date) => {
+        let formats = [
+            moment.ISO_8601,
+            "YYYY/MM/DD",
+        ]
+        return moment(date, formats, true).isValid();
     }
 
     toLower = (str) => {

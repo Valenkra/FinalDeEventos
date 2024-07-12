@@ -20,18 +20,33 @@ router.get("", async (req, res) => {
         tag: null
     }
 
-    let temp = 0;
+    const error = {
+        error: null
+    };
 
     for (const [key, value] of Object.entries(req.query)) {
-        if(response[`${key}`] !== undefined) response[`${key}`] = value;
-        else temp++;
+        if(response[`${key}`] !== undefined){  
+            if(key === "name" || key === "category" || key === "tag"){
+                if(str.minChars(value) === true && str.maxChars(value) === true) response[`${key}`] = value;
+                else{
+                    return res.setHeader('Content-Type', 'text/plain').status(404).send(`${key} debe tener entre 3 y 100 letras`);
+                }
+            }else{
+                if(key === "startdate" && str.verifyDate(value) === true) response[`${key}`] = value;
+                else{
+                    return res.setHeader('Content-Type', 'text/plain').status(404).send("La fecha debe estar en formato 'YYYY/MM/DD'");
+                }
+            }
+        }
     }
 
-    if(temp === Object.keys(req.query).length || Object.keys(req.query).length === 0){
-        const returnArray = await svc.getAllAsync();
-        return res.setHeader('Content-Type', 'application/json').status(200).json(returnArray);
-    }else{
-        let querys = [];
+    let oneIsTrue = false;
+    for (const [key, value] of Object.entries(response)) {
+        if(value !== null) oneIsTrue = true;
+    }
+    
+    let querys = [];
+    if(oneIsTrue){
         for (const [key, value] of Object.entries(response)) {
             let prefijo = "";
             let myKey;
@@ -55,13 +70,13 @@ router.get("", async (req, res) => {
                 querys.push(`${prefijo}.${myKey} = '${value}'`);
             }
         }
-        const returnArray = await svc.getWithConditionAsync(querys);
-        if(typeof returnArray !== null ){
-            if(returnArray.length !== 0) res.setHeader('Content-Type', 'application/json').status(200).json(returnArray);
-            else res.setHeader('Content-Type', 'text/plain').status(404).send("No se encontró nada. Revisá las KEY o VALUES");
-        } else{
-            res.setHeader('Content-Type', 'text/plain').status(404).send("No se encontró nada. Revisá las KEY o VALUES");
-        }
+    }
+    const returnArray = await svc.getWithConditionAsync(querys);
+    if(typeof returnArray !== null){
+        if(returnArray.length !== 0) res.setHeader('Content-Type', 'application/json').status(200).json(returnArray);
+        else res.setHeader('Content-Type', 'text/plain').status(404).send("No se encontró nada. Revisá las KEY o VALUES");
+    } else{
+        res.setHeader('Content-Type', 'text/plain').status(404).send("No se encontró nada. Revisá las KEY o VALUES");
     }
 });
 
@@ -88,18 +103,45 @@ router.get("/:id/enrollment", async (req, res) => {
         rating: null
     }
 
-    let temp = 0;
-
     for (const [key, value] of Object.entries(req.query)) {
-        if(response[`${key}`] !== undefined) response[`${key}`] = value;
-        else temp++;
+        if(response[`${key}`] !== undefined){ 
+            if(key === "username"){ 
+                if(str.verifyEmail(value) === false){
+                    return res.setHeader('Content-Type', 'text/plain').status(404).send("El username ó email es invalido por su estructura.");
+                }else {response[`${key}`] = value}
+            } else {     
+                if(key === "first_name" || key === "last_name"){
+                    if(str.minChars(value) === true && str.maxChars(value) === true) response[`${key}`] = value;
+                    else{
+                        error["error"] = `${key} debe tener entre 3 y 100 letras`;
+                        return res.setHeader('Content-Type', 'application/json').status(400).json(error);
+                    }
+                }else{
+                    if((validaciones.getIntegerOrDefault(value, -1) === -1 || validaciones.getIntegerOrDefault(value, -1) <= 0) && key !== "attended"){
+                        error["error"] = `${key} debe ser un numero positivo.`;
+                        return res.setHeader('Content-Type', 'application/json').status(400).json(error);
+                    }else{
+                        if(value != "true" && value != "false" && key === "attended"){
+                            error["error"] = `${key} debe ser un booleano.`;
+                            return res.setHeader('Content-Type', 'application/json').status(400).json(error);
+                        }else{
+                            response[`${key}`] = value;
+                        }
+                    }
+                }
+            }
+            
+        }
     }
 
-    if(temp === Object.keys(req.query).length || Object.keys(req.query).length === 0){
-        const returnArray = await svc.getAllAsync();
-        return res.setHeader('Content-Type', 'application/json').status(200).json(returnArray);
-    }else{
-        let querys = [];
+    let oneIsTrue = false;
+    for (const [key, value] of Object.entries(response)) {
+        if(value !== null) oneIsTrue = true;
+    }
+
+    
+    let querys = [];
+    if(oneIsTrue){
         for (const [key, value] of Object.entries(response)) {
             let prefijo = "";
             if(value !== null) {
@@ -117,19 +159,20 @@ router.get("/:id/enrollment", async (req, res) => {
                         prefijo = "EE";
                         break;
                     case 'rating':
-                        rating = "EE";
+                        prefijo = "EE";
                         break;
                 }
                 if(key !== 'rating') querys.push(`${prefijo}.${key} = '${value}'`);
                 else querys.push(`${prefijo}.${key} = ${value}`)
             }
         }
-        const returnArray = await svc.getEnrollmentDetailsAsync(id, querys);
-        if(typeof returnArray !== null){
-            res.setHeader('Content-Type', 'application/json').status(200).json(returnArray);
-        } else{
-            res.setHeader('Content-Type', 'text/plain').status(404).send("No se encontró nada. Revisá las KEY o VALUES");
-        }
+    }
+
+    const returnArray = await svc.getEnrollmentDetailsAsync(id, querys);
+    if(typeof returnArray !== null && returnArray.length != 0){
+        res.setHeader('Content-Type', 'application/json').status(200).json(returnArray);
+    } else{
+        res.setHeader('Content-Type', 'text/plain').status(404).send("No se encontró ningun user.");
     }
 });
 
@@ -155,7 +198,7 @@ router.post("", async (req, res) => {
                 error: null
             }        
 
-            for (const [key, value] of Object.entries(req.query)) {
+            for (const [key, value] of Object.entries(req.body)) {
                 if (key !== "id_creator_user") {
                     if(response[`${key}`] !== undefined){            
                         if(key === "description" || key === "name"){
@@ -169,7 +212,7 @@ router.post("", async (req, res) => {
                                 error["error"] = `${key} debe ser un numero positivo.`;
                                 return res.setHeader('Content-Type', 'application/json').status(400).json(error);
                             }else{
-                                if(value != "true" && value != "false" && key === "enabled_for_enrollment"){
+                                if(value != true && value != false && key === "enabled_for_enrollment"){
                                     error["error"] = `${key} debe ser un booleano.`;
                                     return res.setHeader('Content-Type', 'application/json').status(400).json(error);
                                 }else{
@@ -184,7 +227,7 @@ router.post("", async (req, res) => {
                 
             let oneIsNull = false;
             for (const [key, value] of Object.entries(response)) {
-                if(value === null) oneIsNull = true;
+                if(value === null) {oneIsNull = true; };
             }
 
             if(oneIsNull) {
@@ -229,7 +272,7 @@ router.put("", async (req, res) => {
                 error: null
             }        
 
-            for (const [key, value] of Object.entries(req.query)) {
+            for (const [key, value] of Object.entries(req.body)) {
                 if (key !== "id_creator_user") {
                     if(response[`${key}`] !== undefined){            
                         if(key === "description" || key === "name"){
@@ -243,7 +286,7 @@ router.put("", async (req, res) => {
                                 error["error"] = `${key} debe ser un numero positivo.`;
                                 return res.setHeader('Content-Type', 'application/json').status(400).json(error);
                             }else{
-                                if(value != "true" && value != "false" && key === "enabled_for_enrollment"){
+                                if(value != true && value != false && key === "enabled_for_enrollment"){
                                     error["error"] = `${key} debe ser un booleano.`;
                                     return res.setHeader('Content-Type', 'application/json').status(400).json(error);
                                 }else{
@@ -413,7 +456,7 @@ router.patch("/:id/enrollment/:rating", async (req, res) => {
                 error: null
             }        
 
-            for (const [key, value] of Object.entries(req.query)) {
+            for (const [key, value] of Object.entries(req.body)) {
                 if(response[`${key}`] !== undefined){            
                     if(str.minChars(value) === true && str.maxChars(value) === true) response[`${key}`] = value;
                     else{

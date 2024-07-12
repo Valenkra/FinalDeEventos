@@ -68,7 +68,7 @@ router.post("", async (req, res) => {
                 error: null
             }        
 
-            for (const [key, value] of Object.entries(req.query)) {
+            for (const [key, value] of Object.entries(req.body)) {
                 if (key !== "id_creator_user") {
                     if(response[`${key}`] !== undefined){            
                         if(key === "full_address" || key === "name"){
@@ -138,7 +138,7 @@ router.put("", async (req, res) => {
                 error: null
             }        
 
-            for (const [key, value] of Object.entries(req.query)) {
+            for (const [key, value] of Object.entries(req.body)) {
                 if (key !== "id_creator_user") {
                     if(response[`${key}`] !== undefined){            
                         if(key === "full_address" || key === "name"){
@@ -163,7 +163,6 @@ router.put("", async (req, res) => {
             for (const [key, value] of Object.entries(response)) {
                 if(value === null && key != "id") oneIsNull = true;
             }
-            console.log(response)
 
             if(response["id"] === null){
                 error["error"] = "Falta un ID válido.";

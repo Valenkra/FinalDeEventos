@@ -49,7 +49,7 @@ router.post("", async (req, res) => {
         error: null
     }
 
-    for (const [key, value] of Object.entries(req.query)) {
+    for (const [key, value] of Object.entries(req.body)) {
         if(response[`${key}`] !== undefined) {
             if(key === "full_name" || key === "name"){
                 if(str.minChars(value) === true && str.maxChars(value) === true) response[`${key}`] = value;
@@ -100,7 +100,7 @@ router.put("", async (req, res) => {
         error: null
     }
 
-    for (const [key, value] of Object.entries(req.query)) {
+    for (const [key, value] of Object.entries(req.body)) {
         if(response[`${key}`] !== undefined) {
             if(key === "full_name" || key === "name"){
                 if(str.minChars(value) === true && str.maxChars(value) === true) response[`${key}`] = value;

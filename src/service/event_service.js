@@ -89,7 +89,6 @@ export default class EventService {
     getEnrollmentDetailsAsync = async (id, querys) => {
         const uRepo = new UsersRepository();
         const eeRepo = new EventEnrollmentsRepository();
-
         const uReturnArray = await uRepo.getUserEnrollmentDetailsByQuerysAsync(id, querys);
         const eeReturnArray = await eeRepo.getUserEnrollmentDetailsByQuerysAsync(id, querys);
 
@@ -178,7 +177,7 @@ export default class EventService {
         const enrollmentInfo = await enrollmentRepo.obtenerCantInscriptosAsync(id);
         let response;
         
-        if(eventInfo !== null && enrollmentInfo !== null){
+        if(eventInfo !== null && eventInfo.length != 0 && enrollmentInfo !== null && enrollmentInfo.length != 0){
             if(enrollmentInfo[0]["count"] + 1 <= eventInfo[0]["max_assistance"]){
                 if(eventInfo[0]["enabled_for_enrollment"] == true){
                     let querys = [`U.username = '${payload["username"]}'`,

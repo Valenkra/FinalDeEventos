@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5de46bc5-c15d-428a-98c2-ea04095dfecf",
+		"_postman_id": "de64a6a4-ea66-4e7e-a5e3-023bf0103ab7",
 		"name": "Final De Eventos",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -61,7 +61,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/event/4/enrollment?username=danielflores",
+							"raw": "http://localhost:3000/api/event/4/enrollment?rating=4.2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -76,7 +76,17 @@
 							"query": [
 								{
 									"key": "username",
-									"value": "danielflores"
+									"value": "danielflores@gmail.com",
+									"disabled": true
+								},
+								{
+									"key": "first_name",
+									"value": "Daniel",
+									"disabled": true
+								},
+								{
+									"key": "rating",
+									"value": "4.2"
 								}
 							]
 						}
@@ -89,7 +99,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/event/4",
+							"raw": "http://localhost:3000/api/event/21",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -98,7 +108,7 @@
 							"path": [
 								"api",
 								"event",
-								"4"
+								"21"
 							]
 						}
 					},
@@ -112,7 +122,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidmljdG9yaWFoZXJyZXJhQGdtYWlsLmNvbSIsInBhc3N3IjoicGFzc3dvcmQxMjM0NTY3ODkiLCJpYXQiOjE3MjA2OTk4MjIsImV4cCI6MTcyMDcwMzQyMiwiaXNzIjoidmFsZW5ZbmFjY2FjaGUifQ.nozgql8DlOSmswNZeBymSxs0oJAOT-H0vXbQ4kRYsY8",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidmljdG9yaWFoZXJyZXJhQGdtYWlsLmNvbSIsInBhc3N3IjoicGFzc3dvcmQxMjM0NTY3ODkiLCJpYXQiOjE3MjA3ODgxMDksImV4cCI6MTcyMDc5NTMwOSwiaXNzIjoidmFsZW5ZbmFjY2FjaGUifQ.Zu7RD1dQPlX2RayVzf1P75qNSJxg63PYzS1Xp54eyeY",
 									"type": "string"
 								}
 							]
@@ -180,15 +190,24 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidmljdG9yaWFoZXJyZXJhQGdtYWlsLmNvbSIsInBhc3N3IjoicGFzc3dvcmQxMjM0NTY3ODkiLCJpYXQiOjE3MjA2OTg1NDMsImV4cCI6MTcyMDcwMjE0MywiaXNzIjoidmFsZW5ZbmFjY2FjaGUifQ.nX5de6YOUCESrfSP-G94GNTjjngg7FXIom4_ohL-B1k",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidmljdG9yaWFoZXJyZXJhQGdtYWlsLmNvbSIsInBhc3N3IjoicGFzc3dvcmQxMjM0NTY3ODkiLCJpYXQiOjE3MjA3OTIzNjQsImV4cCI6MTcyMDc5OTU2NCwiaXNzIjoidmFsZW5ZbmFjY2FjaGUifQ.VhyaaHYwWT9rYZr4ryre25gHkILRwaixcNkl6vwfBl4",
 									"type": "string"
 								}
 							]
 						},
 						"method": "PUT",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n    \"name\": \"The Eras Tour\",\r\n    \"description\": \"El show de Taylor\",\r\n    \"id_event_category\": 3,\r\n    \"start_date\": \"2024-05-06\",\r\n    \"duration_in_minutes\": 34534,\r\n    \"price\": 345435,\r\n    \"enabled_for_enrollment\": true,\r\n    \"max_assistance\": 80,\r\n    \"id_event_location\": 3,\r\n    \"id\":4\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:3000/api/event?name=Taylor Swift Eras Tour&description=Alto evento de swifites&id_event_category=1&start_date=2024-05-06&duration_in_minutes=67567&price=57576&enabled_for_enrollment=true&max_assistance=6786&id_event_location=4&id=10",
+							"raw": "http://localhost:3000/api/event",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -201,43 +220,53 @@
 							"query": [
 								{
 									"key": "name",
-									"value": "Taylor Swift Eras Tour"
+									"value": "Taylor Swift Eras Tour",
+									"disabled": true
 								},
 								{
 									"key": "description",
-									"value": "Alto evento de swifites"
+									"value": "Alto evento de swifites",
+									"disabled": true
 								},
 								{
 									"key": "id_event_category",
-									"value": "1"
+									"value": "1",
+									"disabled": true
 								},
 								{
 									"key": "start_date",
-									"value": "2024-05-06"
+									"value": "2024-05-06",
+									"disabled": true
 								},
 								{
 									"key": "duration_in_minutes",
-									"value": "67567"
+									"value": "67567",
+									"disabled": true
 								},
 								{
 									"key": "price",
-									"value": "57576"
+									"value": "57576",
+									"disabled": true
 								},
 								{
 									"key": "enabled_for_enrollment",
-									"value": "true"
+									"value": "true",
+									"disabled": true
 								},
 								{
 									"key": "max_assistance",
-									"value": "6786"
+									"value": "6786",
+									"disabled": true
 								},
 								{
 									"key": "id_event_location",
-									"value": "4"
+									"value": "4",
+									"disabled": true
 								},
 								{
 									"key": "id",
-									"value": "10"
+									"value": "10",
+									"disabled": true
 								}
 							]
 						}
@@ -247,10 +276,20 @@
 				{
 					"name": "Eliminar evento",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidmljdG9yaWFoZXJyZXJhQGdtYWlsLmNvbSIsInBhc3N3IjoicGFzc3dvcmQxMjM0NTY3ODkiLCJpYXQiOjE3MjA3ODgxMDksImV4cCI6MTcyMDc5NTMwOSwiaXNzIjoidmFsZW5ZbmFjY2FjaGUifQ.Zu7RD1dQPlX2RayVzf1P75qNSJxg63PYzS1Xp54eyeY",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/event/7",
+							"raw": "http://localhost:3000/api/event/21",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -259,7 +298,7 @@
 							"path": [
 								"api",
 								"event",
-								"7"
+								"21"
 							]
 						}
 					},
@@ -268,6 +307,16 @@
 				{
 					"name": "Incribirse a un evento",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidmljdG9yaWFoZXJyZXJhQGdtYWlsLmNvbSIsInBhc3N3IjoicGFzc3dvcmQxMjM0NTY3ODkiLCJpYXQiOjE3MjA3ODg3NTIsImV4cCI6MTcyMDc5NTk1MiwiaXNzIjoidmFsZW5ZbmFjY2FjaGUifQ.UIpOkp5EnRViVhCx9AvUU59Pfaf08IvC0_LCIvGpFeE",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"url": {
@@ -290,6 +339,16 @@
 				{
 					"name": "Salir del evento / Borrar inscripcion",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidmljdG9yaWFoZXJyZXJhQGdtYWlsLmNvbSIsInBhc3N3IjoicGFzc3dvcmQxMjM0NTY3ODkiLCJpYXQiOjE3MjA3ODkyMjEsImV4cCI6MTcyMDc5NjQyMSwiaXNzIjoidmFsZW5ZbmFjY2FjaGUifQ.rMwWIu4opnq8ffRROYaUK-Xc96DWhpqm_O8WB8qLpjQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
@@ -312,8 +371,27 @@
 				{
 					"name": "Ratear el evento",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidmljdG9yaWFoZXJyZXJhQGdtYWlsLmNvbSIsInBhc3N3IjoicGFzc3dvcmQxMjM0NTY3ODkiLCJpYXQiOjE3MjA3OTI0NDcsImV4cCI6MTcyMDc5OTY0NywiaXNzIjoidmFsZW5ZbmFjY2FjaGUifQ.OEsgwQnYfBPs6gP0PdUZtKvZvsEkNdLm4uqerJkBhgs",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PATCH",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"observations\": \"Esta muy copado\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:3000/api/event/7/enrollment/10",
 							"protocol": "http",
@@ -342,8 +420,17 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"username\": \"victoriaherrera@gmail.com\",\r\n    \"password\": \"password123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:3000/api/user/login?username=victoriaherrera@gmail.com&password=password123456789",
+							"raw": "http://localhost:3000/api/user/login",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -357,11 +444,13 @@
 							"query": [
 								{
 									"key": "username",
-									"value": "victoriaherrera@gmail.com"
+									"value": "victoriaherrera@gmail.com",
+									"disabled": true
 								},
 								{
 									"key": "password",
-									"value": "password123456789"
+									"value": "password123456789",
+									"disabled": true
 								}
 							]
 						}
@@ -373,6 +462,15 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"username\": \"valenchalamascapa@gmail.com\",\r\n    \"password\": \"amoamimami\",\r\n    \"first_name\": \"Valenchacha\",\r\n    \"last_name\": \"Vugin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:3000/api/user/register",
 							"protocol": "http",
@@ -420,7 +518,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/event-category/3",
+							"raw": "http://localhost:3000/api/event-category/12",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -429,7 +527,7 @@
 							"path": [
 								"api",
 								"event-category",
-								"3"
+								"12"
 							]
 						}
 					},
@@ -440,6 +538,15 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Es muy terrible\",\r\n    \"display_order\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:3000/api/event-category/",
 							"protocol": "http",
@@ -461,6 +568,15 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Es muy terrible\",\r\n    \"display_order\": 5,\r\n    \"id\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:3000/api/event-category/",
 							"protocol": "http",
@@ -511,7 +627,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidmljdG9yaWFoZXJyZXJhQGdtYWlsLmNvbSIsInBhc3N3IjoicGFzc3dvcmQxMjM0NTY3ODkiLCJpYXQiOjE3MjA3MDMxNjUsImV4cCI6MTcyMDcwNjc2NSwiaXNzIjoidmFsZW5ZbmFjY2FjaGUifQ.yhV3eJmjXaeTekHkmEwHyI-ErEzJB30Jml46auU38j8",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidmljdG9yaWFoZXJyZXJhQGdtYWlsLmNvbSIsInBhc3N3IjoicGFzc3dvcmQxMjM0NTY3ODkiLCJpYXQiOjE3MjA3ODg4ODgsImV4cCI6MTcyMDc5NjA4OCwiaXNzIjoidmFsZW5ZbmFjY2FjaGUifQ.AGHfIkxXtwxAytMPl_7I6La73KBVAYvG2YDiJKDo3vM",
 									"type": "string"
 								}
 							]
@@ -572,15 +688,24 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidmljdG9yaWFoZXJyZXJhQGdtYWlsLmNvbSIsInBhc3N3IjoicGFzc3dvcmQxMjM0NTY3ODkiLCJpYXQiOjE3MjA3MDE3MDQsImV4cCI6MTcyMDcwNTMwNCwiaXNzIjoidmFsZW5ZbmFjY2FjaGUifQ.Y8q2F3hb5ThBGTzO7MJIeUq5QivZwPzscEnHp2xw48w",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidmljdG9yaWFoZXJyZXJhQGdtYWlsLmNvbSIsInBhc3N3IjoicGFzc3dvcmQxMjM0NTY3ODkiLCJpYXQiOjE3MjA3ODg4ODgsImV4cCI6MTcyMDc5NjA4OCwiaXNzIjoidmFsZW5ZbmFjY2FjaGUifQ.AGHfIkxXtwxAytMPl_7I6La73KBVAYvG2YDiJKDo3vM",
 									"type": "string"
 								}
 							]
 						},
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"El mejor eventos\",\r\n    \"full_address\": \"Cabildo y Castillar\",\r\n    \"max_capacity\": 5455,\r\n    \"latitude\": 56456456,\r\n    \"longitude\": -34534535,\r\n    \"id_location\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:3000/api/event-location/?name=skjsdkfj&full_address=dsdsfsdf&max_capacity=333&latitude=3435345&longitude=4&id_location=4",
+							"raw": "http://localhost:3000/api/event-location/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -590,37 +715,6 @@
 								"api",
 								"event-location",
 								""
-							],
-							"query": [
-								{
-									"key": "name",
-									"value": "skjsdkfj"
-								},
-								{
-									"key": "full_address",
-									"value": "dsdsfsdf"
-								},
-								{
-									"key": "max_capacity",
-									"value": "333"
-								},
-								{
-									"key": "latitude",
-									"value": "3435345"
-								},
-								{
-									"key": "longitude",
-									"value": "4"
-								},
-								{
-									"key": "",
-									"value": "",
-									"disabled": true
-								},
-								{
-									"key": "id_location",
-									"value": "4"
-								}
 							]
 						}
 					},
@@ -700,7 +794,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidmljdG9yaWFoZXJyZXJhQGdtYWlsLmNvbSIsInBhc3N3IjoicGFzc3dvcmQxMjM0NTY3ODkiLCJpYXQiOjE3MjA3MDUwMTQsImV4cCI6MTcyMDcxMjIxNCwiaXNzIjoidmFsZW5ZbmFjY2FjaGUifQ.hDhQBrO_x2tLKKvD4woDq3Eo1mE7vHuS8Bs0Vm7RpHo",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidmljdG9yaWFoZXJyZXJhQGdtYWlsLmNvbSIsInBhc3N3IjoicGFzc3dvcmQxMjM0NTY3ODkiLCJpYXQiOjE3MjA3ODg4ODgsImV4cCI6MTcyMDc5NjA4OCwiaXNzIjoidmFsZW5ZbmFjY2FjaGUifQ.AGHfIkxXtwxAytMPl_7I6La73KBVAYvG2YDiJKDo3vM",
 									"type": "string"
 								}
 							]
@@ -708,7 +802,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/event-location/21",
+							"raw": "http://localhost:3000/api/event-location/00",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -717,7 +811,7 @@
 							"path": [
 								"api",
 								"event-location",
-								"21"
+								"00"
 							]
 						}
 					},
@@ -796,8 +890,17 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Castillar\",\r\n    \"full_name\": \"El gran castillaje\",\r\n    \"latitude\": -345345343,\r\n    \"longitude\": 4435345,\r\n    \"display_order\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:3000/api/province?name=gjgj&full_name=ghjhgjghj&latitude=4534534&longitude=345345345&display_order=33",
+							"raw": "http://localhost:3000/api/province",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -806,28 +909,6 @@
 							"path": [
 								"api",
 								"province"
-							],
-							"query": [
-								{
-									"key": "name",
-									"value": "gjgj"
-								},
-								{
-									"key": "full_name",
-									"value": "ghjhgjghj"
-								},
-								{
-									"key": "latitude",
-									"value": "4534534"
-								},
-								{
-									"key": "longitude",
-									"value": "345345345"
-								},
-								{
-									"key": "display_order",
-									"value": "33"
-								}
 							]
 						}
 					},
@@ -838,8 +919,17 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"full_name\": \"El gran castillaje\",\r\n    \"longitude\": 4435345,\r\n    \"display_order\": 4,\r\n    \"id\":  5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:3000/api/province?name=gjgj&full_name=ghjhgjghj&latitude=4534534&id=5",
+							"raw": "http://localhost:3000/api/province",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -848,34 +938,6 @@
 							"path": [
 								"api",
 								"province"
-							],
-							"query": [
-								{
-									"key": "name",
-									"value": "gjgj"
-								},
-								{
-									"key": "full_name",
-									"value": "ghjhgjghj"
-								},
-								{
-									"key": "latitude",
-									"value": "4534534"
-								},
-								{
-									"key": "longitude",
-									"value": "345345345",
-									"disabled": true
-								},
-								{
-									"key": "display_order",
-									"value": "33",
-									"disabled": true
-								},
-								{
-									"key": "id",
-									"value": "5"
-								}
 							]
 						}
 					},
@@ -933,7 +995,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/location",
+							"raw": "http://localhost:3000/api/location/7",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -941,7 +1003,8 @@
 							"port": "3000",
 							"path": [
 								"api",
-								"location"
+								"location",
+								"7"
 							]
 						}
 					},
@@ -950,10 +1013,31 @@
 				{
 					"name": "Buscar event location de una locacion",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidmljdG9yaWFoZXJyZXJhQGdtYWlsLmNvbSIsInBhc3N3IjoicGFzc3dvcmQxMjM0NTY3ODkiLCJpYXQiOjE3MjA3ODkyMjEsImV4cCI6MTcyMDc5NjQyMSwiaXNzIjoidmFsZW5ZbmFjY2FjaGUifQ.rMwWIu4opnq8ffRROYaUK-Xc96DWhpqm_O8WB8qLpjQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "http://localhost:3000/api/location/7/event-location",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"location",
+								"7",
+								"event-location"
+							]
 						}
 					},
 					"response": []

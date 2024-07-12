@@ -181,14 +181,14 @@ export default class EventService {
                     let querys = [`U.username = '${payload["username"]}'`,
                         `U.password = '${payload["password"]}'`]
                     const checkAssistance = await this.getEnrollmentDetailsAsync(id, querys);
-                    if(checkAssistance === null && checkAssistance.length == 0){
+                    if(checkAssistance === null || checkAssistance.length == 0){
                         if(new Date() < eventInfo[0]["start_date"]){
                             const data = [`${payload["id"]}`,"''",
                             `'${new Date().toISOString()}'`, false, "''", 0, id];
                             
                             response = await enrollmentRepo.insertAsync(data);
                         }else{
-                            response = "BAD REQUEST: El evento ya terminó";
+                            response = "BAD REQUEST: El evento ya terminó, por lo que no podes inscribirte";
                         }
                     }else{
                         response = "BAD REQUEST: Ya esta registrado al evento";

@@ -5,7 +5,9 @@
     "express": "^4.19.2",
     "json": "^11.0.0",
     "jsonwebtoken": "^9.0.2",
-    "pg": "^8.11.5"
+    "nodemon": "^3.1.4",
+    "pg": "^8.11.5",
+    "sequelize": "^6.37.3"
   },
   "type": "module",
   "name": "finaldeeventos",

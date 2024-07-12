@@ -30,7 +30,7 @@ router.get("/:id/event-location", async (req, res) => {
         let payload = await tokenHelper.autenticarUsuario(token);
         if(payload["error"] === undefined){
             const returnArray = await svc.getEventLocationByLocationId(id);
-            if(returnArray.length != 0 && returnArray !== false){
+            if(returnArray !== null && returnArray.length != 0 && returnArray !== false){
                 res.setHeader('Content-Type', 'application/json').status(200).json(returnArray);
             }else{
                 res.setHeader('Content-Type', 'text/plain').status(404).send("Id location no existe");

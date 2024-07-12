@@ -481,6 +481,11 @@ router.patch("/:id/enrollment/:rating", async (req, res) => {
     if(validarId === -1 || validarId <= 0){
         return res.setHeader('Content-Type', 'text/plain').status(400).send("El id debe ser un número positivo");
     }
+    
+    const validarRating = validaciones.getIntegerOrDefault(rating, -1);
+    if(validarRating === -1 || validarRating <= 0 || validarRating > 10){
+        return res.setHeader('Content-Type', 'text/plain').status(400).send("El rating debe ser un número entre 1 y 10");
+    }
 
     let token = tokenHelper.extractToken(req.headers.authorization);
     if(token !== false){

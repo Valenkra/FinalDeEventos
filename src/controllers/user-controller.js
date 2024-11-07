@@ -75,18 +75,15 @@ router.post("/register", async (req, res) => {
         if(response[`${key}`] !== undefined) {
             if(strHelp.minChars(value) === true) {
                 if(key === "username") if(strHelp.verifyEmail(value) === false){
-                    res.setHeader('Content-Type', 'text/plain').status(400).send("BAD REQUEST: Username inválido por su estructura.");
-                    break;
+                    return res.setHeader('Content-Type', 'text/plain').status(400).send("BAD REQUEST: Username inválido por su estructura.");
                 }
                 if(strHelp.maxChars(value) === true) {response[`${key}`] = value}
                 else{
-                    res.setHeader('Content-Type', 'text/plain').status(400).send(`BAD REQUEST: Todos los parametros pueden tener hasta ${MAXCHARS} caracteres.`);
-                    break;
+                    return res.setHeader('Content-Type', 'text/plain').status(400).send(`BAD REQUEST: Todos los parametros pueden tener hasta ${MAXCHARS} caracteres.`);
                 }
             }
             else{
-                res.setHeader('Content-Type', 'text/plain').status(400).send(`BAD REQUEST: ${key} debe contar con un minimo de 3 caracteres.`);
-                break;
+                return res.setHeader('Content-Type', 'text/plain').status(400).send(`BAD REQUEST: ${key} debe contar con un minimo de 3 caracteres.`);
             }
         };
     }
@@ -102,10 +99,10 @@ router.post("/register", async (req, res) => {
             strHelp.toLower(response["last_name"]),
             strHelp.toLower(response["username"]),
             strHelp.toLower(response["password"]));
-        if(msg.length === 0) {res.setHeader('Content-Type', 'text/plain').status(201).send(`El usuario ha sido registrado con exito!`)}
-        else {res.setHeader('Content-Type', 'text/plain').status(201).send(`${msg}`);}
+        if(msg.length === 0) {return res.setHeader('Content-Type', 'text/plain').status(201).send(`El usuario ha sido registrado con exito!`);}
+        else {return res.setHeader('Content-Type', 'text/plain').status(201).send(`${msg}`); return;}
     }else{
-        res.setHeader('Content-Type', 'text/plain').status(400).send(`BAD REQUEST: Deben estar todos los parametros`);
+        return res.setHeader('Content-Type', 'text/plain').status(400).send(`BAD REQUEST: Deben estar todos los parametros`);
     }
 })
 

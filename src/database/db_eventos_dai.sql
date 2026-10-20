@@ -376,7 +376,7 @@ CREATE TABLE public.users (
     first_name character varying(100),
     last_name character varying(100),
     username character varying(200),
-    password character varying(100),
+    password character varying(255),
     id integer NOT NULL
 );
 

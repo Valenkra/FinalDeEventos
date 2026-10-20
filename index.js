@@ -1,3 +1,4 @@
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import EventRouter from "./src/controllers/event-controller.js";
@@ -7,7 +8,7 @@ import LocationRouter from "./src/controllers/location-controller.js";
 import ELocationRouter from "./src/controllers/event-location-controller.js";
 import ECategoryRouter from "./src/controllers/event-category-controller.js";
 const app = express();
-const port = 3000;
+const port = Number(process.env.PORT || 3000);
 
 // Agrego los Middlewares
 app.use(cors()); // Middleware de CORS
@@ -23,6 +24,11 @@ app.use("/api/province", ProvinceRouter);
 app.use("/api/location", LocationRouter);
 app.use("/api/event-location", ELocationRouter);
 app.use("/api/event-category", ECategoryRouter);
+
+app.use((err, req, res, next) => {
+    console.error(err);
+    if (!res.headersSent) res.status(500).json({ error: "Error interno del servidor" });
+});
 
 app.listen(port, () => {
     console.log("Escuchando conexión en el puerto " + port);

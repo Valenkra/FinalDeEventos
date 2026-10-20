@@ -1,109 +1,27 @@
-import { Router } from "express";
-import StringHelper from "../helpers/string-helper.js";
-import LogInHelper from "../helpers/login-helper.js";
-import UserService from "../service/user_service.js";
-import { MAXCHARS } from "../helpers/string-helper.js";
+import { Router } from 'express';
+import LogInHelper from '../helpers/login-helper.js';
+import UserService from '../service/user_service.js';
 const router = Router();
-const strHelp = new StringHelper();
-const loginHelp = new LogInHelper();
 const svc = new UserService();
-
-// Login 
-router.post("/login", async (req, res) => {
-    res.setHeader('Content-Type', 'application/json');
-    let STATUS = 400;
-
-    const response = {
-        username: null,
-        password: null
-    }
-
-    let exitMsg = {
-        success: null,
-        message: null, 
-        token: ""
-    }
-
-    for (const [key, value] of Object.entries(req.body)) {
-        if(response[`${key}`] !== undefined){ 
-            if(key === "username"){ if(strHelp.verifyEmail(value) === false){
-                exitMsg["success"] = false;
-                exitMsg["message"] = "El username ó email es invalido por su estructura.";
-                res.status(400).json(exitMsg);
-                break;
-            } else response[`${key}`] = value}
-            else response[`${key}`] = value};
-    }
-
-
-    let oneIsNull = false;
-    for (const [key, value] of Object.entries(response)) {
-        if(value === null) oneIsNull = true;
-    }
-
-    if(oneIsNull === false){
-        const returnArray = await svc.logInAsync(strHelp.toLower(response["username"]), strHelp.toLower(response["password"]));
-        if(returnArray.length !== 0){
-            const token = await loginHelp.generarToken(strHelp.toLower(response["username"]), strHelp.toLower(response["password"]));
-            exitMsg["success"] = true;
-            exitMsg["token"] = `${token}`;
-            STATUS = 200;
-        }else{
-            exitMsg["success"] = false;
-            exitMsg["message"] = "Usuario o clave inválida.";
-            STATUS = 401;
-        }
-    }else{
-        exitMsg["success"] = false;
-        exitMsg["message"] = "Faltan parametros.";
-        STATUS = 400;
-    }
-
-    res.status(`${STATUS}`).json(exitMsg);
-})
-
-// Sign Up 
-router.post("/register", async (req, res) => {
-    const response = {
-        first_name: null,
-        last_name: null,
-        username: null,
-        password: null
-    }
-
-    for (const [key, value] of Object.entries(req.body)) {
-        if(response[`${key}`] !== undefined) {
-            if(strHelp.minChars(value) === true) {
-                if(key === "username") if(strHelp.verifyEmail(value) === false){
-                    return res.setHeader('Content-Type', 'text/plain').status(400).send("BAD REQUEST: Username inválido por su estructura.");
-                }
-                if(strHelp.maxChars(value) === true) {response[`${key}`] = value}
-                else{
-                    return res.setHeader('Content-Type', 'text/plain').status(400).send(`BAD REQUEST: Todos los parametros pueden tener hasta ${MAXCHARS} caracteres.`);
-                }
-            }
-            else{
-                return res.setHeader('Content-Type', 'text/plain').status(400).send(`BAD REQUEST: ${key} debe contar con un minimo de 3 caracteres.`);
-            }
-        };
-    }
-
-    let oneIsNull = false;
-    for (const [key, value] of Object.entries(response)) {
-        if(value === null) oneIsNull = true;
-    }
-
-    if(!oneIsNull){
-        let msg = await svc.registerAsync(
-            strHelp.toLower(response["fist_name"]),
-            strHelp.toLower(response["last_name"]),
-            strHelp.toLower(response["username"]),
-            strHelp.toLower(response["password"]));
-        if(msg.length === 0) {return res.setHeader('Content-Type', 'text/plain').status(201).send(`El usuario ha sido registrado con exito!`);}
-        else {return res.setHeader('Content-Type', 'text/plain').status(201).send(`${msg}`); return;}
-    }else{
-        return res.setHeader('Content-Type', 'text/plain').status(400).send(`BAD REQUEST: Deben estar todos los parametros`);
-    }
-})
-
+const auth = new LogInHelper();
+router.post('/register', async (req,res,next) => {
+  try {
+    const {first_name,last_name,username,password} = req.body || {};
+    if (![first_name,last_name,username,password].every(v => typeof v === 'string' && v.trim().length >= 3 && v.length <= 100)) return res.status(400).json({success:false,message:'Datos incompletos o inválidos'});
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(username)) return res.status(400).json({success:false,message:'Email inválido'});
+    const result = await svc.registerAsync(first_name.trim(),last_name.trim(),username.trim().toLowerCase(),password);
+    if (typeof result === 'string') return res.status(409).json({success:false,message:result});
+    return res.status(201).json({success:true,message:'Usuario registrado'});
+  } catch(e) { next(e); }
+});
+router.post('/login', async (req,res,next) => {
+  try {
+    const {username,password} = req.body || {};
+    if (typeof username !== 'string' || typeof password !== 'string' || !username || !password) return res.status(400).json({success:false,message:'Faltan parámetros'});
+    const users = await svc.logInAsync(username.trim().toLowerCase(),password);
+    if (!users.length) return res.status(401).json({success:false,message:'Usuario o clave inválida'});
+    const token = await auth.generarToken(users[0].id,users[0].username);
+    return res.status(200).json({success:true,token});
+  } catch(e) { next(e); }
+});
 export default router;

@@ -183,7 +183,7 @@ export default class EventService {
             if(enrollmentInfo[0]["count"] + 1 <= eventInfo[0]["max_assistance"]){
                 if(eventInfo[0]["enabled_for_enrollment"] == true){
                     let querys = [`U.username = '${payload["username"]}'`,
-                        `U.password = '${payload["password"]}'`]
+                        "U.id = " + (payload?.id ?? data?.[1]?.id)]
                     const checkAssistance = await this.getEnrollmentDetailsAsync(id, querys);
                     if(checkAssistance === null || checkAssistance.length == 0){
                         if(new Date() < eventInfo[0]["start_date"]){
@@ -217,7 +217,7 @@ export default class EventService {
         
         if(eventInfo !== null && enrollmentInfo !== null){
             let querys = [`U.username = '${payload["username"]}'`,
-                `U.password = '${payload["password"]}'`]
+                "U.id = " + (payload?.id ?? data?.[1]?.id)]
             const checkAssistance = await this.getEnrollmentDetailsAsync(id, querys);
             if(checkAssistance !== null && checkAssistance.length != 0){
                 if(new Date() < eventInfo[0]["start_date"]){

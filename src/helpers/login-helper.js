@@ -1,35 +1,17 @@
 import jwt from 'jsonwebtoken';
-const SECRETKEY = 'v4l3?nc=H43!Sl4m4@Sc4p#AaYn0t//13nEm$A5cOt4%';
+import 'dotenv/config';
 
+function secret() {
+  const value = process.env.JWT_SECRET;
+  if (!value || value.length < 32) throw new Error('JWT_SECRET debe tener al menos 32 caracteres');
+  return value;
+}
 export default class LogInHelper {
-    setPayload = (user, passw) => {
-        const payload = {
-            user: `${user}`,
-            passw: `${passw}`
-        }
-        return payload;
-    }
-
-    generarToken = async (user, passw) => {
-        const payload = this.setPayload(user,passw);
-        const options = {
-            expiresIn: '2h',
-            issuer: 'valenYnaccache'
-        }
-        const token = await jwt.sign(payload, SECRETKEY, options);
-        return token;
-    }
-
-    desencriptarToken = async (token) => {
-        let payload = null;
-        try {
-            payload = await jwt.verify(token, SECRETKEY);
-        }catch (e) {
-            const error = {
-                error: `${e}`
-            }
-            return error;
-        }
-        return payload;
-    }
+  generarToken = async (userId, username) => jwt.sign(
+    { sub: String(userId), username }, secret(), { expiresIn: '2h', issuer: 'FinalDeEventos' }
+  );
+  desencriptarToken = async (token) => {
+    try { return jwt.verify(token, secret(), { issuer: 'FinalDeEventos' }); }
+    catch { return { error: 'Token inválido o vencido' }; }
+  };
 }

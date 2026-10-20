@@ -1,9 +1,11 @@
-const config = {
-    user: "postgres",
-    host: "localhost",
-    database: "postgres",
-    password: "root",
-    port: 5432
-}
+import "dotenv/config";
 
+const config = {
+  host: process.env.DB_HOST || "localhost",
+  port: Number(process.env.DB_PORT || 5432),
+  database: process.env.DB_NAME || "postgres",
+  user: process.env.DB_USER || "postgres",
+  password: process.env.DB_PASSWORD,
+};
+if (!config.password) throw new Error("Falta DB_PASSWORD en .env");
 export default config;
